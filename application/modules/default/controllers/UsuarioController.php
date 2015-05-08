@@ -1,6 +1,6 @@
 <?php
 
-class Admin_UsuarioController extends Aplicacao_Controller_Action {
+class Default_UsuarioController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
         $model = new Application_Model_Usuario();
@@ -19,7 +19,7 @@ class Admin_UsuarioController extends Aplicacao_Controller_Action {
             if($form->isValid($this->data)) {
                 $model = new Application_Model_Usuario();
                 if($model->save($this->data))
-                    $this->_redirect ('/admin/usuario');
+                    $this->_redirect ('/usuario');
             }
         }
     }
@@ -40,7 +40,7 @@ class Admin_UsuarioController extends Aplicacao_Controller_Action {
                 $this->data['id'] = $id;
             if ($form->isValid($this->data)) {
                 if ($model->save($this->data))
-                    $this->_redirect ('/admin/usuario');
+                    $this->_redirect ("/usuario/edit/id/$id");
             }
         }
     }
@@ -52,7 +52,7 @@ class Admin_UsuarioController extends Aplicacao_Controller_Action {
         if($id)
             $this->data['id'] = $id;
         if($model->delete($this->data))
-            $this->_redirect ('/admin/usuario');
+            $this->_redirect ('/usuario');
 
         $this->view->form = $form;
         $this->view->error = "Erro ao excluir Usuario";
@@ -62,6 +62,6 @@ class Admin_UsuarioController extends Aplicacao_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
         if (!$auth->hasIdentity())
-            $this->_redirect('/admin/login');
+            $this->_redirect('/login');
     }
 }

@@ -1,14 +1,13 @@
 <?php
 
-class Admin_LoginController extends Aplicacao_Controller_Action {
+class Default_LoginController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
 
         if (!Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session('admin'))->hasIdentity()) {
 
             $layout = Zend_Layout::getMvcInstance();
-            $layout->setLayout("login")
-                ->setLayoutPath(APPLICATION_PATH . '/modules/admin/views/layouts');
+            $layout->setLayout("login");
 
             $form = new Aplicacao_Form_Login();
             $this->view->form = $form;
@@ -16,7 +15,7 @@ class Admin_LoginController extends Aplicacao_Controller_Action {
             if ($this->_request->isPost()) {
                 if ($form->isValid($this->data)) {
                     $authAdapter = $this->getAuthAdapter();
-                    $authAdapter->setIdentity($this->data['email'])
+                    $authAdapter->setIdentity($this->data['login'])
                                 ->setCredential($this->data['senha']);
 
                     $select = $authAdapter->getDbSelect();
@@ -29,7 +28,7 @@ class Admin_LoginController extends Aplicacao_Controller_Action {
                         $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
                         $dataAuth = $authAdapter->getResultRowObject(null, 'senha');
                         $auth->getStorage()->write($dataAuth);
-                        $this->_redirect("/admin");
+                        $this->_redirect("/");
                     } else {
                         $this->view->error = "Usuário ou senha inválidos";
                         $form->populate($this->data);
@@ -37,7 +36,7 @@ class Admin_LoginController extends Aplicacao_Controller_Action {
                 }
             }
         } else {
-            $this->_redirect('/admin');
+            $this->_redirect('/');
         }
     }
 
@@ -58,6 +57,6 @@ class Admin_LoginController extends Aplicacao_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
         $auth->clearIdentity();
-        $this->_redirect('/admin');
+        $this->_redirect('/');
     }
 }

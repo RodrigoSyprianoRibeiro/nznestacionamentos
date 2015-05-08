@@ -2765,6 +2765,7 @@ select[multiple].form-group-lg .form-control {
   line-height: 34px;
   text-align: center;
   pointer-events: none;
+  margin-top: 20px;
 }
 .input-lg + .form-control-feedback {
   width: 46px;
@@ -6564,3 +6565,14 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.legenda {
+    width: 150px;
+    padding: 5px; 
+    background-color: #ECF0F5; 
+    border: 1px dashed #000; 
+    font-size: 14px;
+    margin-top: 30px;
+}
+.legenda table td{
+    padding: 2px;
+}
