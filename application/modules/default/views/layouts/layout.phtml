@@ -236,14 +236,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo $this->baseUrl("dist/img/avatar5.png"); ?>" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs"><?php echo Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session('admin'))->getIdentity()->nome; ?></span>
+                  <span class="hidden-xs"><?php echo "Rodrigo";//Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session('admin'))->getIdentity()->nome; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="<?php echo $this->baseUrl("dist/img/avatar5.png"); ?>" class="img-circle" alt="User Image" />
                     <p>
-                      <?php echo Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session('admin'))->getIdentity()->nome; ?>
+                      <?php echo "Rodrigo";//Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session('admin'))->getIdentity()->nome; ?>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -265,46 +265,73 @@
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>
-          <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">Menu</li>
+            
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Página Inicial</span></i>
               </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-              </ul>
+            </li>
+          
+            <!-- Menu Master -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-edit"></i> <span>Estacionamentos</span>
+              </a>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>Layout Options</span>
-                <span class="label label-primary pull-right">4</span>
+                <i class="fa fa-edit"></i> <span>Funcionários</span>
+              </a>
+            </li>
+            <!-- End Menu Master -->
+            
+            <!-- Menu Administrador -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-edit"></i> <span>Configurar Estacionamento</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-edit"></i> <span>Clientes</span>
+              </a>
+            </li>
+            <!-- End Menu Administrador -->
+            
+            <!-- Menu Cliente -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-user"></i> <span>Minha Conta</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Automóveis</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-card"></i> <span>Comprar Crédito</span>
+              </a>
+            </li>
+            <!-- End Menu Cliente -->
+            
+            <!-- Relatórios -->
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Relatório</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                <li><a href=""><i class="fa fa-table"></i> Movimentação do Estacionamento</a></li>
+                <li><a href=""><i class="fa fa-table"></i> Receita</a></li>
+                <li><a href=""><i class="fa fa-table"></i> Movimentação Cliente</a></li>
               </ul>
             </li>
-            <li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
+            <!-- End Relatórios -->
+            
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>

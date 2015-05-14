@@ -22,4 +22,3 @@ class Application_Model_Usuario extends Application_Model_Abstract {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
     }
 }
-
