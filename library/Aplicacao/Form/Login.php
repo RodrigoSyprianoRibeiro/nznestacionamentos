@@ -30,7 +30,7 @@
 
             $submit = new Zend_Form_Element_Submit('submit');
             $submit->setLabel('Entrar')
-                   ->setAttrib('class', 'btn btn-danger btn-block btn-flat')
+                   ->setAttrib('class', 'btn btn-danger')
                    ->setAttrib('type', 'submit');
             $this->addElement($submit);
         }

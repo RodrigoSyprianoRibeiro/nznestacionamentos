@@ -40,14 +40,14 @@ class Default_LoginController extends Aplicacao_Controller_Action {
         }
     }
 
-    public function registrarAction() {
+    public function signupAction() {
 
         if (!Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session('admin'))->hasIdentity()) {
 
             $layout = Zend_Layout::getMvcInstance();
             $layout->setLayout("login");
 
-            $form = new Aplicacao_Form_Registrar();
+            $form = new Aplicacao_Form_Login();
             $this->view->form = $form;
 
             if ($this->_request->isPost()) {
