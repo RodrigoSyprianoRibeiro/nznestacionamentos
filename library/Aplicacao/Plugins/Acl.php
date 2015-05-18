@@ -12,12 +12,14 @@ class Aplicacao_Plugins_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->add(new Zend_Acl_Resource('default:login', 'logout'));
         $acl->add(new Zend_Acl_Resource('default:index'));
         $acl->add(new Zend_Acl_Resource('default:usuario'));
+        $acl->add(new Zend_Acl_Resource('default:funcionario'));
         $acl->add(new Zend_Acl_Resource('default:error'));
 
         $acl->allow('usuario', 'default:login', 'logout');
         $acl->allow('usuario', 'default:index');
         $acl->allow('usuario', 'default:error', array('error', 'forbidden'));
         $acl->deny('usuario', 'default:usuario');
+        $acl->deny('usuario', 'default:funcionario');
         $acl->allow('admin', 'default:usuario');
 
         // Primeiro vamos instânciar o Zend_Auth

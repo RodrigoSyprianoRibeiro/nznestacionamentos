@@ -8,8 +8,8 @@
     <h4>Crie sua Conta no NZN Estacionamentos:</h4>
     <form action="" method="post">
         <label>
-          <input id="pessoaFisica" type="radio" name="tipoPessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
-          <input id="pessoaJuridica" type="radio" name="tipoPessoa" value="pessoaJuridica" class="minimal-red" /> Pessoa Jurídica
+          <input type="radio" name="tipoPessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
+          <input type="radio" name="tipoPessoa" value="pessoaJuridica" class="minimal-red" /> Pessoa Jurídica
         </label>
         <div class="input-group margin-bottom">
           <div class="input-group-addon">
@@ -27,33 +27,33 @@
           <div class="input-group-addon">
             <i class="fa fa-phone"></i>
           </div>
-          <input type="text" name="telefone" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 999-9999"' data-mask />
+          <input type="text" name="telefone" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
         </div><!-- /.input group -->
-        <div id="cpf" class="input-group margin-bottom">
+        <div class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-edit"></i>
           </div>
           <input type="text" name="cpf" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask />
         </div><!-- /.input group -->
-        <div id="rg" class="input-group margin-bottom">
+        <div class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-edit"></i>
           </div>
           <input type="text" name="rg" class="form-control" placeholder="RG" />
         </div><!-- /.input group -->
-        <div id="dataNascimento" class="input-group margin-bottom">
+        <div class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
           <input type="text" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
         </div><!-- /.input group -->
-        <div id="cnpj" class="input-group margin-bottom">
+        <div class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-edit"></i>
           </div>
           <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
         </div><!-- /.input group -->
-        <div id="dataFundacao" class="input-group margin-bottom">
+        <div class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
@@ -78,7 +78,7 @@
           <input type="password" name="confirmarSenha" class="form-control" placeholder="Confirmar Senha" />
         </div><!-- /.input group -->
       <div class="row">
-        <div class="col-xs-12">    
+        <div class="col-xs-12">
           <div class="checkbox icheck">
             <label>
               <input type="checkbox" name="termoUso" class="minimal-red"/> Eu li e concordo com os <a href="#" class="text-red">termos de uso</a>.
