@@ -3,23 +3,24 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Funcionários
-        <small>editar funcionário</small>
+        Estacionamentos
+        <small>novo estacionamento</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
-        <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Funcionários</a></li>
-        <li class="active">editar</li>
+        <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Estacionamentos</a></li>
+        <li class="active">novo</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
+
+             <div class="row">
         <div class="col-md-12">
           <div class="box box-danger">
             <div class="box-header">
-              <h3 class="box-title">Editar Funcionário</h3>
+              <h3 class="box-title">Novo Estacionamento</h3>
             </div>
             <div class="box-body">
               <div class="form-group">
@@ -30,122 +31,88 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="nome" value="José Paulo" class="form-control" placeholder="Nome" />
+                    <input type="text" name="nome" class="form-control" placeholder="Nome" />
                   </div><!-- /.input group -->
-                  <label>E-mail</label>
+                  <label>Administrador</label>
                   <div class="input-group margin-bottom col-md-4">
                     <div class="input-group-addon">
-                      <i class="fa fa-envelope"></i>
+                      <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="email" value="jose.paulo@gmail.com" class="form-control" placeholder="E-mail" />
+                    <input type="text" name="adm" class="form-control" placeholder="Nome do Administrador" />
                   </div><!-- /.input group -->
-                  <label>Telefone</label>
+                  <label>Número de Vagas</label>
                   <div class="input-group margin-bottom col-md-2">
                     <div class="input-group-addon">
-                      <i class="fa fa-phone"></i>
+                      <i class="fa fa-dashboard"></i>
                     </div>
-                    <input type="text" name="telefone" value="(48) 9669-6789" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
+                    <input type="text" name="vagas" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
                   </div><!-- /.input group -->
-
-                  <div class="box">
+                                    <div class="box">
                     <div class="box-header">
                       <h3 class="box-title">Dados do Documento</h3>
                     </div>
                     <div class="box-body">
                       <div class="row">
                         <div class="col-xs-3">
-                          <label>CPF</label>
+                          <label>CNPJ</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cpf" value="844.614.208-25" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask />
+                            <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "999.999.999-99"' data-mask />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-xs-3">
-                          <label>RG</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-edit"></i>
-                            </div>
-                            <input type="text" name="rg" value="5.614.208" class="form-control" placeholder="RG" />
-                          </div><!-- /.input group -->
-                        </div>
-                        <div class="col-xs-3">
-                          <label>Data de Nascimento</label>
+                          <label>Data de Fundação</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataNascimento" value="21/10/1986" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="dataFundacao" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
                   </div><!-- /.box -->
-
                   <div class="box">
                     <div class="box-header">
-                      <h3 class="box-title">Dados de Funcionário</h3>
+                      <h3 class="box-title">Tabela de Preço</h3>
                     </div>
                     <div class="box-body">
                       <div class="row">
                         <div class="col-xs-3">
-                          <label>Matrícula</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-edit"></i>
-                            </div>
-                            <input type="text" name="matricula" value="69587" class="form-control" placeholder="Matrícula" />
-                          </div><!-- /.input group -->
-                        </div>
-                        <div class="col-xs-3">
-                          <label>Data de Admissão</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-calendar"></i>
-                            </div>
-                            <input type="text" name="dataAdmissao" value="15/11/2014" class="form-control" placeholder="Data de Admissão" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
-                          </div><!-- /.input group -->
-                        </div>
-                        <div class="col-xs-3">
-                          <label>Salário</label>
+                          <label>Valor</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa">R$</i>
                             </div>
-                            <input type="text" name="salario" value="1.500,00" class="form-control" placeholder="Salário" />
+                            <input type="text" name="valor" class="form-control" placeholder="Valor da Vaga" />
+                          </div><!-- /.input group -->
+                        </div>
+                        <div class="col-xs-3">
+                          <label>Tempo</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" name="tempo" class="form-control" placeholder="Tempo" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                          </div><!-- /.input group -->
+                        </div>
+                        <div class="col-xs-3">
+                          <label>Descrição</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa-star-o"></i>
+                            </div>
+                            <input type="text" name="descricao" class="form-control" placeholder="Descrição" />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
                   </div><!-- /.box -->
-
-                  <label>Login</label>
-                  <div class="input-group margin-bottom col-md-2">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user"></i>
-                    </div>
-                    <input type="text" name="login" value="jose.paulo" class="form-control" placeholder="Login" />
-                  </div><!-- /.input group -->
-                  <label>Estacionamento</label>
-                  <div class="input-group margin-bottom col-md-2">
-                    <div class="input-group-addon">
-                      <i class="fa fa-edit"></i>
-                    </div>
-                    <select name="estacionamento" class="form-control">
-                      <option>-- Selecione o Estacionamento --</option>
-                      <option>Estacionamento 1</option>
-                      <option>Estacionamento 2</option>
-                      <option>Estacionamento 3</option>
-                      <option>Estacionamento 4</option>
-                    </select>
-                  </div><!-- /.input group -->
                   <div class="row">
-                    <div class="col-xs-12 margin-bottom">
-                      <button type="submit" class="btn btn-primary">Alterar</button>
-                      <button type="submit" class="btn btn-warning">Gerar Nova Senha</button>
-                      <button type="submit" class="btn btn-danger">Inativar</button>
+                    <div class="col-xs-4 margin-bottom">
+                      <button type="submit" class="btn btn-success">Cadastrar</button>
                     </div><!-- /.col -->
                   </div>
                 </form>
@@ -154,7 +121,7 @@
           </div><!-- /.box -->
         </div><!-- /.col -->
       </div>   <!-- /.row -->
-    </section><!-- /.content -->
+        </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
 <!-- InputMask -->

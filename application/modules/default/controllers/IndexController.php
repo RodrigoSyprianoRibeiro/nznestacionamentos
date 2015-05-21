@@ -10,6 +10,31 @@ class Default_IndexController extends Aplicacao_Controller_Action {
         //$this->view->quantidadeUsuarios = $model->count();
     }
 
+    public function masterAction() {
+        //$usuario = Zend_Auth::getInstance()->getIdentity();
+        //$this->view->usuario = $usuario;
+
+        //$model = new Application_Model_Usuario();
+        //$this->view->quantidadeUsuarios = $model->count();
+    }
+
+
+    public function administradorAction() {
+        //$usuario = Zend_Auth::getInstance()->getIdentity();
+        //$this->view->usuario = $usuario;
+
+        //$model = new Application_Model_Usuario();
+        //$this->view->quantidadeUsuarios = $model->count();
+    }
+
+    public function clienteAction() {
+        //$usuario = Zend_Auth::getInstance()->getIdentity();
+        //$this->view->usuario = $usuario;
+
+        //$model = new Application_Model_Usuario();
+        //$this->view->quantidadeUsuarios = $model->count();
+    }
+
     /*
     public function preDispatch() {
         $auth = Zend_Auth::getInstance();

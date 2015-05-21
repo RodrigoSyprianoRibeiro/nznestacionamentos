@@ -6,79 +6,85 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Funcionários
-        <small>lista de funcionários</small>
+        Estacionamentos
+        <small>lista de estacionamentos</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
-        <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Funcionários</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'estacionamento'), null, 1); ?>">Estacionamentos</a></li>
         <li class="active">lista</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
+        <div class="row">
         <div class="col-xs-12">
           <div class="box box-danger">
             <div class="box-header">
-              <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'new'), null, 1); ?>">
-                <button type="button" class="btn btn-danger">Novo Funcionário</button>
+              <a href="cadfil.html">
+                <button type="button" class="btn btn-danger">Novo Estacionamento</button>
               </a>
             </div><!-- /.box-header -->
             <div class="box-body">
-              <table id="tabelaFuncionarios" class="table table-bordered table-striped">
+              <table id="tabelaEstacionamentos" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Estacionamento</th>
+                    <th>Administrador</th>
+                    <th>CNPJ</th>
+                    <th>Vagas</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Estacionamento 1</td>
                     <td>Pedro</td>
                     <td>788.993.822-55</td>
-                    <td>Estacionamento 1</td>
+                    <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a class="text-red" href="editfil.html"><span class="label label-primary">Editar</span></a>
                       <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
+                    <td>Estacionamento 2</td>
                     <td>João</td>
                     <td>100.060.954-53</td>
-                    <td>Estacionamento 1</td>
+                    <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a class="text-red" href="funcionario/edit"><span class="label label-primary">Editar</span></a>
                       <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
+                    <td>Estacionamento 3</td>
                     <td>Maria</td>
                     <td>973.717.214-03</td>
-                    <td>Estacionamento 2</td>
+                    <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a class="text-red" href="funcionario/edit"><span class="label label-primary">Editar</span></a>
                       <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
+                    <td>Estacionamento 4</td>
                     <td>Antônio</td>
                     <td>863.738.515-08</td>
-                    <td>Estacionamento 3</td>
+                    <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a class="text-red" href="funcionario/edit"><span class="label label-primary">Editar</span></a>
                       <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
+                    <td>Estacionamento 5</td>
                     <td>José Paulo</td>
                     <td>844.614.208-25</td>
-                    <td>Estacionamento 4</td>
+                    <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a class="text-red" href="funcionario/edit"><span class="label label-primary">Editar</span></a>
                       <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
                     </td>
                   </tr>
@@ -88,7 +94,7 @@
           </div><!-- /.box -->
         </div><!-- /.col -->
       </div><!-- /.row -->
-    </section><!-- /.content -->
+        </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
 <!-- DATA TABES SCRIPT -->
@@ -97,6 +103,6 @@
 
 <script type="text/javascript">
 $(function () {
-    $("#tabelaFuncionarios").dataTable();
+    $("#tabelaEstacionamentos").dataTable();
 });
 </script>

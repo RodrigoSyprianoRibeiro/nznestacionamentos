@@ -1,0 +1,201 @@
+<!-- DATA TABLES -->
+<link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Colocar Crédito
+        <small>efetuar recarga</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'cliente'), null, 1); ?>">Clientes</a></li>
+        <li class="active">colocar crédito</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+            <div class="col-xs-12">
+              <div class="box box-danger">
+                <div class="box-header">
+                <h3 class="box-title">Cliente Selecionado: </h3>
+                <input type="text" name="Nome" size="80" />
+                <h3 class="box-title">Valor à Creditar: </h3>
+                <input type="text" name="Nome" size="15" />
+                <a target="_blank" class="btn btn-default"><i class="fa fa-refresh"></i> Confirmar</a>
+              </div><!-- /.box-header -->
+                <div class="box-header">
+                  <h3 class="box-title">Clientes</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="tabelaClientes" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Clientes</th>
+                        <th>Valor Crédito</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Miguel</td>
+                        <td class='text-green'>19,00</td>
+                      </tr>
+                      <tr>
+                        <td>Davi</td>
+                        <td class='text-green'>16,00</td>
+                      <tr>
+                        <td>Sophia</td>
+                        <td class='text-green'>18,00</td>
+                      </tr>
+                      <tr>
+                        <td>Alice</td>
+                        <td class='text-green'>2,00</td>
+                      </tr>
+                      <tr>
+                        <td>Arthur</td>
+                        <td class='text-green'>10,00</td>
+                      </tr>
+                      <tr>
+                        <td>Pedro</td>
+                        <td class='text-green'>88,00</td>
+                      </tr>
+                      <tr>
+                        <td>Gabriel</td>
+                        <td class='text-green'>66,00</td>
+                      </tr>
+                      <tr>
+                        <td>Julia</td>
+                        <td class='text-green'>55,00</td>
+                      </tr>
+                      <tr>
+                        <td>Isabella</td>
+                        <td class='text-green'>100,00</td>
+                      </tr>
+                      <tr>
+                        <td>Manuela</td>
+                        <td class='text-green'>45,00</td>
+                      </tr>
+                      <tr>
+                        <td>Laura</td>
+                        <td class='text-green'>45,00</td>
+                      </tr>
+                      <tr>
+                        <td>Bernardo</td>
+                        <td class='text-red'>-23,00</td>
+                      </tr>
+                      <tr>
+                        <td>Lucas</td>
+                        <td class='text-green'>54,00</td>
+                      </tr>
+                      <tr>
+                        <td>Luiza</td>
+                        <td class='text-green'>103,00</td>
+                      </tr>
+                      <tr>
+                        <td>Valentina</td>
+                        <td class='text-green'>23,00</td>
+                      </tr>
+                      <tr>
+                        <td>Giovana</td>
+                        <td class='text-green'>12,00</td>
+                      </tr>
+                      <tr>
+                        <td>Matheus</td>
+                        <td class='text-green'>33,00</td>
+                      </tr>
+                      <tr>
+                        <td>Rafael</td>
+                        <td class='text-green'>11,00</td>
+                      </tr>
+                      <tr>
+                        <td>Heitor</td>
+                        <td class='text-green'>8,00</td>
+                      </tr>
+                      <tr>
+                        <td>Maria Eduarda</td>
+                        <td class='text-green'>12,00</td>
+                      </tr>
+                      <tr>
+                        <td>Helena</td>
+                        <td class='text-green'>23,00</td>
+                      </tr>
+                      <tr>
+                        <td>Enzo</td>
+                        <td class='text-green'>134,00</td>
+                      </tr>
+                      <tr>
+                        <td>Guilherme</td>
+                        <td class='text-green'>80,00</td>
+                      </tr>
+                      <tr>
+                        <td>Nicolas</td>
+                        <td class='text-green'>100,00</td>
+                      </tr>
+                      <tr>
+                        <td>Lorenzo</td>
+                        <td class='text-green'>50,00</td>
+                      </tr>
+                      <tr>
+                        <td>Beatriz</td>
+                        <td class='text-green'>26,00</td>
+                      </tr>
+                      <tr>
+                        <td>Maria Luiza</td>
+                        <td class='text-green'>24,00</td>
+                      </tr>
+                      <tr>
+                        <td>Gustavo</td>
+                        <td class='text-green'>56,00</td>
+                      </tr>
+                      <tr>
+                        <td>Felipe</td>
+                        <td class='text-green'>178,00</td>
+                      </tr>
+                      <tr>
+                        <td>Samuel</td>
+                        <td class='text-green'>158,00</td>
+                      </tr>
+                      <tr>
+                        <td>Lara</td>
+                        <td class='text-green'>10,00</td>
+                      </tr>
+                      <tr>
+                        <td>Mariana</td>
+                        <td class='text-green'>15,00</td>
+                      </tr>
+                      <tr>
+                        <td>Nicole</td>
+                        <td class='text-green'>80,00</td>
+                      </tr>
+                      <tr>
+                        <td>Rafaela</td>
+                        <td class='text-green'>50,00</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Clientes</th>
+                        <th>Valor Crédito</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+<!-- DATA TABES SCRIPT -->
+<script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function () {
+    $("#tabelaClientes").dataTable();
+});
+</script>

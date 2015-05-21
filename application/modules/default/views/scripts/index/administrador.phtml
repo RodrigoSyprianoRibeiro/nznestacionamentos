@@ -1,0 +1,408 @@
+<!-- DATA TABLES -->
+<link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Página Inicial
+      <small>Gerenciamento</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Página Inicial</a></li>
+      <li class="active">Gerenciamento</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Small boxes (Stat box) -->
+            <div class="row">
+              <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h3 id="vagaDisponivel">0</h3>
+                    <p>Vagas Disponíveis</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                  </div>
+                </div>
+              </div><!-- ./col -->
+              <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                  <div class="inner">
+                    <h3 id="vagaOcupada">0</h3>
+                    <p>Vagas Ocupadas</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                  </div>
+                </div>
+              </div><!-- ./col -->
+            </div><!-- /.row -->
+
+          <!--TABELA DE VAGAS-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="box box-danger">
+                <div class="box-header">
+                  <i class="fa fa-edit"></i>
+                  <h3 class="box-title">Vagas</h3>
+                  <div style="float: right;">
+                    <a class="btn btn-success" >&nbsp</a> Vaga Livre
+                    <a class="btn btn-danger" >&nbsp</a> Vaga Ocupada
+                  </div>
+                </div>
+                <div class="box-body pad table-responsive">
+                  <div id="vagas" class="box-body">
+                    <a class="btn btn-success vaga livre">001</a>
+                    <a class="btn btn-success vaga livre">002</a>
+                    <a class="btn btn-success vaga livre">003</a>
+                    <a class="btn btn-success vaga livre">004</a>
+                    <a class="btn btn-success vaga livre">005</a>
+                    <a class="btn btn-success vaga livre">006</a>
+                    <a class="btn btn-success vaga livre">007</a>
+                    <a class="btn btn-success vaga livre">008</a>
+                    <a class="btn btn-success vaga livre">009</a>
+                    <a class="btn btn-success vaga livre">010</a>
+                    <a class="btn btn-success vaga livre">011</a>
+                    <a class="btn btn-success vaga livre">012</a>
+                    <a class="btn btn-success vaga livre">013</a>
+                    <a class="btn btn-success vaga livre">014</a>
+                    <a class="btn btn-success vaga livre">015</a>
+                    <a class="btn btn-success vaga livre">016</a>
+                    <a class="btn btn-success vaga livre">017</a>
+                    <a class="btn btn-success vaga livre">018</a>
+                    <a class="btn btn-success vaga livre">019</a>
+                    <a class="btn btn-success vaga livre">020</a>
+                    <a class="btn btn-success vaga livre">021</a>
+                    <a class="btn btn-success vaga livre">022</a>
+                    <a class="btn btn-success vaga livre">023</a>
+                    <a class="btn btn-success vaga livre">024</a>
+                    <a class="btn btn-success vaga livre">025</a>
+                    <a class="btn btn-success vaga livre">026</a>
+                    <a class="btn btn-success vaga livre">027</a>
+                    <a class="btn btn-success vaga livre">028</a>
+                    <a class="btn btn-success vaga livre">029</a>
+                    <a class="btn btn-success vaga livre">030</a>
+                    <a class="btn btn-success vaga livre">031</a>
+                    <a class="btn btn-success vaga livre">032</a>
+                    <a class="btn btn-success vaga livre">033</a>
+                    <a class="btn btn-success vaga livre">034</a>
+                    <a class="btn btn-success vaga livre">035</a>
+                    <a class="btn btn-success vaga livre">036</a>
+                    <a class="btn btn-success vaga livre">037</a>
+                    <a class="btn btn-success vaga livre">038</a>
+                    <a class="btn btn-success vaga livre">039</a>
+                    <a class="btn btn-success vaga livre">040</a>
+                    <a class="btn btn-success vaga livre">041</a>
+                    <a class="btn btn-success vaga livre">042</a>
+                    <a class="btn btn-success vaga livre">043</a>
+                    <a class="btn btn-success vaga livre">044</a>
+                    <a class="btn btn-success vaga livre">045</a>
+                    <a class="btn btn-success vaga livre">046</a>
+                    <a class="btn btn-success vaga livre">047</a>
+                    <a class="btn btn-success vaga livre">048</a>
+                    <a class="btn btn-success vaga livre">049</a>
+                    <a class="btn btn-success vaga livre">050</a>
+                    <a class="btn btn-success vaga livre">051</a>
+                    <a class="btn btn-success vaga livre">052</a>
+                    <a class="btn btn-success vaga livre">053</a>
+                    <a class="btn btn-success vaga livre">054</a>
+                    <a class="btn btn-success vaga livre">055</a>
+                    <a class="btn btn-success vaga livre">056</a>
+                    <a class="btn btn-success vaga livre">057</a>
+                    <a class="btn btn-success vaga livre">058</a>
+                    <a class="btn btn-success vaga livre">059</a>
+                    <a class="btn btn-success vaga livre">060</a>
+                    <a class="btn btn-success vaga livre">061</a>
+                    <a class="btn btn-success vaga livre">062</a>
+                    <a class="btn btn-success vaga livre">063</a>
+                    <a class="btn btn-success vaga livre">064</a>
+                    <a class="btn btn-success vaga livre">065</a>
+                    <a class="btn btn-success vaga livre">066</a>
+                    <a class="btn btn-success vaga livre">067</a>
+                    <a class="btn btn-success vaga livre">068</a>
+                    <a class="btn btn-success vaga livre">069</a>
+                    <a class="btn btn-success vaga livre">070</a>
+                    <a class="btn btn-success vaga livre">071</a>
+                    <a class="btn btn-success vaga livre">072</a>
+                    <a class="btn btn-success vaga livre">073</a>
+                    <a class="btn btn-success vaga livre">074</a>
+                    <a class="btn btn-success vaga livre">075</a>
+                    <a class="btn btn-success vaga livre">076</a>
+                    <a class="btn btn-success vaga livre">077</a>
+                    <a class="btn btn-success vaga livre">078</a>
+                    <a class="btn btn-success vaga livre">079</a>
+                    <a class="btn btn-success vaga livre">080</a>
+                    <a class="btn btn-success vaga livre">081</a>
+                    <a class="btn btn-success vaga livre">082</a>
+                    <a class="btn btn-success vaga livre">083</a>
+                    <a class="btn btn-success vaga livre">084</a>
+                    <a class="btn btn-success vaga livre">085</a>
+                    <a class="btn btn-success vaga livre">086</a>
+                    <a class="btn btn-success vaga livre">087</a>
+                    <a class="btn btn-success vaga livre">088</a>
+                    <a class="btn btn-success vaga livre">089</a>
+                    <a class="btn btn-success vaga livre">090</a>
+                    <a class="btn btn-success vaga livre">091</a>
+                    <a class="btn btn-success vaga livre">092</a>
+                    <a class="btn btn-success vaga livre">093</a>
+                    <a class="btn btn-success vaga livre">094</a>
+                    <a class="btn btn-success vaga livre">095</a>
+                    <a class="btn btn-success vaga livre">096</a>
+                    <a class="btn btn-success vaga livre">097</a>
+                    <a class="btn btn-success vaga livre">098</a>
+                    <a class="btn btn-success vaga livre">099</a>
+                    <a class="btn btn-success vaga livre">100</a>
+                  </div>
+                </div><!-- /.box -->
+              </div>
+            </div><!-- /.col -->
+            <div class="col-md-6">
+              <div class="box box-danger">
+                <div class="box-header">
+                  <i class="fa fa-edit"></i>
+                  <h3 class="box-title">Grupos</h3>
+                </div>
+                <div class="box-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px">Código</th>
+                        <th style="width: 200px" >Grupo de Vaga</th>
+                        <th style="width: 180px">Num. de Vagas do Grupo</th>
+                        <th style="width: 200px">Num. de Vagas Disponíveis</th>
+                        <th style="width: 180px">Num. de Vagas Ocupadas</th>
+                        <th>Ocupação</th>
+                        <th style="width: 40px">Porcentagem</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1.</td>
+                        <td>Vagas Avulsas</td>
+                        <td>100</td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td>
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-green" style="width: 50%"></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-green">50%</span></td>
+                      </tr>
+                      <tr>
+                        <td>2.</td>
+                        <td>Vagas Para Deficientes Físicos</td>
+                        <td>40</td>
+                        <td>10</td>
+                        <td>30</td>
+                        <td>
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-yellow" style="width: 75%"></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-yellow">75%</span></td>
+                      </tr>
+                      <tr>
+                        <td>3.</td>
+                        <td>Vaga De Aluguel</td>
+                        <td>50</td>
+                        <td>40</td>
+                        <td>10</td>
+                        <td>
+                          <div class="progress progress-xs progress-striped active">
+                            <div class="progress-bar progress-bar-primary" style="width: 20%"></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-light-blue">20%</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+                </div>
+            </div><!-- /.col -->
+          </div><!-- ./row -->
+
+          <div class="box box-danger">
+            <div class="box-header">
+              <h3 class="box-title">Estacionados</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Vaga</th>
+                    <th>Grupo de Vaga</th>
+                    <th>Placa</th>
+                    <th>Cliente</th>
+                    <th>Créditos Disponíveis</th>
+                    <th>Hora de Chegada</th>
+                    <th>Tempo Utilizado</th>
+                    <th>Valor Gasto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>40</td>
+                    <td>Avulso</td>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td>R$200,00</td>
+                    <td>14:00</td>
+                    <td>1:24</td>
+                    <td>R$3,00</td>
+                  </tr>
+                  <tr>
+                    <td>40</td>
+                    <td>Avulso</td>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td>R$200,00</td>
+                    <td>14:00</td>
+                    <td>1:24</td>
+                    <td>R$3,00</td>
+                  </tr>
+                  <tr>
+                    <td>40</td>
+                    <td>Avulso</td>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td>R$200,00</td>
+                    <td>14:00</td>
+                    <td>1:24</td>
+                    <td>R$3,00</td>
+                  </tr>
+                  <tr>
+                    <td>40</td>
+                    <td>Avulso</td>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td>R$200,00</td>
+                    <td>14:00</td>
+                    <td>1:24</td>
+                    <td>R$3,00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+
+          <div class="box box-danger">
+            <div class="box-header">
+              <h3 class="box-title">Últimas Movimentações</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>Placa</th>
+                    <th>Cliente</th>
+                    <th>Entrada / Saida</th>
+                    <th>Data e Hora</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="">DEF1234</a></td>
+                    <td>Marcelo Matos</td>
+                    <td><span class="label label-danger">Saída</span></td>
+                    <td>13/05/2015 20:01</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">DEF1234</a></td>
+                    <td>Marcelo Matos</td>
+                    <td><span class="label label-success">Entrada</span></td>
+                    <td>13/05/2015 19:26</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">MNB4321</a></td>
+                    <td>Maria Rocha</td>
+                    <td><span class="label label-danger">Saída</span></td>
+                    <td>13/05/2015 18:06</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td><span class="label label-danger">Saída</span></td>
+                    <td>13/05/2015 17:30</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">JHG5648</a></td>
+                    <td>Pedro</td>
+                    <td><span class="label label-danger">Saída</span></td>
+                    <td>13/05/2015 16:45</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">JHG5648</a></td>
+                    <td>Pedro</td>
+                    <td><span class="label label-success">Entrada</span></td>
+                    <td>13/05/2015 13:26</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">MNB4321</a></td>
+                    <td>Maria Rocha</td>
+                    <td><span class="label label-success">Entrada</span></td>
+                    <td>13/05/2015 13:21</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td><span class="label label-success">Entrada</span></td>
+                    <td>13/05/2015 13:10</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td><span class="label label-danger">Saída</span></td>
+                    <td>13/05/2015 12:06</td>
+                  </tr>
+                  <tr>
+                    <td><a href="">ABC4545</a></td>
+                    <td>John Doe</td>
+                    <td><span class="label label-success">Entrada</span></td>
+                    <td>13/05/2015 08:06</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+<!-- DATA TABES SCRIPT -->
+<script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
+
+<!-- page script -->
+<script type="text/javascript">
+  $(function () {
+    $("#example1").dataTable();
+    $('#example2').dataTable();
+
+    var livre = $(".livre").length;
+    var ocupada = $(".ocupada").length;
+    $('#vagaDisponivel').html(livre);
+    $('#vagaOcupada').html(ocupada);
+
+    setInterval(function () {
+      var index = Math.floor((Math.random() * 200));
+
+      $('.vaga:eq(' + index + ')').toggleClass('btn-danger');
+      $('.vaga:eq(' + index + ')').toggleClass('btn-success');
+      $('.vaga:eq(' + index + ')').toggleClass('livre');
+      $('.vaga:eq(' + index + ')').toggleClass('ocupada');
+
+      var livre = $(".livre").length;
+      var ocupada = $(".ocupada").length;
+      $('#vagaDisponivel').html(livre);
+      $('#vagaOcupada').html(ocupada);
+
+    }, 3000);
+  });
+</script>
