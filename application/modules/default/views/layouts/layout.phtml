@@ -42,7 +42,7 @@
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo $this->baseUrl("/admin"); ?>" class="logo"><b>NZN</b></a></a>
+        <a href="<?php echo $this->baseUrl("/"); ?>" class="logo"><b>NZN</b></a></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -125,65 +125,73 @@
                 <i class="fa fa-dashboard"></i> <span>Página Inicial</span></i>
               </a>
             </li>
-
-            <!-- Menu Master
-            <li class="treeview">
-              <a href="#">
+            <?php
+              $controler = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+              $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+            ?>
+            <!-- Menu Master -->
+            <li class="<?php if ($controler == 'estacionamento' && ($action == 'index' || $action == 'new' || $action == 'edit')) echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'estacionamento'), null, 1); ?>">
                 <i class="fa fa-edit"></i> <span>Estacionamentos</span>
               </a>
             </li>
-            <li class="treeview">
+            <li class="<?php if ($controler == 'funcionario' && ($action == 'index' || $action == 'new' || $action == 'edit')) echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">
                 <i class="fa fa-edit"></i> <span>Funcionários</span>
               </a>
             </li>
             <!-- End Menu Master -->
 
-            <!-- Menu Administrador
-            <li class="active treeview">
+            <!-- Menu Administrador -->
+            <li class="<?php if ($controler == 'cliente' && ($action == 'index' || $action == 'new' || $action == 'edit')) echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'cliente'), null, 1); ?>">
                 <i class="fa fa-edit"></i> <span>Clientes</span>
               </a>
             </li>
-            <li class="treeview">
+            <li class="<?php if ($controler == 'estacionamento' && $action == 'configurar') echo "active"; ?> treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i> <span>Configurar Estacionamento</span>
+              </a>
+            </li>
+            <li class="<?php if ($controler == 'cliente' && $action == 'colocarcredito') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'colocarcredito'), null, 1); ?>">
+                <i class="fa fa-shopping-cart"></i> <span>Colocar Crédito Cliente</span>
               </a>
             </li>
             <!-- End Menu Administrador -->
 
             <!-- Menu Cliente -->
-            <li class="treeview">
-              <a href="#">
+            <li class="<?php if ($controler == 'cliente' && $action == 'edit') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>">
                 <i class="fa fa-user"></i> <span>Minha Conta</span>
               </a>
             </li>
-            <li class="treeview">
+            <li class="<?php if ($controler == 'veiculo' && $action == 'index') echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>">
                 <i class="fa fa-dashboard"></i> <span>Meus Veículos</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#">
+            <li class="<?php if ($controler == 'cliente' && $action == 'comprarcredito') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'comprarcredito'), null, 1); ?>">
                 <i class="fa fa-shopping-cart"></i> <span>Comprar Crédito</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#">
+            <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaocliente') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>">
                 <i class="fa fa-table"></i> <span>Minhas Movimentações</span>
               </a>
             </li>
             <!-- End Menu Cliente -->
 
-            <!-- Relatórios
-            <li class="treeview">
-              <a href="#">
+            <!-- Relatórios -->
+            <li class="<?php if ($controler == 'relatorio') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>">
                 <i class="fa fa-dashboard"></i> <span>Relatórios</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-table"></i> Movimentações Estacionamento</a></li>
-                <li><a href=""><i class="fa fa-table"></i> Receita</a></li>
-                <li><a href=""><i class="fa fa-table"></i> Movimentações Cliente</a></li>
+                <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaoestacionamento') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoestacionamento'), null, 1); ?>"><i class="fa fa-table"></i> Movimentações Estacionamento</a></li>
+                <li class="<?php if ($controler == 'relatorio' && $action == 'receita') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'receita'), null, 1); ?>"><i class="fa fa-table"></i> Receita</a></li>
+                <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaoclienteadministrador') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><i class="fa fa-table"></i> Movimentações Cliente</a></li>
               </ul>
             </li>
             <!-- End Relatórios -->
