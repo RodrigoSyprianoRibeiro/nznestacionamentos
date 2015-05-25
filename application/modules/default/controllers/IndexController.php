@@ -3,11 +3,7 @@
 class Default_IndexController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
-        //$usuario = Zend_Auth::getInstance()->getIdentity();
-        //$this->view->usuario = $usuario;
-
-        //$model = new Application_Model_Usuario();
-        //$this->view->quantidadeUsuarios = $model->count();
+      $this->_redirect('/index/'.$this->usuarioLogado->perfil);
     }
 
     public function masterAction() {
