@@ -1,0 +1,152 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Estacionamentos
+        <small>configuração</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'estacionamento'), null, 1); ?>">Estacionamentos</a></li>
+        <li class="active">configuração</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-solid">
+            <div class="box-header">
+              <i class="fa fa-bar-chart-o"></i>
+              <h3 class="box-title">Configurar Estacionamento</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                  <input type="text" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="60" data-width="120" data-height="120" data-fgColor="#00A65A"/>
+                  <div class="knob-label">Vagas Avulsas</div>
+                </div><!-- ./col -->
+                <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                  <input type="text" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="20" data-width="120" data-height="120" data-fgColor="#F39C12"/>
+                  <div class="knob-label">Vagas Idosis e Deficientes Físicos</div>
+                </div><!-- ./col -->
+                <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                  <input type="text" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="20" data-width="120" data-height="120" data-fgColor="#3C8DBC"/>
+                  <div class="knob-label">Vagas Aluguel</div>
+                </div><!-- ./col -->
+              </div><!-- /.row -->
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Tabela de Preço</h3>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-3">
+                  <label>Valor</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      R$
+                    </div>
+                    <input type="text" name="valor" value="2,00" class="form-control dinheiro" placeholder="Valor" />
+                  </div><!-- /.input group -->
+                </div>
+                <div class="col-xs-3">
+                  <label>Tempo em Minutos</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" name="tempo" value="060" class="form-control inteiro" placeholder="Tempo" />
+                  </div><!-- /.input group -->
+                </div>
+                <div class="col-xs-5">
+                  <label>Descrição</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                    <input type="text" name="descricao" value="1 Hora" class="form-control" placeholder="Descrição" />
+                  </div><!-- /.input group -->
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success pull-right">+ Tabela Preço</button>
+            </div><!-- /.box-body -->
+            <div class="row">
+              <div class="col-xs-4 margin">
+                <button type="submit" class="btn btn-primary">Alterar</button>
+              </div><!-- /.col -->
+            </div>
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+<!-- jQuery Knob -->
+<script src="<?php echo $this->baseUrl("plugins/knob/jquery.knob.js"); ?>" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function () {
+  /* jQueryKnob */
+
+        $(".knob").knob({
+          /*change : function (value) {
+           //console.log("change : " + value);
+           },
+           release : function (value) {
+           console.log("release : " + value);
+           },
+           cancel : function () {
+           console.log("cancel : " + this.value);
+           },*/
+          draw: function () {
+
+            // "tron" case
+            if (this.$.data('skin') == 'tron') {
+
+              var a = this.angle(this.cv)  // Angle
+                      , sa = this.startAngle          // Previous start angle
+                      , sat = this.startAngle         // Start angle
+                      , ea                            // Previous end angle
+                      , eat = sat + a                 // End angle
+                      , r = true;
+
+              this.g.lineWidth = this.lineWidth;
+
+              this.o.cursor
+                      && (sat = eat - 0.3)
+                      && (eat = eat + 0.3);
+
+              if (this.o.displayPrevious) {
+                ea = this.startAngle + this.angle(this.value);
+                this.o.cursor
+                        && (sa = ea - 0.3)
+                        && (ea = ea + 0.3);
+                this.g.beginPath();
+                this.g.strokeStyle = this.previousColor;
+                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+                this.g.stroke();
+              }
+
+              this.g.beginPath();
+              this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+              this.g.stroke();
+
+              this.g.lineWidth = 2;
+              this.g.beginPath();
+              this.g.strokeStyle = this.o.fgColor;
+              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+              this.g.stroke();
+
+              return false;
+            }
+          }
+        });
+        /* END JQUERY KNOB */
+});
+</script>

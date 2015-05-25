@@ -1,6 +1,10 @@
 <!-- DATA TABLES -->
 <link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+#vagas .vaga {
+  margin: 3px;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -50,7 +54,6 @@
             <div class="col-md-6">
               <div class="box box-danger">
                 <div class="box-header">
-                  <i class="fa fa-edit"></i>
                   <h3 class="box-title">Vagas</h3>
                   <div style="float: right;">
                     <a class="btn btn-success" >&nbsp</a> Vaga Livre
@@ -58,107 +61,128 @@
                   </div>
                 </div>
                 <div class="box-body pad table-responsive">
-                  <div id="vagas" class="box-body">
-                    <a class="btn btn-success vaga livre">001</a>
-                    <a class="btn btn-success vaga livre">002</a>
-                    <a class="btn btn-success vaga livre">003</a>
-                    <a class="btn btn-success vaga livre">004</a>
-                    <a class="btn btn-success vaga livre">005</a>
-                    <a class="btn btn-success vaga livre">006</a>
-                    <a class="btn btn-success vaga livre">007</a>
-                    <a class="btn btn-success vaga livre">008</a>
-                    <a class="btn btn-success vaga livre">009</a>
-                    <a class="btn btn-success vaga livre">010</a>
-                    <a class="btn btn-success vaga livre">011</a>
-                    <a class="btn btn-success vaga livre">012</a>
-                    <a class="btn btn-success vaga livre">013</a>
-                    <a class="btn btn-success vaga livre">014</a>
-                    <a class="btn btn-success vaga livre">015</a>
-                    <a class="btn btn-success vaga livre">016</a>
-                    <a class="btn btn-success vaga livre">017</a>
-                    <a class="btn btn-success vaga livre">018</a>
-                    <a class="btn btn-success vaga livre">019</a>
-                    <a class="btn btn-success vaga livre">020</a>
-                    <a class="btn btn-success vaga livre">021</a>
-                    <a class="btn btn-success vaga livre">022</a>
-                    <a class="btn btn-success vaga livre">023</a>
-                    <a class="btn btn-success vaga livre">024</a>
-                    <a class="btn btn-success vaga livre">025</a>
-                    <a class="btn btn-success vaga livre">026</a>
-                    <a class="btn btn-success vaga livre">027</a>
-                    <a class="btn btn-success vaga livre">028</a>
-                    <a class="btn btn-success vaga livre">029</a>
-                    <a class="btn btn-success vaga livre">030</a>
-                    <a class="btn btn-success vaga livre">031</a>
-                    <a class="btn btn-success vaga livre">032</a>
-                    <a class="btn btn-success vaga livre">033</a>
-                    <a class="btn btn-success vaga livre">034</a>
-                    <a class="btn btn-success vaga livre">035</a>
-                    <a class="btn btn-success vaga livre">036</a>
-                    <a class="btn btn-success vaga livre">037</a>
-                    <a class="btn btn-success vaga livre">038</a>
-                    <a class="btn btn-success vaga livre">039</a>
-                    <a class="btn btn-success vaga livre">040</a>
-                    <a class="btn btn-success vaga livre">041</a>
-                    <a class="btn btn-success vaga livre">042</a>
-                    <a class="btn btn-success vaga livre">043</a>
-                    <a class="btn btn-success vaga livre">044</a>
-                    <a class="btn btn-success vaga livre">045</a>
-                    <a class="btn btn-success vaga livre">046</a>
-                    <a class="btn btn-success vaga livre">047</a>
-                    <a class="btn btn-success vaga livre">048</a>
-                    <a class="btn btn-success vaga livre">049</a>
-                    <a class="btn btn-success vaga livre">050</a>
-                    <a class="btn btn-success vaga livre">051</a>
-                    <a class="btn btn-success vaga livre">052</a>
-                    <a class="btn btn-success vaga livre">053</a>
-                    <a class="btn btn-success vaga livre">054</a>
-                    <a class="btn btn-success vaga livre">055</a>
-                    <a class="btn btn-success vaga livre">056</a>
-                    <a class="btn btn-success vaga livre">057</a>
-                    <a class="btn btn-success vaga livre">058</a>
-                    <a class="btn btn-success vaga livre">059</a>
-                    <a class="btn btn-success vaga livre">060</a>
-                    <a class="btn btn-success vaga livre">061</a>
-                    <a class="btn btn-success vaga livre">062</a>
-                    <a class="btn btn-success vaga livre">063</a>
-                    <a class="btn btn-success vaga livre">064</a>
-                    <a class="btn btn-success vaga livre">065</a>
-                    <a class="btn btn-success vaga livre">066</a>
-                    <a class="btn btn-success vaga livre">067</a>
-                    <a class="btn btn-success vaga livre">068</a>
-                    <a class="btn btn-success vaga livre">069</a>
-                    <a class="btn btn-success vaga livre">070</a>
-                    <a class="btn btn-success vaga livre">071</a>
-                    <a class="btn btn-success vaga livre">072</a>
-                    <a class="btn btn-success vaga livre">073</a>
-                    <a class="btn btn-success vaga livre">074</a>
-                    <a class="btn btn-success vaga livre">075</a>
-                    <a class="btn btn-success vaga livre">076</a>
-                    <a class="btn btn-success vaga livre">077</a>
-                    <a class="btn btn-success vaga livre">078</a>
-                    <a class="btn btn-success vaga livre">079</a>
-                    <a class="btn btn-success vaga livre">080</a>
-                    <a class="btn btn-success vaga livre">081</a>
-                    <a class="btn btn-success vaga livre">082</a>
-                    <a class="btn btn-success vaga livre">083</a>
-                    <a class="btn btn-success vaga livre">084</a>
-                    <a class="btn btn-success vaga livre">085</a>
-                    <a class="btn btn-success vaga livre">086</a>
-                    <a class="btn btn-success vaga livre">087</a>
-                    <a class="btn btn-success vaga livre">088</a>
-                    <a class="btn btn-success vaga livre">089</a>
-                    <a class="btn btn-success vaga livre">090</a>
-                    <a class="btn btn-success vaga livre">091</a>
-                    <a class="btn btn-success vaga livre">092</a>
-                    <a class="btn btn-success vaga livre">093</a>
-                    <a class="btn btn-success vaga livre">094</a>
-                    <a class="btn btn-success vaga livre">095</a>
-                    <a class="btn btn-success vaga livre">096</a>
-                    <a class="btn btn-success vaga livre">097</a>
-                    <a class="btn btn-success vaga livre">098</a>
-                    <a class="btn btn-success vaga livre">099</a>
-                    <a class="btn btn-success vaga livre">100</a>
+                  <div id="vagas">
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Vagas Avulsas</h3>
+                      </div>
+                      <div class="box-body">
+                        <a class="btn btn-success vaga livreva ">001</a>
+                        <a class="btn btn-success vaga livreva">002</a>
+                        <a class="btn btn-success vaga livreva">003</a>
+                        <a class="btn btn-success vaga livreva">004</a>
+                        <a class="btn btn-success vaga livreva">005</a>
+                        <a class="btn btn-success vaga livreva">006</a>
+                        <a class="btn btn-success vaga livreva">007</a>
+                        <a class="btn btn-success vaga livreva">008</a>
+                        <a class="btn btn-success vaga livreva">009</a>
+                        <a class="btn btn-success vaga livreva">010</a>
+                        <a class="btn btn-success vaga livreva">011</a>
+                        <a class="btn btn-success vaga livreva">012</a>
+                        <a class="btn btn-success vaga livreva">013</a>
+                        <a class="btn btn-success vaga livreva">014</a>
+                        <a class="btn btn-success vaga livreva">015</a>
+                        <a class="btn btn-success vaga livreva">016</a>
+                        <a class="btn btn-success vaga livreva">017</a>
+                        <a class="btn btn-success vaga livreva">018</a>
+                        <a class="btn btn-success vaga livreva">019</a>
+                        <a class="btn btn-success vaga livreva">020</a>
+                        <a class="btn btn-success vaga livreva">021</a>
+                        <a class="btn btn-success vaga livreva">022</a>
+                        <a class="btn btn-success vaga livreva">023</a>
+                        <a class="btn btn-success vaga livreva">024</a>
+                        <a class="btn btn-success vaga livreva">025</a>
+                        <a class="btn btn-success vaga livreva">026</a>
+                        <a class="btn btn-success vaga livreva">027</a>
+                        <a class="btn btn-success vaga livreva">028</a>
+                        <a class="btn btn-success vaga livreva">029</a>
+                        <a class="btn btn-success vaga livreva">030</a>
+                        <a class="btn btn-success vaga livreva">031</a>
+                        <a class="btn btn-success vaga livreva">032</a>
+                        <a class="btn btn-success vaga livreva">033</a>
+                        <a class="btn btn-success vaga livreva">034</a>
+                        <a class="btn btn-success vaga livreva">035</a>
+                        <a class="btn btn-success vaga livreva">036</a>
+                        <a class="btn btn-success vaga livreva">037</a>
+                        <a class="btn btn-success vaga livreva">038</a>
+                        <a class="btn btn-success vaga livreva">039</a>
+                        <a class="btn btn-success vaga livreva">040</a>
+                        <a class="btn btn-success vaga livreva">041</a>
+                        <a class="btn btn-success vaga livreva">042</a>
+                        <a class="btn btn-success vaga livreva">043</a>
+                        <a class="btn btn-success vaga livreva">044</a>
+                        <a class="btn btn-success vaga livreva">045</a>
+                        <a class="btn btn-success vaga livreva">046</a>
+                        <a class="btn btn-success vaga livreva">047</a>
+                        <a class="btn btn-success vaga livreva">048</a>
+                        <a class="btn btn-success vaga livreva">049</a>
+                        <a class="btn btn-success vaga livreva">050</a>
+                        <a class="btn btn-success vaga livreva">051</a>
+                        <a class="btn btn-success vaga livreva">052</a>
+                        <a class="btn btn-success vaga livreva">053</a>
+                        <a class="btn btn-success vaga livreva">054</a>
+                        <a class="btn btn-success vaga livreva">055</a>
+                        <a class="btn btn-success vaga livreva">056</a>
+                        <a class="btn btn-success vaga livreva">057</a>
+                        <a class="btn btn-success vaga livreva">058</a>
+                        <a class="btn btn-success vaga livreva">059</a>
+                        <a class="btn btn-success vaga livreva">060</a>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Vagas Idosis e Deficientes Físicos</h3>
+                      </div>
+                      <div class="box-body">
+                        <a class="btn btn-success vaga livreve">061</a>
+                        <a class="btn btn-success vaga livreve">062</a>
+                        <a class="btn btn-success vaga livreve">063</a>
+                        <a class="btn btn-success vaga livreve">064</a>
+                        <a class="btn btn-success vaga livreve">065</a>
+                        <a class="btn btn-success vaga livreve">066</a>
+                        <a class="btn btn-success vaga livreve">067</a>
+                        <a class="btn btn-success vaga livreve">068</a>
+                        <a class="btn btn-success vaga livreve">069</a>
+                        <a class="btn btn-success vaga livreve">070</a>
+                        <a class="btn btn-success vaga livreve">071</a>
+                        <a class="btn btn-success vaga livreve">072</a>
+                        <a class="btn btn-success vaga livreve">073</a>
+                        <a class="btn btn-success vaga livreve">074</a>
+                        <a class="btn btn-success vaga livreve">075</a>
+                        <a class="btn btn-success vaga livreve">076</a>
+                        <a class="btn btn-success vaga livreve">077</a>
+                        <a class="btn btn-success vaga livreve">078</a>
+                        <a class="btn btn-success vaga livreve">079</a>
+                        <a class="btn btn-success vaga livreve">080</a>
+                      </div>
+                    </div>
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Vagas Aluguel</h3>
+                      </div>
+                      <div class="box-body">
+                        <a class="btn btn-success vaga livrevl">081</a>
+                        <a class="btn btn-success vaga livrevl">082</a>
+                        <a class="btn btn-success vaga livrevl">083</a>
+                        <a class="btn btn-success vaga livrevl">084</a>
+                        <a class="btn btn-success vaga livrevl">085</a>
+                        <a class="btn btn-success vaga livrevl">086</a>
+                        <a class="btn btn-success vaga livrevl">087</a>
+                        <a class="btn btn-success vaga livrevl">088</a>
+                        <a class="btn btn-success vaga livrevl">089</a>
+                        <a class="btn btn-success vaga livrevl">090</a>
+                        <a class="btn btn-success vaga livrevl">091</a>
+                        <a class="btn btn-success vaga livrevl">092</a>
+                        <a class="btn btn-success vaga livrevl">093</a>
+                        <a class="btn btn-success vaga livrevl">094</a>
+                        <a class="btn btn-success vaga livrevl">095</a>
+                        <a class="btn btn-success vaga livrevl">096</a>
+                        <a class="btn btn-success vaga livrevl">097</a>
+                        <a class="btn btn-success vaga livrevl">098</a>
+                        <a class="btn btn-success vaga livrevl">099</a>
+                        <a class="btn btn-success vaga livrevl">100</a>
+                      </div>
+                    </div>
                   </div>
                 </div><!-- /.box -->
               </div>
@@ -166,14 +190,12 @@
             <div class="col-md-6">
               <div class="box box-danger">
                 <div class="box-header">
-                  <i class="fa fa-edit"></i>
                   <h3 class="box-title">Grupos</h3>
                 </div>
                 <div class="box-body">
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th style="width: 10px">Código</th>
                         <th style="width: 200px" >Grupo de Vaga</th>
                         <th style="width: 180px">Num. de Vagas do Grupo</th>
                         <th style="width: 200px">Num. de Vagas Disponíveis</th>
@@ -184,48 +206,124 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>1.</td>
                         <td>Vagas Avulsas</td>
-                        <td>100</td>
-                        <td>50</td>
-                        <td>50</td>
+                        <td>60</td>
+                        <td><span id="nVAl">60</span></td>
+                        <td><span id="nVAo">0</span></td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-green" style="width: 50%"></div>
+                            <div id="bVAo" class="progress-bar progress-bar-green" style="width: 0%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-green">50%</span></td>
+                        <td><span id="pVAo" class="badge bg-green">0,00%</span></td>
                       </tr>
                       <tr>
-                        <td>2.</td>
-                        <td>Vagas Para Deficientes Físicos</td>
-                        <td>40</td>
-                        <td>10</td>
-                        <td>30</td>
+                        <td>Vagas Idosis e Deficientes Físicos</td>
+                        <td>20</td>
+                        <td><span id="nVEl">20</span></td>
+                        <td><span id="nVEo">0</span></td>
                         <td>
                           <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-yellow" style="width: 75%"></div>
+                            <div id="bVEo" class="progress-bar progress-bar-yellow" style="width: 0%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-yellow">75%</span></td>
+                        <td><span id="pVEo" class="badge bg-yellow">0,00%</span></td>
                       </tr>
                       <tr>
-                        <td>3.</td>
-                        <td>Vaga De Aluguel</td>
-                        <td>50</td>
-                        <td>40</td>
-                        <td>10</td>
+                        <td>Vagas Aluguel</td>
+                        <td>20</td>
+                        <td><span id="nVLl">20</span></td>
+                        <td><span id="nVLo">0</span></td>
                         <td>
                           <div class="progress progress-xs progress-striped active">
-                            <div class="progress-bar progress-bar-primary" style="width: 20%"></div>
+                            <div id="bVLo" class="progress-bar progress-bar-primary" style="width: 0%"></div>
                           </div>
                         </td>
-                        <td><span class="badge bg-light-blue">20%</span></td>
+                        <td><span id="pVLo" class="badge bg-light-blue">0,00%</span></td>
                       </tr>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
-                </div>
+              </div>
+              <div class="box box-danger">
+                <div class="box-header">
+                  <h3 class="box-title">Últimas Movimentações</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>Placa</th>
+                        <th>Cliente</th>
+                        <th>Entrada / Saida</th>
+                        <th>Data e Hora</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="">DEF1234</a></td>
+                        <td>Marcelo Matos</td>
+                        <td><span class="label label-danger">Saída</span></td>
+                        <td>13/05/2015 20:01</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">DEF1234</a></td>
+                        <td>Marcelo Matos</td>
+                        <td><span class="label label-success">Entrada</span></td>
+                        <td>13/05/2015 19:26</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">MNB4321</a></td>
+                        <td>Maria Rocha</td>
+                        <td><span class="label label-danger">Saída</span></td>
+                        <td>13/05/2015 18:06</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">ABC4545</a></td>
+                        <td>John Doe</td>
+                        <td><span class="label label-danger">Saída</span></td>
+                        <td>13/05/2015 17:30</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">JHG5648</a></td>
+                        <td>Pedro</td>
+                        <td><span class="label label-danger">Saída</span></td>
+                        <td>13/05/2015 16:45</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">JHG5648</a></td>
+                        <td>Pedro</td>
+                        <td><span class="label label-success">Entrada</span></td>
+                        <td>13/05/2015 13:26</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">MNB4321</a></td>
+                        <td>Maria Rocha</td>
+                        <td><span class="label label-success">Entrada</span></td>
+                        <td>13/05/2015 13:21</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">ABC4545</a></td>
+                        <td>John Doe</td>
+                        <td><span class="label label-success">Entrada</span></td>
+                        <td>13/05/2015 13:10</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">ABC4545</a></td>
+                        <td>John Doe</td>
+                        <td><span class="label label-danger">Saída</span></td>
+                        <td>13/05/2015 12:06</td>
+                      </tr>
+                      <tr>
+                        <td><a href="">ABC4545</a></td>
+                        <td>John Doe</td>
+                        <td><span class="label label-success">Entrada</span></td>
+                        <td>13/05/2015 08:06</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
             </div><!-- /.col -->
           </div><!-- ./row -->
 
@@ -292,86 +390,6 @@
               </table>
             </div><!-- /.box-body -->
           </div><!-- /.box -->
-
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">Últimas Movimentações</h3>
-            </div><!-- /.box-header -->
-            <div class="box-body">
-              <table id="example2" class="table table-bordered table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Placa</th>
-                    <th>Cliente</th>
-                    <th>Entrada / Saida</th>
-                    <th>Data e Hora</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a href="">DEF1234</a></td>
-                    <td>Marcelo Matos</td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>13/05/2015 20:01</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">DEF1234</a></td>
-                    <td>Marcelo Matos</td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>13/05/2015 19:26</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">MNB4321</a></td>
-                    <td>Maria Rocha</td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>13/05/2015 18:06</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>13/05/2015 17:30</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">JHG5648</a></td>
-                    <td>Pedro</td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>13/05/2015 16:45</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">JHG5648</a></td>
-                    <td>Pedro</td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>13/05/2015 13:26</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">MNB4321</a></td>
-                    <td>Maria Rocha</td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>13/05/2015 13:21</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>13/05/2015 13:10</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>13/05/2015 12:06</td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>13/05/2015 08:06</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div><!-- /.box-body -->
-          </div><!-- /.box -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
@@ -385,8 +403,8 @@
     $("#example1").dataTable();
     $('#example2').dataTable();
 
-    var livre = $(".livre").length;
-    var ocupada = $(".ocupada").length;
+    var livre = $(".livreva").length + $(".livreve").length + $(".livrevl").length;
+    var ocupada = $(".ocupadava").length + $(".ocupadave").length + $(".ocupadavl").length;
     $('#vagaDisponivel').html(livre);
     $('#vagaOcupada').html(ocupada);
 
@@ -395,14 +413,59 @@
 
       $('.vaga:eq(' + index + ')').toggleClass('btn-danger');
       $('.vaga:eq(' + index + ')').toggleClass('btn-success');
-      $('.vaga:eq(' + index + ')').toggleClass('livre');
-      $('.vaga:eq(' + index + ')').toggleClass('ocupada');
 
-      var livre = $(".livre").length;
-      var ocupada = $(".ocupada").length;
+      if (index < 60) {
+        $('.vaga:eq(' + index + ')').toggleClass('livreva');
+        $('.vaga:eq(' + index + ')').toggleClass('ocupadava');
+        atualizaVA();
+      } else if (index >= 60 && index < 80) {
+        $('.vaga:eq(' + index + ')').toggleClass('livreve');
+        $('.vaga:eq(' + index + ')').toggleClass('ocupadave');
+        atualizaVE();
+      } else {
+        $('.vaga:eq(' + index + ')').toggleClass('livrevl');
+        $('.vaga:eq(' + index + ')').toggleClass('ocupadavl');
+        atualizaVL();
+      }
+
+      var livre = $(".livreva").length + $(".livreve").length + $(".livrevl").length;
+      var ocupada = $(".ocupadava").length + $(".ocupadave").length + $(".ocupadavl").length;
       $('#vagaDisponivel').html(livre);
       $('#vagaOcupada').html(ocupada);
 
-    }, 3000);
+    }, 1000);
+
+    function atualizaVA() {
+      var valivre = $(".livreva").length;
+      var vaocupada = $(".ocupadava").length;
+      var vaper = ((vaocupada * 100) / 60);
+
+      $('#nVAl').text(valivre);
+      $('#nVAo').text(vaocupada);
+      $('#bVAo').css("width", vaper + '%');
+      $('#pVAo').text(vaper.toFixed(2).replace(".", ",") + '%');
+    }
+
+    function atualizaVE() {
+      var velivre = $(".livreve").length;
+      var veocupada = $(".ocupadave").length;
+      var veper = ((veocupada * 100) / 20);
+
+      $('#nVEl').text(velivre);
+      $('#nVEo').text(veocupada);
+      $('#bVEo').css("width", veper + '%');
+      $('#pVEo').text(veper.toFixed(2).replace(".", ",") + '%');
+    }
+
+    function atualizaVL() {
+      var vllivre = $(".livrevl").length;
+      var vlocupada = $(".ocupadavl").length;
+      var vlper = ((vlocupada * 100) / 20) ;
+
+      $('#nVLl').text(vllivre);
+      $('#nVLo').text(vlocupada);
+      $('#bVLo').css("width", vlper + '%');
+      $('#pVLo').text(vlper.toFixed(2).replace(".", ",") + '%');
+    }
   });
 </script>

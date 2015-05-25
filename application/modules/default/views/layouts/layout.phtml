@@ -158,7 +158,7 @@
               </a>
             </li>
             <li class="<?php if ($controler == 'estacionamento' && $action == 'configurar') echo "active"; ?> treeview">
-              <a href="#">
+              <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'configurar'), null, 1); ?>">
                 <i class="fa fa-laptop"></i> <span>Configurar Estacionamento</span>
               </a>
             </li>
