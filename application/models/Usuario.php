@@ -21,4 +21,14 @@ class Application_Model_Usuario extends Application_Model_Abstract {
     public function _delete(array $data) {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
     }
+
+    public function setAcessoAtual($id) {
+        return $this->_dbTable->update(array('acesso_atual' => date('Y-m-d H:i:s')),
+                                       array('id=?'=>$id));
+    }
+
+    public function setUltimoAcesso($data, $id) {
+        return $this->_dbTable->update(array('ultimo_acesso' => $data),
+                                       array('id=?'=>$id));
+    }
 }

@@ -30,6 +30,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         Zend_Registry::set('db', $db);
     }
 
+    protected function _initAcl() {
+        $auth = Zend_Auth::getInstance();
+        $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
+        if ($auth->hasIdentity()) {
+            $this->usuarioLogado = (object) array('id' => $auth->getIdentity()->id,
+                                                  'login' => $auth->getIdentity()->login,
+                                                  'ultimo_acesso' => $auth->getIdentity()->ultimo_acesso,
+                                                  'perfil' => $auth->getIdentity()->perfil);
+        }
+    }
+
     protected function _initViews() {
         $this->bootstrap("view");
         $view = $this->getResource("view");
@@ -38,6 +49,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->headTitle('NZN Estacionamentos')->setSeparator(' | ');
         $view->headMeta()->appendHttpEquiv('Content-type', 'text/html; charset=UTF-8');
 
+        $view->usarioLogado = $this->usuarioLogado;
         Zend_Registry::set('view', $view);
     }
 

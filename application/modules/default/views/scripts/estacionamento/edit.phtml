@@ -1,3 +1,26 @@
+<style type="text/css">
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+
+.window {
+  position:absolute;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  display:none;
+  z-index:9999;
+}
+.modal {
+  background: transparent!important;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -13,6 +36,26 @@
       </ol>
     </section>
 
+    <div class="modal window modal-danger">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Estacionamento?</p>
+          </div>
+          <div class="modal-footer buttons">
+            <button type="button" class="btn btn-outline">Sim</button>
+            <button type="button" class="btn btn-outline close2">Não</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Máscara para cobrir a tela -->
+    <div id="mask"></div>
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -26,126 +69,87 @@
                 <!-- form start -->
                 <form action="" method="post">
                   <label>Nome</label>
-                  <div class="input-group margin-bottom col-md-4">
+                  <div class="input-group margin-bottom col-md-6">
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="nome" value="José Paulo" class="form-control" placeholder="Nome" />
+                    <input type="text" name="nome" value="Estacionamento 1" class="form-control" placeholder="Nome" />
                   </div><!-- /.input group -->
-                  <label>E-mail</label>
-                  <div class="input-group margin-bottom col-md-4">
+                  <label>Número de Vagas</label>
+                  <div class="input-group margin-bottom col-md-3">
                     <div class="input-group-addon">
-                      <i class="fa fa-envelope"></i>
+                      <i class="fa fa-dashboard"></i>
                     </div>
-                    <input type="text" name="email" value="jose.paulo@gmail.com" class="form-control" placeholder="E-mail" />
+                    <input type="text" name="vagas" value="100" class="form-control inteiro" placeholder="Nº de Vagas" />
                   </div><!-- /.input group -->
-                  <label>Telefone</label>
-                  <div class="input-group margin-bottom col-md-2">
-                    <div class="input-group-addon">
-                      <i class="fa fa-phone"></i>
-                    </div>
-                    <input type="text" name="telefone" value="(48) 9669-6789" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
-                  </div><!-- /.input group -->
-
-                  <div class="box">
+                    <div class="box">
                     <div class="box-header">
                       <h3 class="box-title">Dados do Documento</h3>
                     </div>
                     <div class="box-body">
                       <div class="row">
-                        <div class="col-xs-3">
-                          <label>CPF</label>
+                        <div class="col-md-4">
+                          <label>CNPJ</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cpf" value="844.614.208-25" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask />
+                            <input type="text" name="cnpj" value="81.361.861/0001-05" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-3">
-                          <label>RG</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-edit"></i>
-                            </div>
-                            <input type="text" name="rg" value="5.614.208" class="form-control" placeholder="RG" />
-                          </div><!-- /.input group -->
-                        </div>
-                        <div class="col-xs-3">
-                          <label>Data de Nascimento</label>
+                        <div class="col-xs-4">
+                          <label>Data de Fundação</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataNascimento" value="21/10/1986" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="dataFundacao" value="10/11/2014" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
                   </div><!-- /.box -->
-
                   <div class="box">
                     <div class="box-header">
-                      <h3 class="box-title">Dados de Funcionário</h3>
+                      <h3 class="box-title">Tabela de Preço</h3>
                     </div>
                     <div class="box-body">
                       <div class="row">
                         <div class="col-xs-3">
-                          <label>Matrícula</label>
+                          <label>Valor</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              R$
+                            </div>
+                            <input type="text" name="valor" value="2,00" class="form-control dinheiro" placeholder="Valor" />
+                          </div><!-- /.input group -->
+                        </div>
+                        <div class="col-xs-3">
+                          <label>Tempo em Minutos</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-clock-o"></i>
+                            </div>
+                            <input type="text" name="tempo" value="060" class="form-control inteiro" placeholder="Tempo" />
+                          </div><!-- /.input group -->
+                        </div>
+                        <div class="col-xs-5">
+                          <label>Descrição</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="matricula" value="69587" class="form-control" placeholder="Matrícula" />
-                          </div><!-- /.input group -->
-                        </div>
-                        <div class="col-xs-3">
-                          <label>Data de Admissão</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-calendar"></i>
-                            </div>
-                            <input type="text" name="dataAdmissao" value="15/11/2014" class="form-control" placeholder="Data de Admissão" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
-                          </div><!-- /.input group -->
-                        </div>
-                        <div class="col-xs-3">
-                          <label>Salário</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa">R$</i>
-                            </div>
-                            <input type="text" name="salario" value="1.500,00" class="form-control" placeholder="Salário" />
+                            <input type="text" name="descricao" value="1 Hora" class="form-control" placeholder="Descrição" />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
+                    <button type="submit" class="btn btn-success pull-right">+ Tabela Preço</button>
                   </div><!-- /.box -->
-
-                  <label>Login</label>
-                  <div class="input-group margin-bottom col-md-2">
-                    <div class="input-group-addon">
-                      <i class="fa fa-user"></i>
-                    </div>
-                    <input type="text" name="login" value="jose.paulo" class="form-control" placeholder="Login" />
-                  </div><!-- /.input group -->
-                  <label>Estacionamento</label>
-                  <div class="input-group margin-bottom col-md-2">
-                    <div class="input-group-addon">
-                      <i class="fa fa-edit"></i>
-                    </div>
-                    <select name="estacionamento" class="form-control">
-                      <option>-- Selecione o Estacionamento --</option>
-                      <option>Estacionamento 1</option>
-                      <option>Estacionamento 2</option>
-                      <option>Estacionamento 3</option>
-                      <option>Estacionamento 4</option>
-                    </select>
-                  </div><!-- /.input group -->
                   <div class="row">
-                    <div class="col-xs-12 margin-bottom">
+                    <div class="col-xs-4 margin-bottom">
                       <button type="submit" class="btn btn-primary">Alterar</button>
-                      <button type="submit" class="btn btn-warning">Gerar Nova Senha</button>
-                      <button type="submit" class="btn btn-danger">Inativar</button>
+                      <button type="button" class="btn btn-danger inativar">Inativar</button>
                     </div><!-- /.col -->
                   </div>
                 </form>
@@ -161,10 +165,45 @@
 <script src="<?php echo $this->baseUrl("plugins/input-mask/jquery.inputmask.js"); ?>" type="text/javascript"></script>
 <script src="<?php echo $this->baseUrl("plugins/input-mask/jquery.inputmask.date.extensions.js"); ?>" type="text/javascript"></script>
 <script src="<?php echo $this->baseUrl("plugins/input-mask/jquery.inputmask.extensions.js"); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->baseUrl("plugins/input-mask/jquery.maskMoney.js"); ?>" ></script>
 
 <script type="text/javascript">
-  $(function () {
-    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-    $("[data-mask]").inputmask();
+$(function () {
+  $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+  $("[data-mask]").inputmask();
+  $('.inteiro').maskMoney({thousands: '', decimal: ''});
+  $('.dinheiro').maskMoney({thousands: '', decimal: ','});
+  $('.inativar').click(function(e) {
+    e.preventDefault();
+
+    var id = '.modal';
+
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('#mask').fadeIn(1000);
+    $('#mask').fadeTo("slow",0.8);
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $(id).css('top',  winH/2-$(id).height()/3);
+    $(id).css('left', winW/2-$(id).width()/2);
+
+    $(id).fadeIn(2000);
   });
+
+  $('.window .close, .window .close2').click(function (e) {
+    e.preventDefault();
+    $('#mask').hide();
+    $('.window').hide();
+  });
+
+  $('#mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+  });
+});
 </script>

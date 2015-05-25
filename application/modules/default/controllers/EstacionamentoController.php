@@ -71,11 +71,10 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
         $this->view->error = "Erro ao excluir Usuario";*/
     }
 
-    /*
     public function preDispatch() {
         $auth = Zend_Auth::getInstance();
         $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
         if (!$auth->hasIdentity())
-            $this->_redirect('/admin/login');
-    }*/
+            $this->_redirect('/login');
+    }
 }

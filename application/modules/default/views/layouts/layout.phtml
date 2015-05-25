@@ -26,6 +26,8 @@
     <script src="<?php echo $this->baseUrl("plugins/slimScroll/jquery.slimscroll.min.js"); ?>" type="text/javascript"></script>
     <!-- FastClick -->
     <script src="<?php echo $this->baseUrl("plugins/fastclick/fastclick.min.js"); ?>" ></script>
+    <!-- AdminLTE App -->
+    <script src="<?php echo $this->baseUrl("dist/js/app.min.js"); ?>" type="text/javascript"></script>
 
     <script type="text/javascript">
         var BASEURL = "<?php echo $this->baseUrl("/"); ?>";
@@ -42,7 +44,7 @@
     <div class="wrapper">
       <header class="main-header">
         <!-- Logo -->
-        <a href="<?php echo $this->baseUrl("/"); ?>" class="logo"><b>NZN</b></a></a>
+        <a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>" class="logo"><b>NZN</b></a></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -86,24 +88,28 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo $this->baseUrl("dist/img/avatar5.png"); ?>" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs"><?php echo $this->usarioLogado->login; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="<?php echo $this->baseUrl("dist/img/avatar5.png"); ?>" class="img-circle" alt="User Image" />
                     <p>
-                      Alexander Pierce
-                      <small>Último acesso: 13/05/2015 18:50</small>
+                      <?php echo $this->usarioLogado->login; ?>
+                      <?php if (isset($this->usarioLogado->ultimo_acesso)) : ?>
+                      <small>Último acesso: <?php echo date('H:i:s d/m/Y', strtotime($this->usarioLogado->ultimo_acesso)); ?></small>
+                      <?php else: ?>
+                      <small>Primeiro Acesso</small>
+                      <?php endif; ?>
                     </p>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Ver perfil</a>
+                      <a href="<?php echo $this->url(array('controller' => $this->usarioLogado->perfil, 'action' => 'edit'), null, 1); ?>" class="btn btn-default btn-flat">Ver perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sair</a>
+                      <a href="<?php echo $this->url(array('controller' => 'login', 'action' => 'logout'), null, 1); ?>" class="btn btn-default btn-flat">Sair</a>
                     </div>
                   </li>
                 </ul>
@@ -121,7 +127,7 @@
             <li class="header">Menu</li>
 
             <li class="active treeview">
-              <a href="#">
+              <a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>">
                 <i class="fa fa-dashboard"></i> <span>Página Inicial</span></i>
               </a>
             </li>
@@ -129,6 +135,7 @@
               $controler = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
               $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
             ?>
+            <?php if ($this->usarioLogado->perfil == 'master') : ?>
             <!-- Menu Master -->
             <li class="<?php if ($controler == 'estacionamento' && ($action == 'index' || $action == 'new' || $action == 'edit')) echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'estacionamento'), null, 1); ?>">
@@ -141,8 +148,10 @@
               </a>
             </li>
             <!-- End Menu Master -->
+            <?php endif; ?>
 
-            <!-- Menu Administrador -->
+            <?php if ($this->usarioLogado->perfil == 'master' || $this->usarioLogado->perfil == 'funcionario') : ?>
+            <!-- Menu Funcionario -->
             <li class="<?php if ($controler == 'cliente' && ($action == 'index' || $action == 'new' || $action == 'edit')) echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'cliente'), null, 1); ?>">
                 <i class="fa fa-edit"></i> <span>Clientes</span>
@@ -158,8 +167,25 @@
                 <i class="fa fa-shopping-cart"></i> <span>Colocar Crédito Cliente</span>
               </a>
             </li>
-            <!-- End Menu Administrador -->
+            <!-- End Menu Funcionario -->
 
+            <!-- Relatórios -->
+            <li class="<?php if ($controler == 'relatorio') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>">
+                <i class="fa fa-dashboard"></i> <span>Relatórios</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaoestacionamento') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoestacionamento'), null, 1); ?>"><i class="fa fa-table"></i> Movimentações Estacionamento</a></li>
+                <?php if ($this->usarioLogado->perfil == 'master') : ?>
+                <li class="<?php if ($controler == 'relatorio' && $action == 'receita') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'receita'), null, 1); ?>"><i class="fa fa-table"></i> Receita</a></li>
+                <?php endif; ?>
+                <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaoclienteadministrador') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><i class="fa fa-table"></i> Movimentações Cliente</a></li>
+              </ul>
+            </li>
+            <!-- End Relatórios -->
+            <?php endif; ?>
+
+            <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
             <!-- Menu Cliente -->
             <li class="<?php if ($controler == 'cliente' && $action == 'edit') echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>">
@@ -182,19 +208,7 @@
               </a>
             </li>
             <!-- End Menu Cliente -->
-
-            <!-- Relatórios -->
-            <li class="<?php if ($controler == 'relatorio') echo "active"; ?> treeview">
-              <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>">
-                <i class="fa fa-dashboard"></i> <span>Relatórios</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaoestacionamento') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoestacionamento'), null, 1); ?>"><i class="fa fa-table"></i> Movimentações Estacionamento</a></li>
-                <li class="<?php if ($controler == 'relatorio' && $action == 'receita') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'receita'), null, 1); ?>"><i class="fa fa-table"></i> Receita</a></li>
-                <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaoclienteadministrador') echo "active"; ?>"><a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><i class="fa fa-table"></i> Movimentações Cliente</a></li>
-              </ul>
-            </li>
-            <!-- End Relatórios -->
+            <?php endif; ?>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -202,8 +216,8 @@
 
       <?php echo $this->Layout()->content; ?>
 
-      <footer class="main-footer text-center" style="margin-left: 0;">
-        <strong>Copyright &copy; 2015 <a class="text-red" href="http://nznestacionamentos.esy.es">NZN Estacionamentos</a>.</strong> All rights reserved. | Desenvolvido por <a class="text-red" href="http://rrca.esy.es/">RRCA</a> - Rodrigo Ribeiro
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2015 <a class="text-red" href="http://nznestacionamentos.esy.es">NZN Estacionamentos</a>. All rights reserved.</strong> | Desenvolvido por <a class="text-red" target="_blank" href="http://rrca.esy.es/">RRCA</a>
       </footer>
     </div><!-- ./wrapper -->
   </body>

@@ -1,7 +1,9 @@
   <div class="login-box-body">
     <?php if($this->error): ?>
-    <div class='notification'>
-        <p class="login-box-msg"><?php echo $this->error; ?></p>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Atenção!</h4>
+      <?php echo $this->error; ?>
     </div>
     <?php endif; ?>
 

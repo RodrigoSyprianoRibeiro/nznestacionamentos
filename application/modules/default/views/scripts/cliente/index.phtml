@@ -1,6 +1,27 @@
 <!-- DATA TABLES -->
 <link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+.window {
+  position:absolute;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  display:none;
+  z-index:9999;
+}
+.modal {
+  background: transparent!important;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,6 +36,26 @@
         <li class="active">lista</li>
       </ol>
     </section>
+
+    <div class="modal window modal-danger">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Cliente?</p>
+          </div>
+          <div class="modal-footer buttons">
+            <button type="button" class="btn btn-outline">Sim</button>
+            <button type="button" class="btn btn-outline close2">Não</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Máscara para cobrir a tela -->
+    <div id="mask"></div>
 
     <!-- Main content -->
     <section class="content">
@@ -44,10 +85,14 @@
                     <td>(48) 9999-9878</td>
                     <td>pedro.costa</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="/cliente/edit"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-info">Automóveis</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-success">Movimentações</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php else : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php endif; ?>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
@@ -56,10 +101,14 @@
                     <td>(48) 9669-4275</td>
                     <td>maria.souza</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="/cliente/edit"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-info">Automóveis</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-success">Movimentações</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php else : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php endif; ?>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
@@ -68,10 +117,14 @@
                     <td>(48) 8856-9654</td>
                     <td>julio.antunes</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="/cliente/edit"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-info">Automóveis</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-success">Movimentações</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php else : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php endif; ?>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
@@ -80,10 +133,14 @@
                     <td>(48) 8896-4521</td>
                     <td>roberto.amaral</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="/cliente/edit"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-info">Automóveis</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-success">Movimentações</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php else : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php endif; ?>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
@@ -92,10 +149,14 @@
                     <td>(48) 8154-8961</td>
                     <td>renato.felisbino</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="/cliente/edit"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-info">Automóveis</span></a>
-                      <a class="text-red" href="/cliente/edit"><span class="label label-success">Movimentações</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php else : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <?php endif; ?>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                 </tbody>
@@ -113,6 +174,38 @@
 
 <script type="text/javascript">
 $(function () {
-    $("#tabelaClientes").dataTable();
+  $("#tabelaClientes").dataTable();
+  $('.inativar').click(function(e) {
+    e.preventDefault();
+
+    var id = '.modal';
+
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('#mask').fadeIn(1000);
+    $('#mask').fadeTo("slow",0.8);
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $(id).css('top',  winH/2-$(id).height()/3);
+    $(id).css('left', winW/2-$(id).width()/2);
+
+    $(id).fadeIn(2000);
+  });
+
+  $('.window .close, .window .close2').click(function (e) {
+    e.preventDefault();
+    $('#mask').hide();
+    $('.window').hide();
+  });
+
+  $('#mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+  });
 });
 </script>

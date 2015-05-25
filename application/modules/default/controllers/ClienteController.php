@@ -3,12 +3,7 @@
 class Default_ClienteController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
-        /*$model = new Application_Model_Usuario();
-        $pagina = intval($this->_getParam('pagina', 1));
-
-        $params = array('pagina' => $pagina);
-
-        $this->view->usuarios = $model->fetchAll($params);*/
+      $this->view->usuarioLogado = $this->usuarioLogado;
     }
 
     public function newAction() {
@@ -84,11 +79,10 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
         $this->view->error = "Erro ao excluir Usuario";*/
     }
 
-    /*
     public function preDispatch() {
         $auth = Zend_Auth::getInstance();
         $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
         if (!$auth->hasIdentity())
-            $this->_redirect('/admin/login');
-    }*/
+            $this->_redirect('/login');
+    }
 }

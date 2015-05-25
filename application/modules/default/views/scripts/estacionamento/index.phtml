@@ -1,6 +1,27 @@
 <!-- DATA TABLES -->
 <link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+.window {
+  position:absolute;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  display:none;
+  z-index:9999;
+}
+.modal {
+  background: transparent!important;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,6 +36,26 @@
         <li class="active">lista</li>
       </ol>
     </section>
+
+    <div class="modal window modal-danger">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Estacionamento?</p>
+          </div>
+          <div class="modal-footer buttons">
+            <button type="button" class="btn btn-outline">Sim</button>
+            <button type="button" class="btn btn-outline close2">Não</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Máscara para cobrir a tela -->
+    <div id="mask"></div>
 
     <!-- Main content -->
     <section class="content">
@@ -31,7 +72,6 @@
                 <thead>
                   <tr>
                     <th>Nome</th>
-                    <th>Administrador</th>
                     <th>CNPJ</th>
                     <th>Vagas</th>
                     <th>Ações</th>
@@ -40,52 +80,38 @@
                 <tbody>
                   <tr>
                     <td>Estacionamento 1</td>
-                    <td>Pedro</td>
-                    <td>788.993.822-55</td>
+                    <td>81.361.861/0001-05</td>
                     <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
                     <td>Estacionamento 2</td>
-                    <td>João</td>
-                    <td>100.060.954-53</td>
+                    <td>63.586.238/0001-60</td>
                     <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
                     <td>Estacionamento 3</td>
-                    <td>Maria</td>
-                    <td>973.717.214-03</td>
+                    <td>74.967.868/0001-00</td>
                     <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                   <tr>
                     <td>Estacionamento 4</td>
-                    <td>Antônio</td>
-                    <td>863.738.515-08</td>
+                    <td>15.245.663/0001-43</td>
                     <td>100</td>
                     <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estacionamento 5</td>
-                    <td>José Paulo</td>
-                    <td>844.614.208-25</td>
-                    <td>100</td>
-                    <td class="col-sm-2">
-                      <a class="text-red" href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a class="text-red" href=""><span class="label label-danger">Inativar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
                 </tbody>
@@ -103,6 +129,39 @@
 
 <script type="text/javascript">
 $(function () {
-    $("#tabelaEstacionamentos").dataTable();
+  $("#tabelaEstacionamentos").dataTable();
+  $('.inativar').click(function(e) {
+    e.preventDefault();
+
+    var id = '.modal';
+
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('#mask').fadeIn(1000);
+    $('#mask').fadeTo("slow",0.8);
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $(id).css('top',  winH/2-$(id).height()/3);
+    $(id).css('left', winW/2-$(id).width()/2);
+
+    $(id).fadeIn(2000);
+    return false;
+  });
+
+  $('.window .close, .window .close2').click(function (e) {
+    e.preventDefault();
+    $('#mask').hide();
+    $('.window').hide();
+  });
+
+  $('#mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+  });
 });
 </script>

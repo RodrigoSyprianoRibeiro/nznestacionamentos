@@ -2,9 +2,7 @@
 
 abstract class Aplicacao_Controller_Action extends Zend_Controller_Action {
 
-    protected $userId;
-    protected $userLogin;
-    protected $userPerfil;
+    protected $usuarioLogado;
     protected $data;
 
     public function init() {
@@ -19,9 +17,9 @@ abstract class Aplicacao_Controller_Action extends Zend_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $auth->setStorage(new Zend_Auth_Storage_Session('admin'));
         if ($auth->hasIdentity()) {
-            $this->userId = $auth->getIdentity()->id;
-            $this->userLogin = $auth->getIdentity()->login;
-            $this->userPerfil = $auth->getIdentity()->perfil;
+            $this->usuarioLogado = (object) array('id' => $auth->getIdentity()->id,
+                                      'login' => $auth->getIdentity()->login,
+                                      'perfil' => $auth->getIdentity()->perfil);
         }
     }
 }
