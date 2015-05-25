@@ -7,10 +7,14 @@
 
     <h4>Crie sua Conta no NZN Estacionamentos:</h4>
     <form action="" method="post">
-        <label>
-          <input type="radio" name="tipoPessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
-          <input type="radio" name="tipoPessoa" value="pessoaJuridica" class="minimal-red" /> Pessoa Jurídica
-        </label>
+        <div class="form-group">
+          <label class="tipoPessoa">
+            <input type="radio" name="tipoPessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
+          </label>
+          <label class="tipoPessoa">
+            <input type="radio" name="tipoPessoa" value="pessoaJuridica" class="minimal-red tipoPessoa" /> Pessoa Jurídica
+          </label>
+        </div>
         <div class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-user"></i>
@@ -29,31 +33,31 @@
           </div>
           <input type="text" name="telefone" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
         </div><!-- /.input group -->
-        <div class="input-group margin-bottom">
+        <div id="cpf" class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-edit"></i>
           </div>
           <input type="text" name="cpf" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask />
         </div><!-- /.input group -->
-        <div class="input-group margin-bottom">
+        <div id="rg" class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-edit"></i>
           </div>
           <input type="text" name="rg" class="form-control" placeholder="RG" />
         </div><!-- /.input group -->
-        <div class="input-group margin-bottom">
+        <div id="dataNascimento" class="input-group margin-bottom">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
           <input type="text" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
         </div><!-- /.input group -->
-        <div class="input-group margin-bottom">
+        <div id="cnpj" class="input-group margin-bottom" style="display: none;">
           <div class="input-group-addon">
             <i class="fa fa-edit"></i>
           </div>
           <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
         </div><!-- /.input group -->
-        <div class="input-group margin-bottom">
+        <div id="dataFundacao" class="input-group margin-bottom" style="display: none;">
           <div class="input-group-addon">
             <i class="fa fa-calendar"></i>
           </div>
