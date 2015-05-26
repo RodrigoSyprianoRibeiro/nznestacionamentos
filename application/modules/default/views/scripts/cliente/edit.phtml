@@ -28,13 +28,23 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
+        <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+        Minha Conta
+        <small>editar informações</small>
+        <?php else : ?>
         Clientes
         <small>editar cliente</small>
+        <?php endif; ?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+        <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Minha Conta</a></li>
+        <li class="active">editar informações</li>
+        <?php else : ?>
         <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Cliente</a></li>
         <li class="active">editar</li>
+        <?php endif; ?>
       </ol>
     </section>
 
@@ -46,7 +56,11 @@
             <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
           </div>
           <div class="modal-body">
+            <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+            <p>Você tem certeza que deseja <strong>Encerrar</strong> sua conta?</p>
+            <?php else : ?>
             <p>Você tem certeza que deseja <strong>Inativar</strong> esse Cliente?</p>
+            <?php endif; ?>
           </div>
           <div class="modal-footer buttons">
             <button type="button" class="btn btn-outline">Sim</button>
@@ -64,7 +78,11 @@
         <div class="col-md-12">
           <div class="box box-danger">
             <div class="box-header">
+              <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+              <h3 class="box-title">Editar Informações</h3>
+              <?php else : ?>
               <h3 class="box-title">Editar Cliente</h3>
+              <?php endif; ?>
             </div>
             <div class="box-body">
               <div class="form-group">
@@ -168,8 +186,13 @@
                   <div class="row">
                     <div class="col-xs-12 margin-bottom">
                       <button type="submit" class="btn btn-primary">Alterar</button>
+                      <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+                      <button type="submit" class="btn btn-warning">Alterar Senha</button>
+                      <button type="button" class="btn btn-danger inativar">Encerrar Conta</button>
+                      <?php else : ?>
                       <button type="submit" class="btn btn-warning">Gerar Nova Senha</button>
                       <button type="button" class="btn btn-danger inativar">Inativar</button>
+                      <?php endif; ?>
                     </div><!-- /.col -->
                   </div>
                 </form>

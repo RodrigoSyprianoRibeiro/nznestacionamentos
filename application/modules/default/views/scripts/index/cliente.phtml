@@ -104,7 +104,7 @@
             </div><!-- /.table-responsive -->
           </div><!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="" class="btn btn-sm btn-info btn-flat pull-right">Ver Todas Movimentações</a>
+            <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>" class="btn btn-sm btn-info btn-flat pull-right">Ver Todas Movimentações</a>
           </div><!-- /.box-footer -->
         </div><!-- /.box -->
       </div><!-- /.col -->
@@ -142,7 +142,7 @@
             </div><!-- /.table-responsive -->
           </div><!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="" class="btn btn-sm btn-info btn-flat pull-right">Meus Veículos</a>
+            <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>" class="btn btn-sm btn-info btn-flat pull-right">Meus Veículos</a>
           </div><!-- /.box-footer -->
         </div><!-- /.box -->
         <div class="box box-info">

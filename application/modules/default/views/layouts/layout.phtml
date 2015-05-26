@@ -105,7 +105,7 @@
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    <?php if ($this->usarioLogado->perfil != 'master') : ?>
+                    <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
                     <div class="pull-left">
                       <a href="<?php echo $this->url(array('controller' => $this->usarioLogado->perfil, 'action' => 'edit'), null, 1); ?>" class="btn btn-default btn-flat">Ver perfil</a>
                     </div>
@@ -206,7 +206,7 @@
             </li>
             <li class="<?php if ($controler == 'estacionamento' && $action == 'consultarvagas') echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'consultarvagas'), null, 1); ?>">
-                <i class="fa fa-shopping-cart"></i> <span>Consultar Vagas Disponíveis</span>
+                <i class="fa fa-dashboard"></i> <span>Consultar Vagas Disponíveis</span>
               </a>
             </li>
             <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaocliente') echo "active"; ?> treeview">
