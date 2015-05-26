@@ -67,13 +67,13 @@
           }
         });
         $('.iCheck-helper').click(function () {
-          if ($(this).parent('div').find('input').val() === 'pessoaFisica') {
+          if ($(this).parent('div').find('input[type="radio"]').val() === 'pessoaFisica') {
             $('#cnpj').hide();
             $('#dataFundacao').hide();
             $('#cpf').show();
             $('#rg').show();
             $('#dataNascimento').show();
-          } else {
+          } else if ($(this).parent('div').find('input[type="radio"]').val() === 'pessoaJuridica') {
             $('#cpf').hide();
             $('#rg').hide();
             $('#dataNascimento').hide();
