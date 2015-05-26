@@ -105,9 +105,11 @@
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
+                    <?php if ($this->usarioLogado->perfil != 'master') : ?>
                     <div class="pull-left">
                       <a href="<?php echo $this->url(array('controller' => $this->usarioLogado->perfil, 'action' => 'edit'), null, 1); ?>" class="btn btn-default btn-flat">Ver perfil</a>
                     </div>
+                    <?php endif; ?>
                     <div class="pull-right">
                       <a href="<?php echo $this->url(array('controller' => 'login', 'action' => 'logout'), null, 1); ?>" class="btn btn-default btn-flat">Sair</a>
                     </div>
@@ -200,6 +202,11 @@
             <li class="<?php if ($controler == 'cliente' && $action == 'comprarcredito') echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'comprarcredito'), null, 1); ?>">
                 <i class="fa fa-shopping-cart"></i> <span>Comprar Crédito</span>
+              </a>
+            </li>
+            <li class="<?php if ($controler == 'estacionamento' && $action == 'consultarvagas') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'consultarvagas'), null, 1); ?>">
+                <i class="fa fa-shopping-cart"></i> <span>Consultar Vagas Disponíveis</span>
               </a>
             </li>
             <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaocliente') echo "active"; ?> treeview">
