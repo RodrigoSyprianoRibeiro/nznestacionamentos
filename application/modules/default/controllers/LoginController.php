@@ -50,6 +50,11 @@ class Default_LoginController extends Aplicacao_Controller_Action {
         $layout->setLayout("login");
     }
 
+    public function recoveryAction() {
+        $layout = Zend_Layout::getMvcInstance();
+        $layout->setLayout("login");
+    }
+
     private function getAuthAdapter() {
         $bootstrap = $this->getInvokeArg('bootstrap');
         $resource = $bootstrap->getPluginResource('db');

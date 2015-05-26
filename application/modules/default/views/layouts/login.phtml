@@ -46,7 +46,8 @@
     <script src="<?php echo $this->baseUrl("plugins/input-mask/jquery.inputmask.extensions.js"); ?>" type="text/javascript"></script>
     <script>
       $(function () {
-        $('input[type="radio"].minimal-red').iCheck({
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+          checkboxClass: 'icheckbox_minimal-red',
           radioClass: 'iradio_minimal-red'
         });
         $("[data-mask]").inputmask();

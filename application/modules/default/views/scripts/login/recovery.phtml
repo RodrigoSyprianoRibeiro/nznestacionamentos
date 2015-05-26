@@ -1,0 +1,23 @@
+  <div class="login-box-body">
+    <?php if($this->error): ?>
+    <div class='notification'>
+        <p class="login-box-msg"><?php echo $this->error; ?></p>
+    </div>
+    <?php endif; ?>
+
+    <h4>E-mail para Recuperação de Senha</h4>
+    <form action="" method="post">
+        <div class="input-group margin-bottom">
+          <div class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </div>
+          <input type="text" name="email" class="form-control" placeholder="E-mail" />
+        </div><!-- /.input group -->
+      <div class="row">
+        <div class="col-xs-4 margin-bottom">
+          <button type="submit" class="btn btn-danger">Enviar</button>
+        </div><!-- /.col -->
+      </div>
+    </form>
+    <a href="<?php echo $this->baseUrl("/login"); ?>" class="text-red pull-left">Já possuo conta</a>
+  </div><!-- /.login-box-body -->
