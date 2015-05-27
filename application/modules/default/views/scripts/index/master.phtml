@@ -33,31 +33,31 @@
 
          <!-- Gráfico 2 -->
 
-         <div class="col-md-3">
-         <div class="small-box bg-green-gradient">
+        <div class="col-md-3">
+         <div class="small-box bg-red-gradient">
                 <div class="inner">
-                  <h3>15</h3>
-                  <p>Número de Adm.</p>
+                  <h3>4</h3>
+                  <p>Número de Estacionamentos</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-ios-people-outline"></i>
+                  <i class="ion ion-ios-cart-outline"></i>
                 </div>
-                <a href="showadm.html" class="small-box-footer"> Lista de Adm. <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo $this->url(array('controller' => 'estacionamento'), null, 1); ?>" class="small-box-footer"> Lista de Estacionamentos <i class="fa fa-arrow-circle-right"></i></a>
               </div>
          </div>
 
          <!-- Gráfico 3 -->
 
          <div class="col-md-3">
-         <div class="small-box bg-red-gradient">
+         <div class="small-box bg-green-gradient">
                 <div class="inner">
-                  <h3>14</h3>
-                  <p>Número de Filiais</p>
+                  <h3>5</h3>
+                  <p>Número de Funcionários</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-ios-cart-outline"></i>
+                  <i class="ion ion-ios-people-outline"></i>
                 </div>
-                <a href="showfil.html" class="small-box-footer"> Lista de Filiais <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>" class="small-box-footer"> Lista de Funcionários <i class="fa fa-arrow-circle-right"></i></a>
               </div>
          </div>
 
