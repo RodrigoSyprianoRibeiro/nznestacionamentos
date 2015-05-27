@@ -39,10 +39,10 @@
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
         <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
-        <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Minha Conta</a></li>
+        <li>Minha Conta</li>
         <li class="active">editar informações</li>
         <?php else : ?>
-        <li><a href="<?php echo $this->url(array('controller' => 'funcionario'), null, 1); ?>">Cliente</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'cliente'), null, 1); ?>">Cliente</a></li>
         <li class="active">editar</li>
         <?php endif; ?>
       </ol>
