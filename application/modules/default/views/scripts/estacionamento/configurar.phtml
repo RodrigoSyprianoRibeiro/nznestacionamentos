@@ -17,27 +17,35 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
+
+          <?php if ($this->usarioLogado->perfil == 'master') : ?>
+              <div class="box box-danger">
+                <div class="box-header">
+                  <label>Estacionamento</label>
+                </div>
+                <div class="box-body">
+                  <div class="input-group margin-bottom col-md-5">
+                    <div class="input-group-addon">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                    <select name="estacionamento" class="form-control">
+                      <option>-- Selecione o Estacionamento --</option>
+                      <option selected >Estacionamento 1</option>
+                      <option>Estacionamento 2</option>
+                      <option>Estacionamento 3</option>
+                      <option>Estacionamento 4</option>
+                    </select>
+                  </div><!-- /.input group -->
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              <?php endif; ?>
+
           <div class="box box-solid">
             <div class="box-header">
               <i class="fa fa-bar-chart-o"></i>
               <h3 class="box-title">Configurar Estacionamento</h3>
             </div><!-- /.box-header -->
             <div class="box-body">
-              <?php if ($this->usarioLogado->perfil == 'master') : ?>
-              <label>Estacionamento</label>
-              <div class="input-group margin-bottom col-md-5">
-                <div class="input-group-addon">
-                  <i class="fa fa-edit"></i>
-                </div>
-                <select name="estacionamento" class="form-control">
-                  <option>-- Selecione o Estacionamento --</option>
-                  <option selected >Estacionamento 1</option>
-                  <option>Estacionamento 2</option>
-                  <option>Estacionamento 3</option>
-                  <option>Estacionamento 4</option>
-                </select>
-              </div><!-- /.input group -->
-              <?php endif; ?>
               <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-6 text-center">
                   <input type="text" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="60" data-width="120" data-height="120" data-fgColor="#00A65A"/>

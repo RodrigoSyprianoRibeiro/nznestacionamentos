@@ -1,3 +1,5 @@
+<!-- daterange picker -->
+<link href="<?php echo $this->baseUrl("plugins/daterangepicker/daterangepicker-bs3.css"); ?>" rel="stylesheet" type="text/css" />
 <!-- DATA TABLES -->
 <link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
 
@@ -20,12 +22,35 @@
     <section class="content">
           <div class="row">
             <div class="col-xs-12">
+
+              <?php if ($this->usarioLogado->perfil == 'master') : ?>
+              <div class="box box-danger">
+                <div class="box-header">
+                  <label>Estacionamento</label>
+                </div>
+                <div class="box-body">
+                  <div class="input-group margin-bottom col-md-5">
+                    <div class="input-group-addon">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                    <select name="estacionamento" class="form-control">
+                      <option>-- Selecione o Estacionamento --</option>
+                      <option selected >Estacionamento 1</option>
+                      <option>Estacionamento 2</option>
+                      <option>Estacionamento 3</option>
+                      <option>Estacionamento 4</option>
+                    </select>
+                  </div><!-- /.input group -->
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              <?php endif; ?>
+
               <div class="box box-danger">
                 <div class="box-body">
 
                   <!-- Date range -->
                   <div class="form-group">
-                    <label>Selecione Data:</label>
+                    <label>Selecione o Período:</label>
                     <div class="input-group" style="width: 655px;">
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
@@ -115,7 +140,7 @@
           </div>
              </br>
               <button class="btn btn-block btn-danger">Nova Consulta</button>
-             </br>
+              <br />
           <div class="row">
             <div class="col-md-12">
                  <!-- Bar chart -->
@@ -139,7 +164,8 @@
 <!-- DATA TABES SCRIPT -->
 <script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
 <script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
-
+<!-- date-range-picker -->
+<script src="<?php echo $this->baseUrl("plugins/daterangepicker/daterangepicker.js"); ?>" type="text/javascript"></script>
 <!-- FLOT CHARTS -->
 <script src="<?php echo $this->baseUrl("plugins/flot/jquery.flot.min.js"); ?>"  type="text/javascript"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
@@ -148,6 +174,7 @@
 <script type="text/javascript">
 $(function () {
     $("#relatoriocliente").dataTable();
+    $('#reservation').daterangepicker();
 
     /*
          * BAR CHART
