@@ -39,11 +39,6 @@ class Aplicacao_Form_Pessoa extends Zend_Form
                  ->setAttrib('placeholder', 'Telefone')
                  ->setAttrib('title', 'Informe o Telefone');
         $this->addElement($telefone);
-
-        $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Enviar')
-                ->setAttrib('type', 'submit');
-        $this->addElement($submit);
     }
 
     public function isValid($data)

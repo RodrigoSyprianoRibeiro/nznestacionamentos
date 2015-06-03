@@ -7,16 +7,16 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
     }
 
     public function newAction() {
-        /*$form = new Aplicacao_Form_Usuario();
-        $this->view->form = $form;
+        $formPessoa = new Aplicacao_Form_Pessoa();
+        $this->view->form = $formPessoa;
 
         if($this->_request->isPost()) {
-            if($form->isValid($this->data)) {
-                $model = new Application_Model_Usuario();
+            if($formPessoa->isValid($this->data)) {
+                $model = new Application_Model_Pessoa();
                 if($model->save($this->data))
-                    $this->_redirect ('/admin/usuario');
+                    $this->_redirect ('/cliente');
             }
-        }*/
+        }
     }
 
     public function editAction() {

@@ -3,7 +3,9 @@
 class Default_IndexController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
-      $this->_redirect('/index/'.$this->usuarioLogado->perfil);
+      //$this->_redirect('/index/'.$this->usuarioLogado->perfil);
+      $layout = Zend_Layout::getMvcInstance();
+      $layout->disableLayout();
     }
 
     public function masterAction() {
