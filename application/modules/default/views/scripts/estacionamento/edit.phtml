@@ -73,7 +73,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="nome" value="Estacionamento 1" class="form-control" placeholder="Nome" />
+                    <input type="text" name="nome" value="<?php echo $this->form->nome->getValue(); ?>" class="form-control" placeholder="Nome" />
                   </div><!-- /.input group -->
                   <label>Número de Vagas</label>
                   <div class="input-group margin-bottom col-md-3">
@@ -94,7 +94,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cnpj" value="81.361.861/0001-05" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
+                            <input type="text" name="cnpj" value="<?php echo $this->form->cnpj->getValue(); ?>" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-xs-4">
@@ -103,7 +103,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataFundacao" value="10/11/2014" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="dataFundacao" value="<?php echo $this->form->data_fundacao->getValue(); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
                           </div><!-- /.input group -->
                         </div>
                       </div>

@@ -1,9 +1,9 @@
 <?php
 
-class Application_Model_Estacionamento extends Application_Model_Abstract {
+class Application_Model_PessoaJuridica extends Application_Model_Abstract {
 
     public function __construct() {
-        $this->_dbTable = new Application_Model_DbTable_Estacionamento();
+        $this->_dbTable = new Application_Model_DbTable_PessoaJuridica();
     }
 
     public function _insert(array $data) {
@@ -18,8 +18,9 @@ class Application_Model_Estacionamento extends Application_Model_Abstract {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
     }
 
-    public function getEstacionamentos() {
+    public function getPessoaJuridica($id) {
         $select = $this->_dbTable->select();
-        return $this->_dbTable->fetchAll($select);
+        $select->where("id = {$id}");
+        return $this->_dbTable->fetchRow($select);
     }
 }

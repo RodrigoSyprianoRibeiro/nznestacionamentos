@@ -73,47 +73,22 @@
                   <tr>
                     <th>Nome</th>
                     <th>CNPJ</th>
-                    <th>Vagas</th>
+                    <th>Data Fundação</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
+                <?php foreach($this->estacionamentos as $estacionamento): ?>
                   <tr>
-                    <td>Estacionamento 1</td>
-                    <td>81.361.861/0001-05</td>
-                    <td>100</td>
+                    <td><?php echo $estacionamento['nome']; ?></td>
+                    <td><?php echo $estacionamento['cnpj']; ?></td>
+                    <td><?php echo $estacionamento['data_fundacao']; ?></td>
                     <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit', 'id' =>$estacionamento['id']), null, 1); ?>"><span class="label label-primary">Editar</span></a>
                       <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Estacionamento 2</td>
-                    <td>63.586.238/0001-60</td>
-                    <td>100</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estacionamento 3</td>
-                    <td>74.967.868/0001-00</td>
-                    <td>100</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Estacionamento 4</td>
-                    <td>15.245.663/0001-43</td>
-                    <td>100</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
+                <?php endforeach;?>
                 </tbody>
               </table>
             </div><!-- /.box-body -->

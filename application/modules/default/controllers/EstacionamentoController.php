@@ -3,12 +3,8 @@
 class Default_EstacionamentoController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
-        /*$model = new Application_Model_Usuario();
-        $pagina = intval($this->_getParam('pagina', 1));
-
-        $params = array('pagina' => $pagina);
-
-        $this->view->usuarios = $model->fetchAll($params);*/
+        $modelEstacionamento = new Application_Model_Estacionamento();
+        $this->view->estacionamentos = $modelEstacionamento->getEstacionamentos();
     }
 
     public function newAction() {
@@ -25,24 +21,25 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
     }
 
     public function editAction() {
-        /*$model = new Application_Model_Usuario();
-        $form = new Aplicacao_Form_Usuario();
+        $modelEstacionamento = new Application_Model_Estacionamento();
+        $form = new Aplicacao_Form_Estacionamento();
+
         $id = (int) $this->_request->getParam("id",0);
-        $usuario = $model->find($id);
-        if($usuario) {
-            $form->populate ($usuario->toArray());
-            $form->getElement('id_perfil')->setValue($usuario->id_perfil);
-        }
+        $estacionamento = $modelEstacionamento->find($id);
+
+        if($estacionamento)
+            $form->populate($estacionamento->toArray());
+
         $this->view->form = $form;
 
         if ($this->_request->isPost()) {
             if($id)
                 $this->data['id'] = $id;
             if ($form->isValid($this->data)) {
-                if ($model->save($this->data))
+                if ($modelEstacionamento->save($this->data))
                     $this->_redirect ('/admin/usuario');
             }
-        }*/
+        }
     }
 
     public function deleteAction() {

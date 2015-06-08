@@ -31,6 +31,7 @@ abstract class Application_Model_Abstract {
         return $paginator;
     }
 
+    /*
     public function search(array $params) {
         $filtro = isset($params['filtro']) ? $params['filtro'] : "";
         $str = isset($params['str']) ? $params['str'] : "";
@@ -40,6 +41,14 @@ abstract class Application_Model_Abstract {
         if (!empty($str)) {
             $select->where($filtro." = '".$str."'");
         }
+
+        return $this->_dbTable->fetchRow($select);
+    }*/
+
+    public function search($id) {
+
+        $select = $this->_dbTable->select();
+        $select->where("id = {$id}");
 
         return $this->_dbTable->fetchRow($select);
     }
