@@ -79,6 +79,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($this->posts as $post): ?>
                   <tr>
                     <td>Pedro Costa</td>
                     <td>pedro@gmail.com</td>
@@ -95,70 +96,7 @@
                       <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>Maria Tereza Souza</td>
-                    <td>maria.souza@gmail.com</td>
-                    <td>(48) 9669-4275</td>
-                    <td>maria.souza</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
-                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php else : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php endif; ?>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Júlio Antunes</td>
-                    <td>julio.antunes@gmail.com</td>
-                    <td>(48) 8856-9654</td>
-                    <td>julio.antunes</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
-                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php else : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php endif; ?>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Roberto Amaral</td>
-                    <td>roberto.amaral@gmail.com</td>
-                    <td>(48) 8896-4521</td>
-                    <td>roberto.amaral</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
-                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php else : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php endif; ?>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Renato Felisbino</td>
-                    <td>renato.felisbino@gmail.com</td>
-                    <td>(48) 8154-8961</td>
-                    <td>renato.felisbino</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
-                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php else : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
-                      <?php endif; ?>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
+                  <?php endforeach;?>
                 </tbody>
               </table>
             </div><!-- /.box-body -->

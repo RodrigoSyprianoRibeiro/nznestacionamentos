@@ -75,16 +75,23 @@
                     </div>
                     <input type="text" name="nome" value="<?php echo $this->form->nome->getValue(); ?>" class="form-control" placeholder="Nome" />
                   </div><!-- /.input group -->
-                  <label>Número de Vagas</label>
+                  <label>E-mail</label>
+                  <div class="input-group margin-bottom col-md-6">
+                    <div class="input-group-addon">
+                      <i class="fa fa-envelope"></i>
+                    </div>
+                    <input type="text" name="vagas" value="<?php echo $this->form->email->getValue(); ?>" class="form-control inteiro" placeholder="E-mail" />
+                  </div><!-- /.input group -->
+                  <label>Telefone</label>
                   <div class="input-group margin-bottom col-md-3">
                     <div class="input-group-addon">
-                      <i class="fa fa-dashboard"></i>
+                      <i class="fa fa-phone"></i>
                     </div>
-                    <input type="text" name="vagas" value="100" class="form-control inteiro" placeholder="Nº de Vagas" />
+                    <input type="text" name="vagas" value="<?php echo $this->form->telefone->getValue(); ?>" class="form-control inteiro" placeholder="Telefone" />
                   </div><!-- /.input group -->
-                    <div class="box">
+                  <div class="box">
                     <div class="box-header">
-                      <h3 class="box-title">Dados do Documento</h3>
+                      <h3 class="box-title">Documentos</h3>
                     </div>
                     <div class="box-body">
                       <div class="row">
@@ -97,13 +104,82 @@
                             <input type="text" name="cnpj" value="<?php echo $this->form->cnpj->getValue(); ?>" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-md-4">
                           <label>Data de Fundação</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataFundacao" value="<?php echo $this->form->data_fundacao->getValue(); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="dataFundacao" value="<?php echo $this->formatoData($this->form->data_fundacao->getValue()); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                          </div><!-- /.input group -->
+                        </div>
+                      </div>
+                    </div><!-- /.box-body -->
+                  </div><!-- /.box -->
+                  <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Endereço</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <label>CEP</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-edit"></i>
+                            </div>
+                            <input type="text" name="cep" value="<?php echo $this->form->cep->getValue(); ?>" class="form-control" placeholder="CEP" data-inputmask='"mask": "99999-999"' data-mask />
+                          </div><!-- /.input group -->
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Logradouro</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-edit"></i>
+                            </div>
+                            <input type="text" name="logradouro" value="<?php echo $this->form->logradouro->getValue(); ?>" class="form-control" placeholder="Logradouro" />
+                          </div><!-- /.input group -->
+                        </div>
+                        <div class="col-md-2">
+                          <label>Nº</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-circle-o"></i>
+                            </div>
+                            <input type="text" name="numero" value="<?php echo $this->form->numero->getValue(); ?>" class="form-control inteiro" placeholder="Nº" maxlength="6" />
+                          </div><!-- /.input group -->
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Complemento</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-edit"></i>
+                            </div>
+                            <input type="text" name="complemento" value="<?php echo $this->form->complemento->getValue(); ?>" class="form-control" placeholder="Complemento" />
+                          </div><!-- /.input group -->
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label>Bairro</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-edit"></i>
+                            </div>
+                            <input type="text" name="bairro" value="<?php echo $this->form->bairro->getValue(); ?>" class="form-control" placeholder="Bairro" />
+                          </div><!-- /.input group -->
+                        </div>
+                        <div class="col-md-4">
+                          <label>CEP</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-edit"></i>
+                            </div>
+                            <input type="text" name="cep" value="<?php echo $this->form->cep->getValue(); ?>" class="form-control" placeholder="CEP" data-inputmask='"mask": "99999-999"' data-mask />
                           </div><!-- /.input group -->
                         </div>
                       </div>

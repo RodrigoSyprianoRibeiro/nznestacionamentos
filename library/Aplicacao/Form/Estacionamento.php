@@ -44,17 +44,17 @@
                      ->addValidator('NotEmpty');
             $this->addElement($telefone);
 
-            $endereco = new Zend_Form_Element_Text('endereco');
-            $endereco->setRequired(true)
-                     ->addFilter('StripTags')
-                     ->addFilter('StringTrim')
-                     ->addValidator('NotEmpty');
-            $this->addElement($endereco);
+            $logradouro = new Zend_Form_Element_Text('logradouro');
+            $logradouro->setRequired(true)
+                       ->addFilter('StripTags')
+                       ->addFilter('StringTrim')
+                       ->addValidator('NotEmpty');
+            $this->addElement($logradouro);
 
             $numero = new Zend_Form_Element_Text('numero');
             $numero->addFilter('StripTags')
                    ->addFilter('StringTrim');
-            $this->addElement($endereco);
+            $this->addElement($numero);
 
             $complemento = new Zend_Form_Element_Text('complemento');
             $complemento->addFilter('StripTags')
