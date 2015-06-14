@@ -3,7 +3,8 @@
 class Default_ClienteController extends Aplicacao_Controller_Action {
 
     public function indexAction() {
-      $this->view->usuarioLogado = $this->usuarioLogado;
+        $modelCliente = new Application_Model_Cliente();
+        $this->view->clientes = $modelCliente->getClientes();
     }
 
     public function newAction() {
@@ -67,16 +68,38 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
     }
 
     public function colocarcreditoAction() {
-        /*$model = new Application_Model_Usuario();
-        $form = new Aplicacao_Form_Usuario();
-        $id = (int) $this->_request->getParam("id",0);
-        if($id)
-            $this->data['id'] = $id;
-        if($model->delete($this->data))
-            $this->_redirect ('/admin/usuario');
+      $modelCliente = new Application_Model_Cliente();
+      $this->view->clientes = $modelCliente->getClientes(true);
+    }
 
-        $this->view->form = $form;
-        $this->view->error = "Erro ao excluir Usuario";*/
+    public function confirmarcompracreditoAction() {
+      $this->_helper->layout->disableLayout();
+      $this->_helper->viewRenderer->setNoRender(true);
+
+      $data = array('id' => $this->_request->getParam("id",0),
+                    'saldo' => $this->_request->getParam("valor",0)
+              );
+
+      $modelCliente = new Application_Model_Cliente();
+      $modelCliente->_update($data);
+    }
+
+    public function alterastatusAction() {
+      $this->_helper->layout->disableLayout();
+      $this->_helper->viewRenderer->setNoRender(true);
+
+      $modelCliente = new Application_Model_Cliente();
+      $modelUsuario = new Application_Model_Usuario();
+
+      $id = $this->_request->getParam("id",0);
+      $status = $this->_request->getParam("status",0);
+      $data = array('id' => $id,
+                    'ativo' => $status,
+              );
+      $modelCliente->_update($data);
+
+      $cliente = $modelCliente->find($id);
+      $modelUsuario->alterastatusAction($status, $cliente->id_usuario);
     }
 
     public function preDispatch() {

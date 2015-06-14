@@ -9,11 +9,11 @@ class Default_IndexController extends Aplicacao_Controller_Action {
     }
 
     public function masterAction() {
-        //$usuario = Zend_Auth::getInstance()->getIdentity();
-        //$this->view->usuario = $usuario;
+      $modelEstacionamento = new Application_Model_Estacionamento();
+      $this->view->quantidadeEstacionamento= $modelEstacionamento->count();
 
-        //$model = new Application_Model_Usuario();
-        //$this->view->quantidadeUsuarios = $model->count();
+      $modelFuncionario = new Application_Model_Funcionario();
+      $this->view->quantidadeFuncionario= $modelFuncionario->count();
     }
 
 

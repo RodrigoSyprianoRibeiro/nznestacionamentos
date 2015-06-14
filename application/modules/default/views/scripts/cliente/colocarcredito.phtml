@@ -1,201 +1,192 @@
 <!-- DATA TABLES -->
 <link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
-
+<style type="text/css">
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+.window {
+  position:absolute;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  display:none;
+  z-index:9999;
+}
+.modal {
+  background: transparent!important;
+}
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Colocar Crédito
-        <small>efetuar recarga</small>
+        <small>clientes</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
-        <li><a href="<?php echo $this->url(array('controller' => 'cliente'), null, 1); ?>">Clientes</a></li>
-        <li class="active">colocar crédito</li>
+        <li class="active">Colocar Crédito</li>
       </ol>
     </section>
 
+    <div class="modal window modal-success">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><i class="icon fa fa-shopping-cart"></i> Colocar Crédito Cliente</h4>
+          </div>
+          <div class="modal-body">
+            <label>Valor</label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                R$
+              </div>
+              <input type="text" id="valorColocar" value="0,00" class="form-control dinheiro" placeholder="0,00" />
+            </div><!-- /.input group -->
+          </div>
+          <div class="modal-footer buttons">
+            <input type="hidden" id="indexAtual" />
+            <button id="confirmarCompra" type="button" class="btn btn-outline">Confirmar</button>
+            <button type="button" class="btn btn-outline close2">Cancelar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Máscara para cobrir a tela -->
+    <div id="mask"></div>
+
     <!-- Main content -->
     <section class="content">
+
+      <div class="alert alert-success alert-dismissable alert-credito" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+        Créditos inserido com Sucesso!
+      </div>
+
       <div class="row">
-            <div class="col-xs-12">
-              <div class="box box-danger">
-                <div class="box-header">
-                <h3 class="box-title">Cliente Selecionado: </h3>
-                <input type="text" name="Nome" size="80" />
-                <h3 class="box-title">Valor à Creditar: </h3>
-                <input type="text" name="Nome" size="15" />
-                <a target="_blank" class="btn btn-default"><i class="fa fa-refresh"></i> Confirmar</a>
-              </div><!-- /.box-header -->
-                <div class="box-header">
-                  <h3 class="box-title">Clientes</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="tabelaClientes" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Clientes</th>
-                        <th>Valor Crédito</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Miguel</td>
-                        <td class='text-green'>19,00</td>
-                      </tr>
-                      <tr>
-                        <td>Davi</td>
-                        <td class='text-green'>16,00</td>
-                      <tr>
-                        <td>Sophia</td>
-                        <td class='text-green'>18,00</td>
-                      </tr>
-                      <tr>
-                        <td>Alice</td>
-                        <td class='text-green'>2,00</td>
-                      </tr>
-                      <tr>
-                        <td>Arthur</td>
-                        <td class='text-green'>10,00</td>
-                      </tr>
-                      <tr>
-                        <td>Pedro</td>
-                        <td class='text-green'>88,00</td>
-                      </tr>
-                      <tr>
-                        <td>Gabriel</td>
-                        <td class='text-green'>66,00</td>
-                      </tr>
-                      <tr>
-                        <td>Julia</td>
-                        <td class='text-green'>55,00</td>
-                      </tr>
-                      <tr>
-                        <td>Isabella</td>
-                        <td class='text-green'>100,00</td>
-                      </tr>
-                      <tr>
-                        <td>Manuela</td>
-                        <td class='text-green'>45,00</td>
-                      </tr>
-                      <tr>
-                        <td>Laura</td>
-                        <td class='text-green'>45,00</td>
-                      </tr>
-                      <tr>
-                        <td>Bernardo</td>
-                        <td class='text-red'>-23,00</td>
-                      </tr>
-                      <tr>
-                        <td>Lucas</td>
-                        <td class='text-green'>54,00</td>
-                      </tr>
-                      <tr>
-                        <td>Luiza</td>
-                        <td class='text-green'>103,00</td>
-                      </tr>
-                      <tr>
-                        <td>Valentina</td>
-                        <td class='text-green'>23,00</td>
-                      </tr>
-                      <tr>
-                        <td>Giovana</td>
-                        <td class='text-green'>12,00</td>
-                      </tr>
-                      <tr>
-                        <td>Matheus</td>
-                        <td class='text-green'>33,00</td>
-                      </tr>
-                      <tr>
-                        <td>Rafael</td>
-                        <td class='text-green'>11,00</td>
-                      </tr>
-                      <tr>
-                        <td>Heitor</td>
-                        <td class='text-green'>8,00</td>
-                      </tr>
-                      <tr>
-                        <td>Maria Eduarda</td>
-                        <td class='text-green'>12,00</td>
-                      </tr>
-                      <tr>
-                        <td>Helena</td>
-                        <td class='text-green'>23,00</td>
-                      </tr>
-                      <tr>
-                        <td>Enzo</td>
-                        <td class='text-green'>134,00</td>
-                      </tr>
-                      <tr>
-                        <td>Guilherme</td>
-                        <td class='text-green'>80,00</td>
-                      </tr>
-                      <tr>
-                        <td>Nicolas</td>
-                        <td class='text-green'>100,00</td>
-                      </tr>
-                      <tr>
-                        <td>Lorenzo</td>
-                        <td class='text-green'>50,00</td>
-                      </tr>
-                      <tr>
-                        <td>Beatriz</td>
-                        <td class='text-green'>26,00</td>
-                      </tr>
-                      <tr>
-                        <td>Maria Luiza</td>
-                        <td class='text-green'>24,00</td>
-                      </tr>
-                      <tr>
-                        <td>Gustavo</td>
-                        <td class='text-green'>56,00</td>
-                      </tr>
-                      <tr>
-                        <td>Felipe</td>
-                        <td class='text-green'>178,00</td>
-                      </tr>
-                      <tr>
-                        <td>Samuel</td>
-                        <td class='text-green'>158,00</td>
-                      </tr>
-                      <tr>
-                        <td>Lara</td>
-                        <td class='text-green'>10,00</td>
-                      </tr>
-                      <tr>
-                        <td>Mariana</td>
-                        <td class='text-green'>15,00</td>
-                      </tr>
-                      <tr>
-                        <td>Nicole</td>
-                        <td class='text-green'>80,00</td>
-                      </tr>
-                      <tr>
-                        <td>Rafaela</td>
-                        <td class='text-green'>50,00</td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Clientes</th>
-                        <th>Valor Crédito</th>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+        <div class="col-xs-12">
+          <div class="box box-danger">
+            <div class="box-body">
+              <table id="tabelaClientes" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Saldo Crédito</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($this->clientes as $clientes): ?>
+                  <tr>
+                    <td><span class="id"><?php echo $clientes['id']; ?></span></td>
+                    <td><span class="nome"><?php echo $clientes['nome']; ?></span></td>
+                    <td>
+                      <span class="saldo <?php echo $clientes['saldo'] > 0 ? 'text-green' : 'text-red'; ?>">
+                      <?php echo "R$ " . $this->formatoDinheiro($clientes['saldo']); ?>
+                      </span>
+                    </td>
+                    <td class="col-sm-2">
+                      <a href="" ><span class="label label-success colocar-credito">Colocar Crédito</span></a>
+                    </td>
+                  </tr>
+                  <?php endforeach;?>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
 <!-- DATA TABES SCRIPT -->
 <script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
 <script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
+<!-- InputMask -->
+<script src="<?php echo $this->baseUrl("plugins/input-mask/jquery.maskMoney.js"); ?>" ></script>
 
 <script type="text/javascript">
 $(function () {
-    $("#tabelaClientes").dataTable();
+  $('.dinheiro').maskMoney({thousands: '', decimal: ','});
+  $("#tabelaClientes").dataTable();
+
+  $('.colocar-credito').click(function(e) {
+    e.preventDefault();
+
+    var index = $('.colocar-credito').index(this);
+    $('#indexAtual').val(index);
+    $('.modal-title').html('<i class="icon fa fa-shopping-cart"></i> Colocar crédito cliente ' + $('.nome:eq(' + index + ')').text());
+    var id = '.modal';
+
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('#mask').fadeIn(1000);
+    $('#mask').fadeTo("slow",0.8);
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $(id).css('top',  winH/2-$(id).height()/3);
+    $(id).css('left', winW/2-$(id).width()/2);
+
+    $(id).fadeIn(2000);
+  });
+
+  $('#confirmarCompra').click(function() {
+
+    if (trataValor($('#valorColocar').val()) <= 0 || $('#valorColocar').val() == '') {
+      return false;
+    }
+
+    var index = $('#indexAtual').val();
+    var idCliente = parseInt($('.id:eq(' + index + ')').text());
+    var valor = trataValor($('.saldo:eq(' + index + ')').text()) + trataValor($('#valorColocar').val());
+
+    $.ajax({
+      type: "GET",
+      url: '/cliente/confirmarcompracredito/id/' + idCliente + '/valor/' + valor,
+        success: function(dados) {
+          if (valor > 0) {
+            $('.saldo:eq(' + index + ')').removeClass('text-red');
+            $('.saldo:eq(' + index + ')').addClass('text-green');
+          } else {
+            $('.saldo:eq(' + index + ')').removeClass('text-green');
+            $('.saldo:eq(' + index + ')').addClass('text-red');
+          }
+          $('#mask').hide();
+          $('.window').hide();
+          $('.alert-credito').show();
+          $('.saldo:eq(' + index + ')').text('R$ ' + valor.toFixed(2).replace(".", ","));
+        }
+    });
+  });
+
+  $('.window .close, .window .close2').click(function (e) {
+    e.preventDefault();
+    $('#mask').hide();
+    $('.window').hide();
+  });
+
+  $('#mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+  });
+
+  function trataValor(valor) {
+    return parseFloat(valor.replace("R$ ", "").replace(",", "."));
+  };
 });
 </script>

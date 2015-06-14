@@ -22,4 +22,18 @@ class Application_Model_Estacionamento extends Application_Model_Abstract {
         $select = $this->_dbTable->select();
         return $this->_dbTable->fetchAll($select);
     }
+
+    public function getNome($id) {
+        $select = $this->_dbTable->select();
+        $select->where("id = {$id}");
+        return $this->_dbTable->fetchRow($select)->nome;
+    }
+
+    public function getSelectEstacionamentos() {
+        $estacionamentos[''] = '-- Selecione o Estacionamento --';
+        foreach($this->_dbTable->fetchAll() as $estacionamento) {
+            $estacionamentos[$estacionamento['id']] = $estacionamento['nome'];
+        }
+        return $estacionamentos;
+    }
 }

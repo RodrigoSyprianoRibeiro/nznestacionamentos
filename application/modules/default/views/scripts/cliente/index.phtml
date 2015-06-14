@@ -28,16 +28,15 @@
     <section class="content-header">
       <h1>
         Clientes
-        <small>lista de clientes</small>
+        <small>lista</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
         <li>Clientes</li>
-        <li class="active">lista</li>
       </ol>
     </section>
 
-    <div class="modal window modal-danger">
+    <div class="modal window">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -45,10 +44,11 @@
             <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
           </div>
           <div class="modal-body">
-            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Cliente?</p>
           </div>
           <div class="modal-footer buttons">
-            <button type="button" class="btn btn-outline">Sim</button>
+            <input type="hidden" id="indexAtual" />
+            <input type="hidden" id="status" />
+            <button id="alterarStatus" type="button" class="btn btn-outline">Sim</button>
             <button type="button" class="btn btn-outline close2">Não</button>
           </div>
         </div><!-- /.modal-content -->
@@ -71,32 +71,35 @@
               <table id="tabelaClientes" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>Código</th>
                     <th>Nome</th>
+                    <th>Login</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
-                    <th>Login</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($this->posts as $post): ?>
-                  <tr>
-                    <td>Pedro Costa</td>
-                    <td>pedro@gmail.com</td>
-                    <td>(48) 9999-9878</td>
-                    <td>pedro.costa</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
-                      <?php if ($this->usuarioLogado->perfil == 'master' || $this->usuarioLogado->perfil == 'funcionario') : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                <?php $modelUsuario = new Application_Model_Usuario(); ?>
+                <?php foreach($this->clientes as $cliente): ?>
+                  <tr <?php if ($cliente['ativo'] == false) echo 'style="background-color: #D5D4D3;"'; ?>>
+                    <td><span class="id"><?php echo $cliente['id']; ?></span></td>
+                    <td><span class="nome"><?php echo $cliente['nome']; ?></span></td>
+                    <td><?php echo $modelUsuario->getLogin($cliente['id_usuario']); ?></td>
+                    <td><?php echo $cliente['email']; ?></td>
+                    <td><?php echo $cliente['telefone']; ?></td>
+                    <td class="col-sm-2 text-center">
+                      <?php if ($cliente['ativo'] == true) : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'veiculo', 'action' => 'show', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <a href=""><span class="label label-danger status">Inativar</span></a>
                       <?php else : ?>
-                      <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
+                      <a href=""><span class="label label-success status">Ativar</span></a>
                       <?php endif; ?>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
                     </td>
                   </tr>
-                  <?php endforeach;?>
+                <?php endforeach;?>
                 </tbody>
               </table>
             </div><!-- /.box-body -->
@@ -113,9 +116,23 @@
 <script type="text/javascript">
 $(function () {
   $("#tabelaClientes").dataTable();
-  $('.inativar').click(function(e) {
+  $('.status').click(function(e) {
     e.preventDefault();
 
+    var acao = $(this).text();
+    var index = $('.status').index(this);
+    $('#indexAtual').val(index);
+    $('#status').val(acao);
+
+    if (acao === 'Ativar') {
+      $('.modal').addClass('modal-success');
+      $('.modal').removeClass('modal-danger');
+    } else {
+      $('.modal').addClass('modal-danger');
+      $('.modal').removeClass('modal-success');
+    }
+
+    $('.modal-body').html('<p>Você tem certeza que deseja <strong>' + acao + '</strong> o(a) Cliente ' + $('.nome:eq(' + index + ')').text() + '?</p>');
     var id = '.modal';
 
     var maskHeight = $(document).height();
@@ -133,6 +150,20 @@ $(function () {
     $(id).css('left', winW/2-$(id).width()/2);
 
     $(id).fadeIn(2000);
+    return false;
+  });
+
+  $('#alterarStatus').click(function() {
+    var index = $('#indexAtual').val();
+    var id = parseInt($('.id:eq(' + index + ')').text());
+    var status = $('#status').val() === 'Ativar' ? '1' : '0';
+    $.ajax({
+      type: "GET",
+      url: '/cliente/alterastatus/id/' + id + '/status/' + status,
+        success: function(dados) {
+          location.reload(true);
+        }
+    });
   });
 
   $('.window .close, .window .close2').click(function (e) {

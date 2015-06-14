@@ -3,7 +3,11 @@
 class Zend_View_Helper_FormatoData {
 
     function formatoData($data) {
-        $data = new DateTime($data);
-        return $data->format('d/m/Y');
+      if (strripos($data, '-')) {
+        $novaData = explode('-', $data);
+        return $novaData[2].'/'.$novaData[1].'/'.$novaData[0];
+      } else {
+        return $data;
+      }
     }
 }

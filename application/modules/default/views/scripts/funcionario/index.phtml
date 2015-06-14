@@ -28,16 +28,15 @@
     <section class="content-header">
       <h1>
         Funcionários
-        <small>lista de funcionários</small>
+        <small>lista</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
         <li>Funcionários</li>
-        <li class="active">lista</li>
       </ol>
     </section>
 
-    <div class="modal window modal-danger">
+    <div class="modal window">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -45,10 +44,11 @@
             <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
           </div>
           <div class="modal-body">
-            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Funcionário?</p>
           </div>
           <div class="modal-footer buttons">
-            <button type="button" class="btn btn-outline">Sim</button>
+            <input type="hidden" id="indexAtual" />
+            <input type="hidden" id="status" />
+            <button id="alterarStatus" type="button" class="btn btn-outline">Sim</button>
             <button type="button" class="btn btn-outline close2">Não</button>
           </div>
         </div><!-- /.modal-content -->
@@ -71,6 +71,7 @@
               <table id="tabelaFuncionarios" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>Código</th>
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Estacionamento</th>
@@ -78,51 +79,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Pedro</td>
-                    <td>788.993.822-55</td>
-                    <td>Estacionamento 1</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
+                <?php $modelEstacionameto = new Application_Model_Estacionamento(); ?>
+                <?php foreach($this->funcionarios as $funcionario): ?>
+                  <tr <?php if ($funcionario['ativo'] == false) echo 'style="background-color: #D5D4D3;"'; ?>>
+                    <td><span class="id"><?php echo $funcionario['id']; ?></span></td>
+                    <td><span class="nome"><?php echo $funcionario['nome']; ?></span></td>
+                    <td><?php echo $funcionario['cpf']; ?></td>
+                    <td><?php echo $modelEstacionameto->getNome($funcionario['id_estacionamento']); ?></td>
+                    <td class="col-sm-2 text-center">
+                      <?php if ($funcionario['ativo'] == true) : ?>
+                      <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit', 'id' =>$funcionario['id']), null, 1); ?>"><span class="label label-primary">Editar</span></a>
+                      <a href=""><span class="label label-danger status">Inativar</span></a>
+                      <?php else : ?>
+                      <a href=""><span class="label label-success status">Ativar</span></a>
+                      <?php endif; ?>
                     </td>
                   </tr>
-                  <tr>
-                    <td>João</td>
-                    <td>100.060.954-53</td>
-                    <td>Estacionamento 1</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Maria</td>
-                    <td>973.717.214-03</td>
-                    <td>Estacionamento 2</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Antônio</td>
-                    <td>863.738.515-08</td>
-                    <td>Estacionamento 3</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>José Paulo</td>
-                    <td>844.614.208-25</td>
-                    <td>Estacionamento 4</td>
-                    <td class="col-sm-2">
-                      <a href="<?php echo $this->url(array('controller' => 'funcionario', 'action' => 'edit'), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="" ><span class="label label-danger inativar">Inativar</span></a>
-                    </td>
-                  </tr>
+                <?php endforeach;?>
                 </tbody>
               </table>
             </div><!-- /.box-body -->
@@ -139,9 +112,23 @@
 <script type="text/javascript">
 $(function () {
   $("#tabelaFuncionarios").dataTable();
-  $('.inativar').click(function(e) {
+  $('.status').click(function(e) {
     e.preventDefault();
 
+    var acao = $(this).text();
+    var index = $('.status').index(this);
+    $('#indexAtual').val(index);
+    $('#status').val(acao);
+
+    if (acao === 'Ativar') {
+      $('.modal').addClass('modal-success');
+      $('.modal').removeClass('modal-danger');
+    } else {
+      $('.modal').addClass('modal-danger');
+      $('.modal').removeClass('modal-success');
+    }
+
+    $('.modal-body').html('<p>Você tem certeza que deseja <strong>' + acao + '</strong> o(a) Funcionário(a) ' + $('.nome:eq(' + index + ')').text() + '?</p>');
     var id = '.modal';
 
     var maskHeight = $(document).height();
@@ -159,6 +146,20 @@ $(function () {
     $(id).css('left', winW/2-$(id).width()/2);
 
     $(id).fadeIn(2000);
+    return false;
+  });
+
+  $('#alterarStatus').click(function() {
+    var index = $('#indexAtual').val();
+    var id = parseInt($('.id:eq(' + index + ')').text());
+    var status = $('#status').val() === 'Ativar' ? '1' : '0';
+    $.ajax({
+      type: "GET",
+      url: '/funcionario/alterastatus/id/' + id + '/status/' + status,
+        success: function(dados) {
+          location.reload(true);
+        }
+    });
   });
 
   $('.window .close, .window .close2').click(function (e) {

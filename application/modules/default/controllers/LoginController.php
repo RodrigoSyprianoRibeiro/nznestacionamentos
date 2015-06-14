@@ -20,6 +20,7 @@ class Default_LoginController extends Aplicacao_Controller_Action {
 
                     $select = $authAdapter->getDbSelect();
                     $select->join(array('p' => 'perfil'), 'p.id = usuario.id_perfil', array('perfil' => 'nome'));
+                    $select->where("usuario.ativo = '1'");
 
                     $result = $authAdapter->authenticate();
 

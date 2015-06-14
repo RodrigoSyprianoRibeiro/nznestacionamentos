@@ -31,4 +31,21 @@ class Application_Model_Usuario extends Application_Model_Abstract {
         return $this->_dbTable->update(array('ultimo_acesso' => $data),
                                        array('id=?'=>$id));
     }
+
+    public function alterastatusAction($status, $id) {
+      return $this->_dbTable->update(array('ativo' => $status),
+                                     array('id=?'=>$id));
+    }
+
+    public function getLogin($id) {
+        $select = $this->_dbTable->select();
+        $select->where("id = {$id}");
+        return $this->_dbTable->fetchRow($select)->login;
+    }
+
+    public function existeLogin($id, $login) {
+        $select = $this->_dbTable->select();
+        $select->where("id <> {$id} AND login = '{$login}'");
+        return !empty($this->_dbTable->fetchRow($select)->login) ? true : false;
+    }
 }
