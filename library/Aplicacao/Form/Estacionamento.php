@@ -82,12 +82,23 @@
                    ->addValidator('NotEmpty');
             $this->addElement($cidade);
 
-            $uf = new Zend_Form_Element_Text('uf');
-            $uf->setRequired(true)
+            $uf = new Zend_Form_Element_Select('uf');
+            $uf->setLabel('UF')
+               ->setRequired(true)
                ->addFilter('StripTags')
                ->addFilter('StringTrim')
-               ->addValidator('NotEmpty');
+               ->addValidator('NotEmpty')
+               ->setAttrib('class', 'form-control')
+               ->addMultiOptions(array('' => '-- Selecione o Estado --',
+                                       'PR' => 'PR',
+                                       'RS' => 'RS',
+                                       'SC' => 'SC',));
             $this->addElement($uf);
+
+            $masVagas = new Zend_Form_Element_Text('max_vagas');
+            $masVagas->addFilter('StripTags')
+                   ->addFilter('StringTrim');
+            $this->addElement($masVagas);
         }
 
         public function isValid($data)

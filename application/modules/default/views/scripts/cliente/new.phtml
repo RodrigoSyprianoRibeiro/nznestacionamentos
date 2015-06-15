@@ -18,6 +18,15 @@
 
     <!-- Main content -->
     <section class="content">
+
+      <?php if ($this->erro) : ?>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-warning"></i> Atenção!</h4>
+          <?php echo $this->erro; ?>
+        </div>
+      <?php endif; ?>
+
       <div class="row">
         <div class="col-md-12">
           <div class="box box-danger">
@@ -30,10 +39,10 @@
                 <form action="" method="post">
                 <div class="form-group">
                     <label class="tipoPessoa">
-                      <input type="radio" name="tipo_pessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
+                      <input type="radio" name="tipo" value="fisica" class="minimal-red tipoPessoa" <?php if (!isset($_POST['tipo']) || $_POST['tipo'] == 'fisica') echo 'checked'; ?> /> Pessoa Física
                     </label>
                     <label class="tipoPessoa">
-                      <input type="radio" name="tipo_pessoa" value="pessoaJuridica" class="minimal-red tipoPessoa" /> Pessoa Jurídica
+                      <input type="radio" name="tipo" value="juridica" class="minimal-red tipoPessoa" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'juridica') echo 'checked'; ?> /> Pessoa Jurídica
                     </label>
                   </div>
                   <label>Nome</label>
@@ -61,7 +70,7 @@
                     <div class="box-header">
                       <h3 class="box-title">Dados do Documento</h3>
                     </div>
-                    <div id="pessoaFisica" class="box-body">
+                    <div id="pessoaFisica" class="box-body" <?php if (isset($_POST['tipo']) && $_POST['tipo'] == 'juridica') echo 'style="display: none;"'; ?> >
                       <div class="row">
                         <div class="col-md-4">
                           <label>CPF</label>
@@ -78,7 +87,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="rg" class="form-control" placeholder="RG" />
+                            <input type="text" name="rg" value="<?php echo $this->form->rg->getValue(); ?>" class="form-control" placeholder="RG" required />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-md-4">
@@ -87,12 +96,12 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataNascimento" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="data_nascimento" value="<?php echo $this->formatoData($this->form->data_nascimento->getValue()); ?>" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
-                    <div id="pessoaJuridica" class="box-body" style="display: none;">
+                    <div id="pessoaJuridica" class="box-body" <?php if (!isset($_POST['tipo']) || $_POST['tipo'] == 'fisica') echo 'style="display: none;"'; ?> >
                       <div class="row">
                         <div class="col-md-4">
                           <label>CNPJ</label>
@@ -100,7 +109,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
+                            <input type="text" name="cnpj" value="<?php echo $this->form->cnpj->getValue(); ?>" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-md-4">
@@ -109,7 +118,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataFundacao" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="data_fundacao" value="<?php echo $this->formatoData($this->form->data_fundacao->getValue()); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
                           </div><!-- /.input group -->
                         </div>
                       </div>
@@ -120,7 +129,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="login" class="form-control" placeholder="Login" />
+                    <input type="text" name="login" value="<?php echo $this->form->login->getValue(); ?>" class="form-control" placeholder="Login" />
                   </div><!-- /.input group -->
                   <div class="row">
                     <div class="col-md-12 margin-bottom">
@@ -152,22 +161,40 @@ $(function () {
     radioClass: 'iradio_minimal-red'
   });
   $('.tipoPessoa').click(function () {
-    if ($(this).find('input').val() === 'pessoaFisica') {
+    if ($(this).find('input').val() === 'fisica') {
       $('#pessoaJuridica').hide();
       $('#pessoaFisica').show();
     } else {
       $('#pessoaFisica').hide();
       $('#pessoaJuridica').show();
     }
+    alteraObrigatoriedade($(this).find('input').val());
   });
   $('.iCheck-helper').click(function () {
-    if ($(this).parent('div').find('input').val() === 'pessoaFisica') {
+    if ($(this).parent('div').find('input').val() === 'fisica') {
       $('#pessoaJuridica').hide();
       $('#pessoaFisica').show();
     } else {
       $('#pessoaFisica').hide();
       $('#pessoaJuridica').show();
     }
+    alteraObrigatoriedade($(this).parent('div').find('input').val());
   });
+
+  function alteraObrigatoriedade(tipo) {
+    if (tipo === 'fisica') {
+      $('input:text[name="cpf"]').attr("required", true);
+      $('input:text[name="rg"]').attr("required", true);
+      $('input:text[name="data_nascimento"]').attr("required", true);
+      $('input:text[name="cnpj"]').removeAttr("required");
+      $('input:text[name="data_fundacao"]').removeAttr("required");
+    } else {
+      $('input:text[name="cnpj"]').attr("required", true);
+      $('input:text[name="data_fundacao"]').attr("required", true);
+      $('input:text[name="cpf"]').removeAttr("required");
+      $('input:text[name="rg"]').removeAttr("required");
+      $('input:text[name="data_nascimento"]').removeAttr("required");
+    }
+  }
 });
 </script>

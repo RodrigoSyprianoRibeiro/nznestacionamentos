@@ -59,27 +59,27 @@
     <!-- Main content -->
     <section class="content">
 
-    <?php if ($this->sucesso) : ?>
-      <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
-        <?php echo $this->sucesso; ?>
-      </div>
-    <?php endif; ?>
-    <?php if ($this->novo) : ?>
-      <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
-        <?php echo $this->novo; ?>
-      </div>
-    <?php endif; ?>
-    <?php if ($this->erro) : ?>
-      <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-warning"></i> Atenção!</h4>
-        <?php echo $this->erro; ?>
-      </div>
-    <?php endif; ?>
+      <?php if ($this->sucesso) : ?>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+          <?php echo $this->sucesso; ?>
+        </div>
+      <?php endif; ?>
+      <?php if ($this->novo) : ?>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+          <?php echo $this->novo; ?>
+        </div>
+      <?php endif; ?>
+      <?php if ($this->erro) : ?>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-warning"></i> Atenção!</h4>
+          <?php echo $this->erro; ?>
+        </div>
+      <?php endif; ?>
 
       <div class="row">
         <div class="col-md-12">
@@ -202,7 +202,7 @@
                     <div class="col-md-12 margin-bottom">
                       <?php if ($this->funcionario['ativo'] == true) : ?>
                       <button type="submit" class="btn btn-primary">Alterar</button>
-                      <button type="submit" class="btn btn-warning">Gerar Nova Senha</button>
+                      <button type="button" class="btn btn-warning">Gerar Nova Senha</button>
                       <button type="button" class="btn btn-danger status">Inativar</button>
                       <?php else : ?>
                       <button type="button" class="btn btn-success status">Ativar</button>

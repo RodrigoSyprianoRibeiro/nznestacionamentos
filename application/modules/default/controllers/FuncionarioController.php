@@ -15,10 +15,10 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
 
         if ($this->_request->isPost()) {
             if (!$modelUsuario->existeLogin(0, $this->data['login'])) {
-                $modelUsuario->_insert(array('login'=>$this->data['login'],
-                                             'senha'=>'teste',
-                                             'id_perfil'=>2));
                 if ($form->isValid($this->data)) {
+                    $modelUsuario->_insert(array('login'=>$this->data['login'],
+                                                 'senha'=>'teste',
+                                                 'id_perfil'=>2));
                     $this->data['id_usuario'] = $modelUsuario->getId($this->data['login']);
                     unset($this->data['login']);
                     $modelFuncionario->_insert($this->data);
@@ -31,6 +31,7 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
             } else {
                 $this->view->erro = 'Login já em uso!';
             }
+            $form->populate($this->data);
         }
     }
 

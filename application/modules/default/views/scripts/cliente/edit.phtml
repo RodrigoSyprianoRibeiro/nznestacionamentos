@@ -33,14 +33,13 @@
         <small>editar informações</small>
         <?php else : ?>
         Clientes
-        <small>editar cliente</small>
+        <small>editar</small>
         <?php endif; ?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
         <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
-        <li>Minha Conta</li>
-        <li class="active">editar informações</li>
+        <li class="active">Minha Conta</li>
         <?php else : ?>
         <li><a href="<?php echo $this->url(array('controller' => 'cliente'), null, 1); ?>">Cliente</a></li>
         <li class="active">editar</li>
@@ -48,7 +47,7 @@
       </ol>
     </section>
 
-    <div class="modal window modal-danger">
+    <div class="modal window">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -56,14 +55,10 @@
             <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
           </div>
           <div class="modal-body">
-            <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
-            <p>Você tem certeza que deseja <strong>Encerrar</strong> sua conta?</p>
-            <?php else : ?>
-            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Cliente?</p>
-            <?php endif; ?>
           </div>
           <div class="modal-footer buttons">
-            <button type="button" class="btn btn-outline">Sim</button>
+            <input type="hidden" id="status" />
+            <button id="alterarStatus" type="button" class="btn btn-outline">Sim</button>
             <button type="button" class="btn btn-outline close2">Não</button>
           </div>
         </div><!-- /.modal-content -->
@@ -74,6 +69,29 @@
 
     <!-- Main content -->
     <section class="content">
+
+      <?php if ($this->sucesso) : ?>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+          <?php echo $this->sucesso; ?>
+        </div>
+      <?php endif; ?>
+      <?php if ($this->novo) : ?>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+          <?php echo $this->novo; ?>
+        </div>
+      <?php endif; ?>
+      <?php if ($this->erro) : ?>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-warning"></i> Atenção!</h4>
+          <?php echo $this->erro; ?>
+        </div>
+      <?php endif; ?>
+
       <div class="row">
         <div class="col-md-12">
           <div class="box box-danger">
@@ -87,72 +105,78 @@
             <div class="box-body">
               <div class="form-group">
                 <!-- form start -->
+                <input type="hidden" id="id" value="<?php echo $this->cliente['id']; ?>" />
                 <form action="" method="post">
                   <div class="form-group">
+                    <?php if ($this->cliente['tipo'] == 'fisica') : ?>
                     <label>
-                      <input type="radio" name="r2" class="minimal-red" checked/> Pessoa Física
+                      <input type="radio" name="tipo" value="fisica" class="minimal-red" checked /> Pessoa Física
                     </label>
+                    <?php else: ?>
                     <label>
-                      <input type="radio" name="r2" class="minimal-red" disabled/> Pessoa Jurídica
+                      <input type="radio" name="tipo" value="juridica" class="minimal-red" checked /> Pessoa Jurídica
                     </label>
+                    <?php endif; ?>
                   </div>
                   <label>Nome</label>
                   <div class="input-group margin-bottom col-md-6">
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="nome" value="José Paulo" class="form-control" placeholder="Nome" />
+                    <input type="text" id="nome" name="nome" value="<?php echo $this->form->nome->getValue(); ?>" class="form-control" placeholder="Nome" required />
                   </div><!-- /.input group -->
                   <label>E-mail</label>
                   <div class="input-group margin-bottom col-md-6">
                     <div class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </div>
-                    <input type="text" name="email" value="jose.paulo@gmail.com" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="email" name="email" value="<?php echo $this->form->email->getValue(); ?>" class="form-control" placeholder="E-mail" required />
                   </div><!-- /.input group -->
                   <label>Telefone</label>
                   <div class="input-group margin-bottom col-md-3">
                     <div class="input-group-addon">
                       <i class="fa fa-phone"></i>
                     </div>
-                    <input type="text" name="telefone" value="(48) 9669-6789" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
+                    <input type="text" name="telefone" value="<?php echo $this->form->telefone->getValue(); ?>" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask required />
                   </div><!-- /.input group -->
                   <div class="box">
                     <div class="box-header">
                       <h3 class="box-title">Dados do Documento</h3>
                     </div>
+                    <?php if ($this->cliente['tipo'] == 'fisica') : ?>
                     <div id="pessoaFisica" class="box-body">
                       <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-md-4">
                           <label>CPF</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cpf" value="844.614.208-25" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask />
+                            <input type="text" name="cpf" value="<?php echo $this->form->cpf->getValue(); ?>" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-md-3">
                           <label>RG</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="rg" value="5.614.208" class="form-control" placeholder="RG" />
+                            <input type="text" name="rg" value="<?php echo $this->form->rg->getValue(); ?>" class="form-control" placeholder="RG" required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-md-4">
                           <label>Data de Nascimento</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataNascimento" value="21/10/1986" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="data_nascimento" value="<?php echo $this->formatoData($this->form->data_nascimento->getValue()); ?>" class="form-control" placeholder="Data de Nascimento" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
-                    <div id="pessoaJuridica" class="box-body" style="display: none;">
+                    <?php else : ?>
+                    <div id="pessoaJuridica" class="box-body">
                       <div class="row">
                         <div class="col-md-4">
                           <label>CNPJ</label>
@@ -160,20 +184,21 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cnpj" value="81.361.861/0001-05" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
+                            <input type="text" name="cnpj" value="<?php echo $this->form->cnpj->getValue(); ?>" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-md-4">
                           <label>Data de Fundação</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataFundacao" value="10/11/2014" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="data_fundacao" value="<?php echo $this->formatoData($this->form->data_fundacao->getValue()); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required />
                           </div><!-- /.input group -->
                         </div>
                       </div>
                     </div><!-- /.box-body -->
+                    <?php endif; ?>
                   </div><!-- /.box -->
 
                   <label>Login</label>
@@ -181,17 +206,21 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="login" value="jose.paulo" class="form-control" placeholder="Login" />
+                    <input type="text" name="login" value="<?php echo $this->form->login->getValue(); ?>" class="form-control" placeholder="Login" required />
                   </div><!-- /.input group -->
                   <div class="row">
-                    <div class="col-xs-12 margin-bottom">
-                      <button type="submit" class="btn btn-primary">Alterar</button>
-                      <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
-                      <button type="submit" class="btn btn-warning">Alterar Senha</button>
-                      <button type="button" class="btn btn-danger inativar">Encerrar Conta</button>
+                    <div class="col-md-12 margin-bottom">
+                      <?php if ($this->cliente['ativo'] == true) : ?>
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                        <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+                        <button type="button" class="btn btn-warning">Alterar Senha</button>
+                        <button type="button" class="btn btn-danger status">Encerrar Conta</button>
+                        <?php else : ?>
+                        <button type="button" class="btn btn-warning">Gerar Nova Senha</button>
+                        <button type="button" class="btn btn-danger status">Inativar</button>
+                        <?php endif; ?>
                       <?php else : ?>
-                      <button type="submit" class="btn btn-warning">Gerar Nova Senha</button>
-                      <button type="button" class="btn btn-danger inativar">Inativar</button>
+                      <button type="button" class="btn btn-success status">Ativar</button>
                       <?php endif; ?>
                     </div><!-- /.col -->
                   </div>
@@ -220,8 +249,25 @@ $(function () {
     checkboxClass: 'icheckbox_minimal-red',
     radioClass: 'iradio_minimal-red'
   });
-  $('.inativar').click(function(e) {
+  $('.status').click(function(e) {
     e.preventDefault();
+
+    var acao = $(this).text();
+    $('#status').val(acao);
+
+    if (acao === 'Ativar') {
+      $('.modal').addClass('modal-success');
+      $('.modal').removeClass('modal-danger');
+    } else {
+      $('.modal').addClass('modal-danger');
+      $('.modal').removeClass('modal-success');
+    }
+
+    if (acao === 'Encerrar Conta') {
+      $('.modal-body').html('<p>Você tem certeza que deseja <strong>Encerrar sua Conta</strong> ' + $('#nome').val() + '?</p>');
+    } else {
+      $('.modal-body').html('<p>Você tem certeza que deseja <strong>' + acao + '</strong> o(a) Funcionário(a) ' + $('#nome').val() + '?</p>');
+    }
 
     var id = '.modal';
 
@@ -240,6 +286,19 @@ $(function () {
     $(id).css('left', winW/2-$(id).width()/2);
 
     $(id).fadeIn(2000);
+    return false;
+  });
+
+  $('#alterarStatus').click(function() {
+    var id = parseInt($('#id').val());
+    var status = $('#status').val() === 'Ativar' ? '1' : '0';
+    $.ajax({
+      type: "GET",
+      url: '/cliente/alterastatus/id/' + id + '/status/' + status,
+        success: function(dados) {
+          location.reload(true);
+        }
+    });
   });
 
   $('.window .close, .window .close2').click(function (e) {

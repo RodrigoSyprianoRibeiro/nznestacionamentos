@@ -68,7 +68,7 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
         $this->view->error = "Erro ao excluir Usuario";*/
     }
 
-    public function configurarAction() {
+    public function consultarCidadeAction($uf) {
         /*$model = new Application_Model_Usuario();
         $form = new Aplicacao_Form_Usuario();
         $id = (int) $this->_request->getParam("id",0);
