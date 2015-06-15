@@ -46,10 +46,8 @@ abstract class Application_Model_Abstract {
     }*/
 
     public function search($id) {
-
         $select = $this->_dbTable->select();
         $select->where("id = {$id} AND ativo = '1'");
-
         return $this->_dbTable->fetchRow($select);
     }
 

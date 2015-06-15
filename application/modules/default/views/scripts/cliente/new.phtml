@@ -7,7 +7,7 @@
     <section class="content-header">
       <h1>
         Clientes
-        <small>novo cliente</small>
+        <small>novo</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
@@ -30,10 +30,10 @@
                 <form action="" method="post">
                 <div class="form-group">
                     <label class="tipoPessoa">
-                      <input type="radio" name="tipoPessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
+                      <input type="radio" name="tipo_pessoa" value="pessoaFisica" class="minimal-red" checked /> Pessoa Física
                     </label>
                     <label class="tipoPessoa">
-                      <input type="radio" name="tipoPessoa" value="pessoaJuridica" class="minimal-red tipoPessoa" /> Pessoa Jurídica
+                      <input type="radio" name="tipo_pessoa" value="pessoaJuridica" class="minimal-red tipoPessoa" /> Pessoa Jurídica
                     </label>
                   </div>
                   <label>Nome</label>
@@ -41,21 +41,21 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="nome" class="form-control" placeholder="Nome" />
+                    <input type="text" name="nome" value="<?php echo $this->form->nome->getValue(); ?>" class="form-control" placeholder="Nome" required />
                   </div><!-- /.input group -->
                   <label>E-mail</label>
                   <div class="input-group margin-bottom col-md-6">
                     <div class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </div>
-                    <input type="text" name="email" class="form-control" placeholder="E-mail" />
+                    <input type="text" name="email" value="<?php echo $this->form->email->getValue(); ?>" class="form-control" placeholder="E-mail" required />
                   </div><!-- /.input group -->
                   <label>Telefone</label>
                   <div class="input-group margin-bottom col-md-3">
                     <div class="input-group-addon">
                       <i class="fa fa-phone"></i>
                     </div>
-                    <input type="text" name="telefone" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
+                    <input type="text" name="telefone" value="<?php echo $this->form->telefone->getValue(); ?>" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask required />
                   </div><!-- /.input group -->
                   <div class="box">
                     <div class="box-header">
@@ -63,16 +63,16 @@
                     </div>
                     <div id="pessoaFisica" class="box-body">
                       <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-md-4">
                           <label>CPF</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cpf" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask />
+                            <input type="text" name="cpf" value="<?php echo $this->form->cpf->getValue(); ?>" class="form-control" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-md-3">
                           <label>RG</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -81,7 +81,7 @@
                             <input type="text" name="rg" class="form-control" placeholder="RG" />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-md-4">
                           <label>Data de Nascimento</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -103,7 +103,7 @@
                             <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-md-4">
                           <label>Data de Fundação</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -123,7 +123,7 @@
                     <input type="text" name="login" class="form-control" placeholder="Login" />
                   </div><!-- /.input group -->
                   <div class="row">
-                    <div class="col-xs-4 margin-bottom">
+                    <div class="col-md-12 margin-bottom">
                       <button type="submit" class="btn btn-success">Cadastrar</button>
                     </div><!-- /.col -->
                   </div>

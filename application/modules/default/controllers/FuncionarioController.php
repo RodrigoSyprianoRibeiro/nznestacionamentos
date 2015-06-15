@@ -19,9 +19,12 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
                                              'senha'=>'teste',
                                              'id_perfil'=>2));
                 if ($form->isValid($this->data)) {
+                    $this->data['id_usuario'] = $modelUsuario->getId($this->data['login']);
                     unset($this->data['login']);
-                    $modelFuncionario->_update($this->data);
-                    $this->view->sucesso = 'Funcionário alterado com Sucesso!';
+                    $modelFuncionario->_insert($this->data);
+                    $id = $modelFuncionario->getIdByCpf($this->data['cpf']);
+                    $_SESSION['cadastro'] = 'sucesso';
+                    $this->_redirect('/funcionario/edit/id/'.$id);
                 } else {
                      $this->view->erro = 'Preencha os todos campos Obrigatórios!';
                 }
@@ -36,12 +39,18 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
         $modelUsuario = new Application_Model_Usuario();
         $form = new Aplicacao_Form_Funcionario();
         $id = (int) $this->_request->getParam("id",0);
-        $funcionario = $modelFuncionario->find($id);
+        $funcionario = $modelFuncionario->search($id);
         if($funcionario) {
+            if (isset($_SESSION['cadastro'])) {
+                $this->view->novo = 'Funcionário cadastrado com Sucesso!';
+                unset($_SESSION['cadastro']);
+            }
             $this->view->funcionario = $funcionario;
             $form->populate($funcionario->toArray());
             $form->getElement('login')->setValue($modelUsuario->getLogin($funcionario->id_usuario));
             $form->getElement('id_estacionamento')->setValue($funcionario->id_estacionamento);
+        } else {
+            $this->_redirect('/funcionario');
         }
         $this->view->form = $form;
 
@@ -76,7 +85,7 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
       $data = array('id' => $id,
                     'ativo' => $status,
               );
-      $modelFuncionario->_update($data);
+      $modelFuncionario->alterarStatus($data);
 
       $fucionario = $modelFuncionario->find($id);
       $modelUsuario->alterastatusAction($status, $fucionario->id_usuario);

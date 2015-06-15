@@ -89,12 +89,6 @@ class Aplicacao_Form_Funcionario extends Zend_Form
     }
 
     public function isValid($data) {
-        /*
-        if(isset($data['email']) && !empty($data['email'])) {
-            $emailValidator = new Zend_Validate_Db_NoRecordExists('funcionario', 'email');
-            $this->getElement('email')
-                 ->addValidator($emailValidator);
-        }*/
         return parent::isValid($data);
     }
 }

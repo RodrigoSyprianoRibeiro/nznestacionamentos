@@ -7,7 +7,7 @@ class Application_Model_Usuario extends Application_Model_Abstract {
     }
 
     public function _insert(array $data) {
-        $data['senha'] = sha1($data['senha']);
+        $data['senha'] = md5($data['senha']);
         return $this->_dbTable->insert($data);
     }
 
@@ -35,6 +35,12 @@ class Application_Model_Usuario extends Application_Model_Abstract {
     public function alterastatusAction($status, $id) {
       return $this->_dbTable->update(array('ativo' => $status),
                                      array('id=?'=>$id));
+    }
+
+    public function getId($login) {
+        $select = $this->_dbTable->select();
+        $select->where("login = '{$login}'");
+        return $this->_dbTable->fetchRow($select)->id;
     }
 
     public function getLogin($id) {
