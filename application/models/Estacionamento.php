@@ -18,6 +18,17 @@ class Application_Model_Estacionamento extends Application_Model_Abstract {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
     }
 
+    public function getIdByCnpj($cnpj) {
+        $select = $this->_dbTable->select();
+        $select->where("cnpj = '{$cnpj}'");
+        return $this->_dbTable->fetchRow($select)->id;
+    }
+
+    public function alterastatusAction($status, $id) {
+      return $this->_dbTable->update(array('ativo' => $status),
+                                     array('id=?'=>$id));
+    }
+
     public function getEstacionamentos() {
         $select = $this->_dbTable->select();
         return $this->_dbTable->fetchAll($select);

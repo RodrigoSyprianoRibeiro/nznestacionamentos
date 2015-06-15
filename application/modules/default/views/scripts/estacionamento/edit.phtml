@@ -27,7 +27,7 @@
     <section class="content-header">
       <h1>
         Estacionamentos
-        <small>editar estacionamento</small>
+        <small>editar</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
@@ -36,7 +36,7 @@
       </ol>
     </section>
 
-    <div class="modal window modal-danger">
+    <div class="modal window">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -44,10 +44,10 @@
             <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
           </div>
           <div class="modal-body">
-            <p>Você tem certeza que deseja <strong>Inativar</strong> esse Estacionamento?</p>
           </div>
           <div class="modal-footer buttons">
-            <button type="button" class="btn btn-outline">Sim</button>
+            <input type="hidden" id="status" />
+            <button id="alterarStatus" type="button" class="btn btn-outline">Sim</button>
             <button type="button" class="btn btn-outline close2">Não</button>
           </div>
         </div><!-- /.modal-content -->
@@ -58,6 +58,29 @@
 
     <!-- Main content -->
     <section class="content">
+
+      <?php if ($this->sucesso) : ?>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+          <?php echo $this->sucesso; ?>
+        </div>
+      <?php endif; ?>
+      <?php if ($this->novo) : ?>
+        <div class="alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+          <?php echo $this->novo; ?>
+        </div>
+      <?php endif; ?>
+      <?php if ($this->erro) : ?>
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-warning"></i> Atenção!</h4>
+          <?php echo $this->erro; ?>
+        </div>
+      <?php endif; ?>
+
       <div class="row">
         <div class="col-md-12">
           <div class="box box-danger">
@@ -67,27 +90,28 @@
             <div class="box-body">
               <div class="form-group">
                 <!-- form start -->
+                <input type="hidden" id="id" value="<?php echo $this->estacionamento['id']; ?>" />
                 <form action="" method="post">
                   <label>Nome</label>
-                  <div class="input-group margin-bottom col-md-4">
+                  <div class="input-group margin-bottom col-md-6">
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" name="nome" value="<?php echo $this->form->nome->getValue(); ?>" class="form-control" placeholder="Nome" />
+                    <input type="text" id="nome" name="nome" value="<?php echo $this->form->nome->getValue(); ?>" class="form-control" placeholder="Nome" required />
                   </div><!-- /.input group -->
                   <label>E-mail</label>
-                  <div class="input-group margin-bottom col-md-4">
+                  <div class="input-group margin-bottom col-md-6">
                     <div class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </div>
-                    <input type="text" name="email" value="<?php echo $this->form->email->getValue(); ?>" class="form-control" placeholder="E-mail" />
+                    <input type="text" id="email" name="email" value="<?php echo $this->form->email->getValue(); ?>" class="form-control" placeholder="E-mail" required />
                   </div><!-- /.input group -->
                   <label>Telefone</label>
-                  <div class="input-group margin-bottom col-md-2">
+                  <div class="input-group margin-bottom col-md-3">
                     <div class="input-group-addon">
                       <i class="fa fa-phone"></i>
                     </div>
-                    <input type="text" name="telefone" value="<?php echo $this->form->telefone->getValue(); ?>" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask />
+                    <input type="text" name="telefone" value="<?php echo $this->form->telefone->getValue(); ?>" class="form-control" placeholder="Telefone" data-inputmask='"mask": "(99) 9999-9999"' data-mask required />
                   </div><!-- /.input group -->
                   <div class="box">
                     <div class="box-header">
@@ -101,7 +125,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cnpj" value="<?php echo $this->form->cnpj->getValue(); ?>" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask />
+                            <input type="text" name="cnpj" value="<?php echo $this->form->cnpj->getValue(); ?>" class="form-control" placeholder="CNPJ" data-inputmask='"mask": "99.999.999/9999-99"' data-mask required />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-md-4">
@@ -110,7 +134,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" name="dataFundacao" value="<?php echo $this->form->data_fundacao->getValue(); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask />
+                            <input type="text" name="data_fundacao" value="<?php echo $this->formatoData($this->form->data_fundacao->getValue()); ?>" class="form-control" placeholder="Data de Fundação" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required />
                           </div><!-- /.input group -->
                         </div>
                       </div>
@@ -128,7 +152,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cep" value="<?php echo $this->form->cep->getValue(); ?>" class="form-control" placeholder="CEP" data-inputmask='"mask": "99999-999"' data-mask />
+                            <input type="text" name="cep" value="<?php echo $this->form->cep->getValue(); ?>" class="form-control" placeholder="CEP" data-inputmask='"mask": "99999-999"' data-mask required />
                           </div><!-- /.input group -->
                         </div>
                       </div>
@@ -139,7 +163,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="logradouro" value="<?php echo $this->form->logradouro->getValue(); ?>" class="form-control" placeholder="Logradouro" />
+                            <input type="text" name="logradouro" value="<?php echo $this->form->logradouro->getValue(); ?>" class="form-control" placeholder="Logradouro" required />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-md-1">
@@ -148,7 +172,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-circle-o"></i>
                             </div>
-                            <input type="text" name="numero" value="<?php echo $this->form->numero->getValue(); ?>" class="form-control inteiro" placeholder="Nº" />
+                            <input type="text" name="numero" value="<?php echo $this->form->numero->getValue(); ?>" class="form-control inteiro" placeholder="Nº" required />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-md-4">
@@ -168,8 +192,11 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="bairro" value="<?php echo $this->form->bairro->getValue(); ?>" class="form-control" placeholder="Bairro" />
+                            <input type="text" name="bairro" value="<?php echo $this->form->bairro->getValue(); ?>" class="form-control" placeholder="Bairro" required />
                           </div><!-- /.input group -->
+                        </div>
+                        <div class="col-md-1">
+                          <?php echo $this->form->uf; ?>
                         </div>
                         <div class="col-md-4">
                           <label>Cidade</label>
@@ -177,11 +204,8 @@
                             <div class="input-group-addon">
                               <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="cidade" value="<?php echo $this->form->cidade->getValue(); ?>" class="form-control" placeholder="Cidade" />
+                            <input type="text" name="cidade" value="<?php echo $this->form->cidade->getValue(); ?>" class="form-control" placeholder="Cidade" required />
                           </div><!-- /.input group -->
-                        </div>
-                        <div class="col-md-1">
-                          <?php echo $this->form->uf; ?>
                         </div>
                       </div>
                     </div><!-- /.box-body -->
@@ -193,28 +217,17 @@
                     </div><!-- /.box-header -->
                     <div class="box-body">
                       <div class="row">
-                        <div class="col-md-3">
-                          <label>Número Máximo de Vagas por Tipo de Vaga</label>
-                          <div class="input-group">
-                            <div class="input-group-addon">
-                              <i class="fa fa-circle-o"></i>
-                            </div>
-                            <input type="text" id="maxVagas" name="maxVagas" value="<?php echo $this->form->max_vagas->getValue(); ?>" class="form-control inteiro" placeholder="Nº" />
-                          </div><!-- /.input group -->
-                        </div>
-                      </div><!-- /.row -->
-                      <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                          <input type="text" class="knob quantVaga" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="60" data-width="120" data-height="120" data-fgColor="#00A65A"/>
-                          <div class="knob-label">Vagas Avulsas</div>
+                          <input type="text" name="nr_vaga_comum" value="<?php echo $this->form->nr_vaga_comum->getValue(); ?>" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120" data-fgColor="#00A65A"/>
+                          <div class="knob-label">Vagas Comuns</div>
                         </div><!-- ./col -->
                         <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                          <input type="text" class="knob quantVaga" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="20" data-width="120" data-height="120" data-fgColor="#F39C12"/>
-                          <div class="knob-label">Vagas Idosis e Deficientes Físicos</div>
+                          <input type="text" name="nr_vaga_especial" value="<?php echo $this->form->nr_vaga_especial->getValue(); ?>" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120" data-fgColor="#F39C12"/>
+                          <div class="knob-label">Vagas Especiais</div>
                         </div><!-- ./col -->
                         <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                          <input type="text" class="knob quantVaga" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="20" data-width="120" data-height="120" data-fgColor="#3C8DBC"/>
-                          <div class="knob-label">Vagas Aluguel</div>
+                          <input type="text" name="nr_vaga_aluguel" value="<?php echo $this->form->nr_vaga_aluguel->getValue(); ?>" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120" data-fgColor="#3C8DBC"/>
+                          <div class="knob-label">Vagas Aluguéis</div>
                         </div><!-- ./col -->
                       </div><!-- /.row -->
                     </div><!-- /.box-body -->
@@ -254,7 +267,7 @@
                         </div>
                       </div>
                     </div><!-- /.box-body -->
-                    <button type="submit" class="btn btn-success pull-right">+ Tabela Preço</button>
+                    <!-- <button type="submit" class="btn btn-success pull-right">+ Tabela Preço</button> -->
                   </div><!-- /.box -->
                   <div class="row">
                     <div class="col-md-4 margin-bottom">
@@ -318,72 +331,62 @@ $(function () {
     $('.window').hide();
   });
 
-  atualizaGrafico();
+  /* jQueryKnob */
+  $(".knob").knob({
+    max: 1000,
+    /*change : function (value) {
+     //console.log("change : " + value);
+     },
+     release : function (value) {
+     console.log("release : " + value);
+     },
+     cancel : function () {
+     console.log("cancel : " + this.value);
+     },*/
+    draw: function () {
 
-  $('#maxVagas').blur(function() {
-    atualizaGrafico();
-    $('.quantVaga').removeClass('knob');
+      // "tron" case
+      if (this.$.data('skin') == 'tron') {
+
+        var a = this.angle(this.cv)  // Angle
+                , sa = this.startAngle          // Previous start angle
+                , sat = this.startAngle         // Start angle
+                , ea                            // Previous end angle
+                , eat = sat + a                 // End angle
+                , r = true;
+
+        this.g.lineWidth = this.lineWidth;
+
+        this.o.cursor
+                && (sat = eat - 0.3)
+                && (eat = eat + 0.3);
+
+        if (this.o.displayPrevious) {
+          ea = this.startAngle + this.angle(this.value);
+          this.o.cursor
+                  && (sa = ea - 0.3)
+                  && (ea = ea + 0.3);
+          this.g.beginPath();
+          this.g.strokeStyle = this.previousColor;
+          this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+          this.g.stroke();
+        }
+
+        this.g.beginPath();
+        this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+        this.g.stroke();
+
+        this.g.lineWidth = 2;
+        this.g.beginPath();
+        this.g.strokeStyle = this.o.fgColor;
+        this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+        this.g.stroke();
+
+        return false;
+      }
+    }
   });
-
-  function atualizaGrafico() {
-    $('.quantVaga').addClass('knob');
-      /* jQueryKnob */
-     $(".knob").knob({
-       max: $('#maxVagas').val(),
-       /*change : function (value) {
-        //console.log("change : " + value);
-        },
-        release : function (value) {
-        console.log("release : " + value);
-        },
-        cancel : function () {
-        console.log("cancel : " + this.value);
-        },*/
-       draw: function () {
-
-         // "tron" case
-         if (this.$.data('skin') == 'tron') {
-
-           var a = this.angle(this.cv)  // Angle
-                   , sa = this.startAngle          // Previous start angle
-                   , sat = this.startAngle         // Start angle
-                   , ea                            // Previous end angle
-                   , eat = sat + a                 // End angle
-                   , r = true;
-
-           this.g.lineWidth = this.lineWidth;
-
-           this.o.cursor
-                   && (sat = eat - 0.3)
-                   && (eat = eat + 0.3);
-
-           if (this.o.displayPrevious) {
-             ea = this.startAngle + this.angle(this.value);
-             this.o.cursor
-                     && (sa = ea - 0.3)
-                     && (ea = ea + 0.3);
-             this.g.beginPath();
-             this.g.strokeStyle = this.previousColor;
-             this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-             this.g.stroke();
-           }
-
-           this.g.beginPath();
-           this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-           this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-           this.g.stroke();
-
-           this.g.lineWidth = 2;
-           this.g.beginPath();
-           this.g.strokeStyle = this.o.fgColor;
-           this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-           this.g.stroke();
-
-           return false;
-         }
-       }
-     });
-  };
   /* END JQUERY KNOB */
 });
 </script>

@@ -24,7 +24,7 @@ class Aplicacao_Plugins_Acl extends Zend_Controller_Plugin_Abstract {
         $acl->allow('cliente', 'default:error');
         $acl->allow('cliente', 'default:estacionamento');
         $acl->allow('cliente', 'default:funcionario');
-        $acl->allow('cliente', 'default:index');
+        $acl->allow('cliente', 'default:index', array('master', 'funcionario', 'cliente'));
         $acl->allow('cliente', 'default:login');
         $acl->allow('cliente', 'default:relatorio');
         $acl->allow('cliente', 'default:usuario');
@@ -44,7 +44,7 @@ class Aplicacao_Plugins_Acl extends Zend_Controller_Plugin_Abstract {
             if(!$acl->has($module . ':' . $controller, $action) or
                     !$acl->isAllowed($identity->perfil, 'default:'.$controller, $action)) {
                 $request->setModuleName('default')
-                        ->setControllerName('login')
+                        ->setControllerName('index')
                         ->setActionName($identity->perfil);
             }
         }

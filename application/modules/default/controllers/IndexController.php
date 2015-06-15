@@ -2,12 +2,6 @@
 
 class Default_IndexController extends Aplicacao_Controller_Action {
 
-    public function indexAction() {
-      //$this->_redirect('/index/'.$this->usuarioLogado->perfil);
-      $layout = Zend_Layout::getMvcInstance();
-      $layout->disableLayout();
-    }
-
     public function masterAction() {
       $modelEstacionamento = new Application_Model_Estacionamento();
       $this->view->quantidadeEstacionamento= $modelEstacionamento->count();
