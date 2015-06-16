@@ -20,7 +20,6 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
                                                 'senha'=>'teste',
                                                 'id_perfil'=>3));
                     $this->data['id_usuario'] = $modelUsuario->getId($this->data['login']);
-                    unset($this->data['login']);
                     $modelCliente->_insert($this->data);
                     if ($this->data['tipo'] == 'fisica') {
                         $id = $modelCliente->getIdByCpf($this->data['cpf']);
@@ -65,7 +64,6 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
             if (!$modelUsuario->existeLogin($cliente->id_usuario, $this->data['login'])) {
                 $modelUsuario->save(array('id'=>$cliente->id_usuario,'login'=>$this->data['login']));
                 if ($form->isValid($this->data)) {
-                    unset($this->data['login']);
                     $modelCliente->_update($this->data);
                     $this->view->sucesso = 'Cliente alterado com Sucesso!';
                 } else {
@@ -129,13 +127,16 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
 
       $id = $this->_request->getParam("id",0);
       $status = $this->_request->getParam("status",0);
-      $data = array('id' => $id,
-                    'ativo' => $status,
-              );
-      $modelCliente->alterarStatus($data);
+      $dataCliente = array('id' => $id,
+                           'ativo' => $status,
+                     );
+      $modelCliente->alterarStatus($dataCliente);
 
       $cliente = $modelCliente->find($id);
-      $modelUsuario->alterastatusAction($status, $cliente->id_usuario);
+      $dataUsuario = array('id' => $cliente->id_usuario,
+                           'ativo' => $status,
+                     );
+      $modelUsuario->alterarStatus($dataUsuario);
     }
 
     public function preDispatch() {

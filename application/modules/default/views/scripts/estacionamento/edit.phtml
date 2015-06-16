@@ -20,6 +20,9 @@
 .modal {
   background: transparent!important;
 }
+.remove-tabela {
+  cursor: pointer;
+}
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -146,7 +149,7 @@
                     </div>
                     <div class="box-body">
                       <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                           <label>CEP</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -166,7 +169,7 @@
                             <input type="text" name="logradouro" value="<?php echo $this->form->logradouro->getValue(); ?>" class="form-control" placeholder="Logradouro" required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-3">
                           <label>Número</label>
                           <div class="input-group">
                             <div class="input-group-addon">
@@ -195,7 +198,7 @@
                             <input type="text" name="bairro" value="<?php echo $this->form->bairro->getValue(); ?>" class="form-control" placeholder="Bairro" required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-3">
                           <?php echo $this->form->uf; ?>
                         </div>
                         <div class="col-md-4">
@@ -217,15 +220,15 @@
                     </div><!-- /.box-header -->
                     <div class="box-body">
                       <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                        <div class="col-md-4 col-sm-4 col-xs-6 text-center">
                           <input type="text" name="nr_vaga_comum" value="<?php echo $this->form->nr_vaga_comum->getValue(); ?>" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120" data-fgColor="#00A65A"/>
                           <div class="knob-label">Vagas Comuns</div>
                         </div><!-- ./col -->
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                        <div class="col-md-4 col-sm-4 col-xs-6 text-center">
                           <input type="text" name="nr_vaga_especial" value="<?php echo $this->form->nr_vaga_especial->getValue(); ?>" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120" data-fgColor="#F39C12"/>
                           <div class="knob-label">Vagas Especiais</div>
                         </div><!-- ./col -->
-                        <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                        <div class="col-md-4 col-sm-4 col-xs-6 text-center">
                           <input type="text" name="nr_vaga_aluguel" value="<?php echo $this->form->nr_vaga_aluguel->getValue(); ?>" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" data-width="120" data-height="120" data-fgColor="#3C8DBC"/>
                           <div class="knob-label">Vagas Aluguéis</div>
                         </div><!-- ./col -->
@@ -236,15 +239,16 @@
                     <div class="box-header">
                       <h3 class="box-title">Tabela de Preço</h3>
                     </div>
-                    <div class="box-body">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <label>Valor</label>
+                    <div class="box-body tabelas margin-bottom">
+                      <?php foreach($this->tabelasPrecos as $indice => $tabelasPreco) : ?>
+                      <div class="row tabela">
+                        <div class="col-md-5">
+                          <label>Descrição</label>
                           <div class="input-group">
                             <div class="input-group-addon">
-                              R$
+                              <i class="fa fa-edit"></i>
                             </div>
-                            <input type="text" name="valor" value="2,00" class="form-control dinheiro" placeholder="Valor" />
+                            <input type="text" name="descricao[]" value="<?php echo $tabelasPreco['descricao']; ?>" class="form-control" placeholder="Descrição" required />
                           </div><!-- /.input group -->
                         </div>
                         <div class="col-md-3">
@@ -253,26 +257,32 @@
                             <div class="input-group-addon">
                               <i class="fa fa-clock-o"></i>
                             </div>
-                            <input type="text" name="tempo" value="060" class="form-control inteiro" placeholder="Tempo" />
+                            <input type="text" name="tempo[]" value="<?php echo $tabelasPreco['tempo']; ?>" class="form-control inteiro" placeholder="Tempo" required />
                           </div><!-- /.input group -->
                         </div>
-                        <div class="col-md-5">
-                          <label>Descrição</label>
+                        <div class="col-md-3">
+                          <label>Valor</label>
                           <div class="input-group">
                             <div class="input-group-addon">
-                              <i class="fa fa-edit"></i>
+                              R$
                             </div>
-                            <input type="text" name="descricao" value="1 Hora" class="form-control" placeholder="Descrição" />
+                            <input type="text" name="valor[]" value="<?php echo $this->formatoDinheiro($tabelasPreco['valor']); ?>" class="form-control dinheiro" placeholder="Valor" required />
                           </div><!-- /.input group -->
                         </div>
                       </div>
+                      <?php endforeach; ?>
                     </div><!-- /.box-body -->
-                    <!-- <button type="submit" class="btn btn-success pull-right">+ Tabela Preço</button> -->
+                    <button type="submit" class="btn btn-danger margin pull-right remove-tabela">- Tabela Preço</button>
+                    <button type="submit" class="btn btn-success margin pull-right add-tabela">+ Tabela Preço</button>
                   </div><!-- /.box -->
                   <div class="row">
-                    <div class="col-md-4 margin-bottom">
+                    <div class="col-md-12 margin-bottom">
+                      <?php if ($this->estacionamento['ativo'] == true) : ?>
                       <button type="submit" class="btn btn-primary">Alterar</button>
-                      <button type="button" class="btn btn-danger inativar">Inativar</button>
+                      <button type="button" class="btn btn-danger status">Inativar</button>
+                      <?php else : ?>
+                      <button type="button" class="btn btn-success status">Ativar</button>
+                      <?php endif; ?>
                     </div><!-- /.col -->
                   </div>
                 </form>
@@ -298,9 +308,36 @@ $(function () {
   $("[data-mask]").inputmask();
   $('.inteiro').maskMoney({thousands: '', decimal: ''});
   $('.dinheiro').maskMoney({thousands: '', decimal: ','});
-  $('.inativar').click(function(e) {
+  $('.add-tabela').click(function(e) {
+    e.preventDefault();
+    $(".tabela:first").clone().appendTo(".tabelas");
+    $(".tabela:last").find('input:text').val('');
+    $('.inteiro').maskMoney({thousands: '', decimal: ''});
+    $('.dinheiro').maskMoney({thousands: '', decimal: ','});
+  });
+  $('.remove-tabela').click(function(e) {
+    e.preventDefault();
+    if ($(".tabela").length === 1) {
+      alert('O Estacionamento deve conter pelo menos 1 Tabela de Preço!');
+    } else {
+      $(".tabela:last").remove();
+    }
+  });
+  $('.status').click(function(e) {
     e.preventDefault();
 
+    var acao = $(this).text();
+    $('#status').val(acao);
+
+    if (acao === 'Ativar') {
+      $('.modal').addClass('modal-success');
+      $('.modal').removeClass('modal-danger');
+    } else {
+      $('.modal').addClass('modal-danger');
+      $('.modal').removeClass('modal-success');
+    }
+
+    $('.modal-body').html('<p>Você tem certeza que deseja <strong>' + acao + '</strong> o Esntacionamento ' + $('#nome').val() + '?</p>');
     var id = '.modal';
 
     var maskHeight = $(document).height();
@@ -318,6 +355,19 @@ $(function () {
     $(id).css('left', winW/2-$(id).width()/2);
 
     $(id).fadeIn(2000);
+    return false;
+  });
+
+  $('#alterarStatus').click(function() {
+    var id = parseInt($('#id').val());
+    var status = $('#status').val() === 'Ativar' ? '1' : '0';
+    $.ajax({
+      type: "GET",
+      url: '/estacionamento/alterastatus/id/' + id + '/status/' + status,
+        success: function(dados) {
+          location.reload(true);
+        }
+    });
   });
 
   $('.window .close, .window .close2').click(function (e) {

@@ -20,7 +20,6 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
                                                  'senha'=>'teste',
                                                  'id_perfil'=>2));
                     $this->data['id_usuario'] = $modelUsuario->getId($this->data['login']);
-                    unset($this->data['login']);
                     $modelFuncionario->_insert($this->data);
                     $id = $modelFuncionario->getIdByCpf($this->data['cpf']);
                     $_SESSION['cadastro'] = 'sucesso';
@@ -62,7 +61,6 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
             if (!$modelUsuario->existeLogin($funcionario->id_usuario, $this->data['login'])) {
                 $modelUsuario->save(array('id'=>$funcionario->id_usuario,'login'=>$this->data['login']));
                 if ($form->isValid($this->data)) {
-                    unset($this->data['login']);
                     $modelFuncionario->_update($this->data);
                     $this->view->sucesso = 'Funcionário alterado com Sucesso!';
                 } else {
@@ -83,13 +81,16 @@ class Default_FuncionarioController extends Aplicacao_Controller_Action {
 
       $id = $this->_request->getParam("id",0);
       $status = $this->_request->getParam("status",0);
-      $data = array('id' => $id,
-                    'ativo' => $status,
-              );
-      $modelFuncionario->alterarStatus($data);
+      $dataFuncionario = array('id' => $id,
+                               'ativo' => $status,
+                         );
+      $modelFuncionario->alterarStatus($dataFuncionario);
 
       $fucionario = $modelFuncionario->find($id);
-      $modelUsuario->alterastatusAction($status, $fucionario->id_usuario);
+      $dataUsuario = array('id' => $fucionario->id_usuario,
+                           'ativo' => $status,
+                     );
+      $modelUsuario->alterarStatus($dataUsuario);
     }
 
     public function preDispatch() {

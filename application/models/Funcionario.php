@@ -7,6 +7,7 @@ class Application_Model_Funcionario extends Application_Model_Abstract {
     }
 
     public function _insert(array $data) {
+        unset($this->data['login']);
         $data['data_nascimento'] = Aplicacao_Plugins_Formato::data($data['data_nascimento']);
         $data['data_admissao'] = Aplicacao_Plugins_Formato::data($data['data_admissao']);
         $data['salario'] = Aplicacao_Plugins_Formato::dinheiro($data['salario']);
@@ -14,6 +15,7 @@ class Application_Model_Funcionario extends Application_Model_Abstract {
     }
 
     public function _update(array $data) {
+        unset($this->data['login']);
         $data['data_nascimento'] = Aplicacao_Plugins_Formato::data($data['data_nascimento']);
         $data['data_admissao'] = Aplicacao_Plugins_Formato::data($data['data_admissao']);
         $data['salario'] = Aplicacao_Plugins_Formato::dinheiro($data['salario']);
@@ -22,10 +24,6 @@ class Application_Model_Funcionario extends Application_Model_Abstract {
 
     public function _delete(array $data) {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
-    }
-
-    public function alterarStatus(array $data) {
-        return $this->_dbTable->update($data, array('id=?'=>$data['id']));
     }
 
     public function getIdByCpf($cpf) {

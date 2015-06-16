@@ -35,7 +35,9 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
                 $this->view->novo = 'Estacionamento cadastrado com Sucesso!';
                 unset($_SESSION['cadastro']);
             }
+            $modelTabelaPreco = new Application_Model_TabelaPreco();
             $this->view->estacionamento = $estacionamento;
+            $this->view->tabelasPrecos = $modelTabelaPreco->getTabelas($id);
             $form->populate($estacionamento->toArray());
         } else {
             $this->_redirect('/estacionamento');
@@ -47,11 +49,15 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
                 $this->data['id'] = $id;
 
             if ($form->isValid($this->data)) {
+                $modelTabelaPreco->apagaTabelas($id);
+                $modelTabelaPreco->cadastraTabelas($this->data);
                 $modelEstacionamento->_update($this->data);
                 $this->view->sucesso = 'Estacionamento alterado com Sucesso!';
             } else {
                  $this->view->erro = 'Preencha os todos campos Obrigatórios!';
             }
+            $modelTabelaPreco = new Application_Model_TabelaPreco();
+            $this->view->tabelasPrecos = $modelTabelaPreco->getTabelas($id);
         }
     }
 
@@ -63,23 +69,10 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
       $data = array('id' => $this->_request->getParam("id",0),
                     'ativo' => $this->_request->getParam("status",0),
               );
-      $modelEstacionamento->alterastatusAction($data);
+      $modelEstacionamento->alterarStatus($data);
     }
 
     public function consultarvagasAction() {
-        /*$model = new Application_Model_Usuario();
-        $form = new Aplicacao_Form_Usuario();
-        $id = (int) $this->_request->getParam("id",0);
-        if($id)
-            $this->data['id'] = $id;
-        if($model->delete($this->data))
-            $this->_redirect ('/admin/usuario');
-
-        $this->view->form = $form;
-        $this->view->error = "Erro ao excluir Usuario";*/
-    }
-
-    public function consultarCidadeAction($uf) {
         /*$model = new Application_Model_Usuario();
         $form = new Aplicacao_Form_Usuario();
         $id = (int) $this->_request->getParam("id",0);

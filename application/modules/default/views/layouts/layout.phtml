@@ -159,11 +159,6 @@
                 <i class="fa fa-edit"></i> <span>Clientes</span>
               </a>
             </li>
-            <li class="<?php if ($controler == 'estacionamento' && $action == 'configurar') echo "active"; ?> treeview">
-              <a href="<?php echo $this->url(array('controller' => 'estacionamento', 'action' => 'configurar'), null, 1); ?>">
-                <i class="fa fa-laptop"></i> <span>Configurar Estacionamento</span>
-              </a>
-            </li>
             <li class="<?php if ($controler == 'cliente' && $action == 'colocarcredito') echo "active"; ?> treeview">
               <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'colocarcredito'), null, 1); ?>">
                 <i class="fa fa-shopping-cart"></i> <span>Colocar Crédito</span>

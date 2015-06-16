@@ -15,6 +15,10 @@ abstract class Application_Model_Abstract {
             return $this->_insert($data);
     }
 
+    public function alterarStatus(array $data) {
+        return $this->_dbTable->update($data, array('id=?'=>$data['id']));
+    }
+
     public function delete(array $data) {
         if (isset($data['id']))
             return $this->_delete($data);

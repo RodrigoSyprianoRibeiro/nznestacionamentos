@@ -7,10 +7,18 @@ class Application_Model_Estacionamento extends Application_Model_Abstract {
     }
 
     public function _insert(array $data) {
+        unset($data['descricao']);
+        unset($data['tempo']);
+        unset($data['valor']);
+        $data['data_fundacao'] = Aplicacao_Plugins_Formato::data($data['data_fundacao']);
         return $this->_dbTable->insert($data);
     }
 
     public function _update(array $data) {
+        unset($data['descricao']);
+        unset($data['tempo']);
+        unset($data['valor']);
+        $data['data_fundacao'] = Aplicacao_Plugins_Formato::data($data['data_fundacao']);
         return $this->_dbTable->update($data, array('id=?'=>$data['id']));
     }
 
@@ -22,11 +30,6 @@ class Application_Model_Estacionamento extends Application_Model_Abstract {
         $select = $this->_dbTable->select();
         $select->where("cnpj = '{$cnpj}'");
         return $this->_dbTable->fetchRow($select)->id;
-    }
-
-    public function alterastatusAction($status, $id) {
-      return $this->_dbTable->update(array('ativo' => $status),
-                                     array('id=?'=>$id));
     }
 
     public function getEstacionamentos() {

@@ -32,11 +32,6 @@ class Application_Model_Usuario extends Application_Model_Abstract {
                                        array('id=?'=>$id));
     }
 
-    public function alterastatusAction($status, $id) {
-      return $this->_dbTable->update(array('ativo' => $status),
-                                     array('id=?'=>$id));
-    }
-
     public function getId($login) {
         $select = $this->_dbTable->select();
         $select->where("login = '{$login}'");
