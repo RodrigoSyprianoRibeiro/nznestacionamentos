@@ -32,8 +32,11 @@ class Application_Model_Estacionamento extends Application_Model_Abstract {
         return $this->_dbTable->fetchRow($select)->id;
     }
 
-    public function getEstacionamentos() {
+    public function getEstacionamentos($ativos=null) {
         $select = $this->_dbTable->select();
+        if ($ativos) {
+          $select->where("ativo = '1'");
+        }
         return $this->_dbTable->fetchAll($select);
     }
 

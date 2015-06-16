@@ -14,10 +14,15 @@ class Default_EstacionamentoController extends Aplicacao_Controller_Action {
 
         if ($this->_request->isPost()) {
             if ($form->isValid($this->data)) {
+
                 $modelEstacionamento->_insert($this->data);
-                $id = $modelEstacionamento->getIdByCnpj($this->data['cnpj']);
+                $this->data['id'] = $modelEstacionamento->getIdByCnpj($this->data['cnpj']);
+
+                $modelTabelaPreco = new Application_Model_TabelaPreco();
+                $modelTabelaPreco->cadastraTabelas($this->data);
+
                 $_SESSION['cadastro'] = 'sucesso';
-                $this->_redirect('/estacionamento/edit/id/'.$id);
+                $this->_redirect('/estacionamento/edit/id/'.$this->data['id']);
             } else {
                  $this->view->erro = 'Preencha os todos campos Obrigatórios!';
             }

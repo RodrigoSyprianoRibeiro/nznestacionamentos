@@ -115,7 +115,7 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
               );
 
       $modelCliente = new Application_Model_Cliente();
-      $modelCliente->_update($data);
+      $modelCliente->inserirCredito($data);
     }
 
     public function alterastatusAction() {
@@ -137,6 +137,20 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
                            'ativo' => $status,
                      );
       $modelUsuario->alterarStatus($dataUsuario);
+    }
+
+    public function geradadosAction() {
+        $modelEstacionamento = new Application_Model_Estacionamento();
+        $this->view->estacionamentos = $modelEstacionamento->getEstacionamentos(true);
+
+        $modelVeiculo = new Application_Model_Veiculo();
+        $this->view->veiculos = $modelVeiculo->getVeiculos(true);
+
+        if ($this->_request->isPost()) {
+          echo "<pre>";
+          print_r($this->data);
+          die();
+        }
     }
 
     public function preDispatch() {

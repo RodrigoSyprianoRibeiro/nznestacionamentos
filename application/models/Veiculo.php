@@ -17,4 +17,12 @@ class Application_Model_Veiculo extends Application_Model_Abstract {
     public function _delete(array $data) {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
     }
+
+    public function getVeiculos($ativos=null) {
+        $select = $this->_dbTable->select();
+        if ($ativos) {
+          $select->where("ativo = '1'");
+        }
+        return $this->_dbTable->fetchAll($select);
+    }
 }

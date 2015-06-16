@@ -7,7 +7,7 @@ class Application_Model_Cliente extends Application_Model_Abstract {
     }
 
     public function _insert(array $data) {
-        unset($this->data['login']);
+        unset($data['login']);
         if ($data['tipo'] == 'fisica') {
             $data['data_nascimento'] = Aplicacao_Plugins_Formato::data($data['data_nascimento']);
             unset($data['cnpj']);
@@ -22,7 +22,7 @@ class Application_Model_Cliente extends Application_Model_Abstract {
     }
 
     public function _update(array $data) {
-        unset($this->data['login']);
+        unset($data['login']);
         if ($data['tipo'] == 'fisica') {
             $data['data_nascimento'] = Aplicacao_Plugins_Formato::data($data['data_nascimento']);
             unset($data['cnpj']);
@@ -38,6 +38,10 @@ class Application_Model_Cliente extends Application_Model_Abstract {
 
     public function _delete(array $data) {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
+    }
+
+    public function inserirCredito(array $data) {
+        return $this->_dbTable->update($data, array('id=?'=>$data['id']));
     }
 
     public function getIdByCpf($cpf) {
