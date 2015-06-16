@@ -50,6 +50,12 @@ class Application_Model_Cliente extends Application_Model_Abstract {
         return $this->_dbTable->fetchRow($select)->id;
     }
 
+    public function getClienteByIdUsuario($id) {
+        $select = $this->_dbTable->select();
+        $select->where("id_usuario = {$id}");
+        return $this->_dbTable->fetchRow($select);
+    }
+
     public function getIdByCnpj($cnpj) {
         $select = $this->_dbTable->select();
         $select->where("cnpj = '{$cnpj}'");

@@ -23,11 +23,13 @@ class Default_IndexController extends Aplicacao_Controller_Action {
     }
 
     public function clienteAction() {
-        //$usuario = Zend_Auth::getInstance()->getIdentity();
-        //$this->view->usuario = $usuario;
+        $modelCliente = new Application_Model_Cliente();
+        $cliente = $modelCliente->getClienteByIdUsuario($this->usuarioLogado->id);
 
-        //$model = new Application_Model_Usuario();
-        //$this->view->quantidadeUsuarios = $model->count();
+        $modelVeiculo = new Application_Model_Veiculo();
+
+        $this->view->veiculos = $modelVeiculo->getVeiculosCliente($cliente['id']);
+        $this->view->cliente = $cliente;
     }
 
     public function preDispatch() {

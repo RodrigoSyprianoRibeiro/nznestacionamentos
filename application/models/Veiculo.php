@@ -25,4 +25,31 @@ class Application_Model_Veiculo extends Application_Model_Abstract {
         }
         return $this->_dbTable->fetchAll($select);
     }
+
+    public function getVeiculosCliente($id) {
+
+        $select = $this->_dbTable->select();
+        $select->setIntegrityCheck(false)
+               ->from($this->_dbTable)
+               ->join('marca',
+                      'marca.id = veiculo.id_marca',
+                       array('marca.nome as marca'))
+               ->join('modelo',
+                      'modelo.id = veiculo.id_modelo',
+                       array('modelo.nome as modelo'))
+               ->where("id_cliente = {$id} AND ativo = '1'")
+               ->order(array('marca.nome','modelo.nome'));
+
+        return $this->_dbTable->fetchAll($select);
+    }
+
+    public function getSelectCores() {
+        $cores[''] = '-- Selecione a Cor --';
+        $cores['bg-red-active'] = 'Vermelho';
+        $cores['bg-yellow-active'] = 'Amarelo';
+        $cores['bg-green-active'] = 'Verde';
+        $cores['bg-black-active'] = 'Preto';
+        $cores['bg-blue-active'] = 'Azul';
+        return $cores;
+    }
 }

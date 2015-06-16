@@ -16,11 +16,11 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
-            <h3><sup style="font-size: 20px">R$</sup> 74,00</h3>
+            <h3><sup style="font-size: 20px">R$</sup> <?php echo $this->formatoDinheiro($this->cliente['saldo']); ?></h3>
             <p>Saldo do Crédito</p>
           </div>
           <div class="icon">
@@ -125,18 +125,14 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($this->veiculos as $veiculo): ?>
                   <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><div class='bg-red-active color-palette'><span>&nbsp</span></div></td>
-                    <td>Ford</td>
-                    <td>Fiesta</td>
+                    <td><a href=""><?php echo $veiculo['placa']; ?></a></td>
+                    <td><div class='<?php echo $veiculo['cor']; ?> color-palette'><span>&nbsp</span></div></td>
+                    <td><?php echo $veiculo['marca']; ?></td>
+                    <td><?php echo $veiculo['modelo']; ?></td>
                   </tr>
-                  <tr>
-                    <td><a href="">DEF1234</a></td>
-                    <td><div class='bg-gray-active color-palette'><span>&nbsp</span></div></td>
-                    <td>Fiat</td>
-                    <td>Uno</td>
-                  </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div><!-- /.table-responsive -->
