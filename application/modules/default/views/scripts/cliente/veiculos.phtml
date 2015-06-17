@@ -1,0 +1,231 @@
+<!-- DATA TABLES -->
+<link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+.window {
+  position:absolute;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  left: auto;
+  display:none;
+  z-index:9999;
+}
+.modal {
+  background: transparent!important;
+}
+</style>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <?php echo $this->cliente['nome']; ?>
+        <small>veículos</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'index'), null, 1); ?>">Clientes</a></li>
+        <li class="active">Veículos</li>
+      </ol>
+    </section>
+
+    <div class="modal window modal-primary">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <!-- form start -->
+                <form action="" method="post">
+                  <label>Marca / Fabricante</label>
+                  <div class="input-group margin-bottom col-md-5">
+                    <?php echo $this->form->id_marca; ?>
+                  </div><!-- /.input group -->
+                  <label>Modelo</label>
+                  <div class="input-group margin-bottom col-md-5">
+                    <?php echo $this->form->id_modelo; ?>
+                  </div><!-- /.input group -->
+                  <label>Cor</label>
+                  <div class="input-group margin-bottom col-md-5">
+                    <?php echo $this->form->cor; ?>
+                  </div><!-- /.input group -->
+                  <label>Placa</label>
+                  <div class="input-group margin-bottom col-md-5">
+                    <div class="input-group-addon">
+                      <i class="fa fa-user"></i>
+                    </div>
+                    <input type="text" name="placa" value="<?php echo $this->form->placa->getValue(); ?>" class="form-control" placeholder="Placa" required />
+                  </div><!-- /.input group -->
+                </form>
+              </div>
+          </div>
+          <div class="modal-footer buttons">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="button" class="btn btn-outline close2">Cancelar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal2 window">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"><i class="icon fa fa-warning"></i> Atenção!</h4>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer buttons">
+            <input type="hidden" id="status" />
+            <button id="alterarStatus" type="button" class="btn btn-outline">Sim</button>
+            <button type="button" class="btn btn-outline close2">Não</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Máscara para cobrir a tela -->
+    <div id="mask"></div>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-danger">
+            <div class="box-header">
+              <button type="button" class="btn btn-danger cadastrar">Novo Veículo</button>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <table id="tabelaVeiculos" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Placa</th>
+                    <th>Cor</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <input type="hidden" id="id" value="<?php echo $this->cliente['id']; ?>" />
+                  <input type="hidden" id="nome" value="<?php echo $this->cliente['nome']; ?>" />
+                  <?php foreach($this->veiculos as $veiculo): ?>
+                  <tr>
+                    <input type="hidden" id="id-veiculo" value="<?php echo $veiculo['id']; ?>" />
+                    <td><?php echo $veiculo['placa']; ?></td>
+                    <td><div class='<?php echo $veiculo['cor']; ?> color-palette'><span>&nbsp</span></div></td>
+                    <td><?php echo $veiculo['marca']; ?></td>
+                    <td><?php echo $veiculo['modelo']; ?></td>
+                    <td class="col-sm-2 text-center">
+                      <a href=""><span class="label label-danger status">Inativar</span></a>
+                    </td>
+                  </tr>
+                  <?php endforeach;?>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+<!-- DATA TABES SCRIPT -->
+<script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
+<script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function () {
+  $("#tabelaVeiculos").dataTable();
+  $('.cadastrar').click(function(e) {
+    e.preventDefault();
+
+    $('.modal-title').html('Novo Veículo Cliente <strong>' + $('#nome').val() + '</strong>');
+    var id = '.modal';
+
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('#mask').fadeIn(1000);
+    $('#mask').fadeTo("slow",0.8);
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $(id).css('top',  winH/2-$(id).height()/3);
+    $(id).css('left', winW/2-$(id).width()/2);
+
+    $(id).fadeIn(2000);
+    return false;
+  });
+  $('.status').click(function(e) {
+    e.preventDefault();
+
+    var acao = $(this).text();
+    $('#status').val(acao);
+
+    if (acao === 'Ativar') {
+      $('.modal2').addClass('modal-success');
+      $('.modal2').removeClass('modal-danger');
+    } else {
+      $('.modal2').addClass('modal-danger');
+      $('.modal2').removeClass('modal-success');
+    }
+
+    $('.modal-body').html('<p>Você tem certeza que deseja <strong>' + acao + '</strong> o Veículo?</p>');
+    var id = '.modal2';
+
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('#mask').fadeIn(1000);
+    $('#mask').fadeTo("slow",0.8);
+
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $(id).css('top',  winH/2-$(id).height()/3);
+    $(id).css('left', winW/2-$(id).width()/2);
+
+    $(id).fadeIn(2000);
+    return false;
+  });
+
+  $('#alterarStatus').click(function() {
+    var id = parseInt($('#id').val());
+    var status = $('#status').val() === 'Ativar' ? '1' : '0';
+    $.ajax({
+      type: "GET",
+      url: '/cliente/inativarveiculo/id/' + id + '/status/' + status,
+        success: function(dados) {
+          location.reload(true);
+        }
+    });
+  });
+
+  $('.window .close, .window .close2').click(function (e) {
+    e.preventDefault();
+    $('#mask').hide();
+    $('.window').hide();
+  });
+
+  $('#mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+  });
+});
+</script>

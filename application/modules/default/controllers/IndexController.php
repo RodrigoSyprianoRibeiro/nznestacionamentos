@@ -4,10 +4,10 @@ class Default_IndexController extends Aplicacao_Controller_Action {
 
     public function masterAction() {
       $modelEstacionamento = new Application_Model_Estacionamento();
-      $this->view->quantidadeEstacionamento= $modelEstacionamento->count();
+      $this->view->quantidadeEstacionamento= $modelEstacionamento->count(true);
 
       $modelFuncionario = new Application_Model_Funcionario();
-      $this->view->quantidadeFuncionario = $modelFuncionario->count();
+      $this->view->quantidadeFuncionario = $modelFuncionario->count(true);
 
       $this->view->dadosGraficoSalarios = $modelFuncionario->getDadosGraficoSalariosEstacionamentos();
       $this->view->dadosGraficoQuantFuncionarios = $modelFuncionario->getGraficoQuantFuncionarios();

@@ -55,8 +55,11 @@ abstract class Application_Model_Abstract {
         return $this->_dbTable->fetchRow($select);
     }
 
-    public function count() {
+    public function count($ativos=null) {
         $select = $this->_dbTable->select();
+        if ($ativos) {
+            $select->where("ativo = '1'");
+        }
         return (int) count($this->_dbTable->fetchAll($select));
     }
 

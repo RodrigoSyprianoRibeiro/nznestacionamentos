@@ -91,7 +91,7 @@
                     <td class="col-sm-2 text-center">
                       <?php if ($cliente['ativo'] == true) : ?>
                       <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-primary">Editar</span></a>
-                      <a href="<?php echo $this->url(array('controller' => 'veiculo', 'action' => 'show', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
+                      <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'veiculos', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-info">Automóveis</span></a>
                       <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaoclienteadministrador', 'id' =>$cliente['id']), null, 1); ?>"><span class="label label-success">Movimentações</span></a>
                       <a href=""><span class="label label-danger status">Inativar</span></a>
                       <?php else : ?>

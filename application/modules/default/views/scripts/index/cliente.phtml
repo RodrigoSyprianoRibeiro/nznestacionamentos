@@ -118,19 +118,19 @@
               <table class="table no-margin">
                 <thead>
                   <tr>
-                    <th>Placa</th>
-                    <th>Cor</th>
                     <th>Marca</th>
                     <th>Modelo</th>
+                    <th>Cor</th>
+                    <th>Placa</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach($this->veiculos as $veiculo): ?>
                   <tr>
-                    <td><a href=""><?php echo $veiculo['placa']; ?></a></td>
-                    <td><div class='<?php echo $veiculo['cor']; ?> color-palette'><span>&nbsp</span></div></td>
                     <td><?php echo $veiculo['marca']; ?></td>
                     <td><?php echo $veiculo['modelo']; ?></td>
+                    <td><div class='<?php echo $veiculo['cor']; ?> color-palette'><span>&nbsp</span></div></td>
+                    <td><?php echo $veiculo['placa']; ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

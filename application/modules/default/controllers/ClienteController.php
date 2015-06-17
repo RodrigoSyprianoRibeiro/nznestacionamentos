@@ -75,6 +75,42 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
         }
     }
 
+    public function veiculosAction() {
+        $modelCliente = new Application_Model_Cliente();
+        $id = (int) $this->_request->getParam("id",0);
+        $cliente = $modelCliente->search($id);
+        if($cliente) {
+            if (isset($_SESSION['cadastro'])) {
+                $this->view->novo = 'Cliente cadastrado com Sucesso!';
+                unset($_SESSION['cadastro']);
+            }
+            $modelVeiculo = new Application_Model_Veiculo();
+            $form = new Aplicacao_Form_Veiculo();
+            $this->view->cliente = $cliente;
+            $this->view->veiculos = $modelVeiculo->getVeiculosCliente($cliente['id']);
+        } else {
+            $this->_redirect('/cliente');
+        }
+        $this->view->form = $form;
+
+        if ($this->_request->isPost()) {
+            if($id)
+                $this->data['id'] = $id;
+
+            if (!$modelUsuario->existeLogin($cliente->id_usuario, $this->data['login'])) {
+                $modelUsuario->save(array('id'=>$cliente->id_usuario,'login'=>$this->data['login']));
+                if ($form->isValid($this->data)) {
+                    $modelCliente->_update($this->data);
+                    $this->view->sucesso = 'Cliente alterado com Sucesso!';
+                } else {
+                     $this->view->erro = 'Preencha os todos campos Obrigatórios!';
+                }
+            } else {
+                $this->view->erro = 'Login já em uso!';
+            }
+        }
+    }
+
     public function deleteAction() {
         /*$model = new Application_Model_Usuario();
         $form = new Aplicacao_Form_Usuario();
@@ -137,6 +173,20 @@ class Default_ClienteController extends Aplicacao_Controller_Action {
                            'ativo' => $status,
                      );
       $modelUsuario->alterarStatus($dataUsuario);
+    }
+
+    public function inativarveiculoAction() {
+      $this->_helper->layout->disableLayout();
+      $this->_helper->viewRenderer->setNoRender(true);
+
+      $modelVeiculo = new Application_Model_Veiculo();
+
+      $id = $this->_request->getParam("id",0);
+      $status = $this->_request->getParam("status",0);
+      $data = array('id' => $id,
+                    'ativo' => $status,
+                    );
+      $modelVeiculo->alterarStatus($data);
     }
 
     public function geradadosAction() {

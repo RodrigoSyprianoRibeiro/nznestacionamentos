@@ -31,6 +31,7 @@ class Application_Model_Funcionario extends Application_Model_Abstract {
                ->join('estacionamento',
                       'estacionamento.id = funcionario.id_estacionamento')
                ->group(array('estacionamento.id','estacionamento.nome'))
+               ->where("funcionario.ativo = '1' AND estacionamento.ativo = '1'")
                ->order('estacionamento.nome');
 
         $dados = $this->_dbTable->fetchAll($select);
@@ -52,6 +53,7 @@ class Application_Model_Funcionario extends Application_Model_Abstract {
                ->join('estacionamento',
                       'estacionamento.id = funcionario.id_estacionamento')
                ->group(array('estacionamento.id','estacionamento.nome'))
+               ->where("funcionario.ativo = '1' AND estacionamento.ativo = '1'")
                ->order('estacionamento.nome');
 
         $dados = $this->_dbTable->fetchAll($select);
