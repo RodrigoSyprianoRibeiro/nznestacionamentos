@@ -1,5 +1,3 @@
-<!-- daterange picker -->
-<link href="<?php echo $this->baseUrl("plugins/daterangepicker/daterangepicker-bs3.css"); ?>" rel="stylesheet" type="text/css" />
 <!-- DATA TABLES -->
 <link href="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
 
@@ -9,200 +7,61 @@
     <section class="content-header">
       <h1>
         Relatório
-        <small>movimentação estacionamento</small>
+        <small>movimentações estacionamento</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo $this->baseUrl("/"); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
         <li>Relatório</li>
-        <li class="active">movimentação estacionamento</li>
+        <li class="active" >movimentações estacionamento</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-          <div class="row">
-            <div class="col-xs-12">
-
-              <?php if ($this->usarioLogado->perfil == 'master') : ?>
-              <div class="box box-danger">
-                <div class="box-header">
-                  <label>Estacionamento</label>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-danger">
+            <div class="box-body">
+              <table id="tabelaMovimentacoes" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Estacionamento</th>
+                    <th>Placa</th>
+                    <th>Entrada / Saida</th>
+                    <th>Data e Hora</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($this->movimentacoes as $movimentacao): ?>
+                  <tr>
+                    <td><?php echo $movimentacao['estacionamento']; ?></td>
+                    <td><?php echo $movimentacao['placa']; ?></td>
+                    <td><span class="label <?php echo ($movimentacao['status'] == 'Entrada') ? "label-success" : "label-danger"; ?>"><?php echo $movimentacao['status']; ?></span></td>
+                    <td><?php echo (!empty($movimentacao['saida'])) ? $this->formatoData($movimentacao['saida'],true) : $this->formatoData($movimentacao['entrada'],true); ?></td>
+                    <td><span class="text-red"><?php echo (!empty($movimentacao['valor'])) ? "R$ ".$this->formatoDinheiro($movimentacao['valor']) : ''; ?></span></td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+              <div class="row no-print">
+                <div class="col-xs-12">
+                  <button class="btn btn-default pull-left" style="margin-right: 5px;" onclick="window.print();" ><i class="fa fa-print"></i> Imprimir</button>
                 </div>
-                <div class="box-body">
-                  <div class="input-group margin-bottom col-md-5">
-                    <div class="input-group-addon">
-                      <i class="fa fa-edit"></i>
-                    </div>
-                    <select name="estacionamento" class="form-control">
-                      <option>-- Selecione o Estacionamento --</option>
-                      <option selected >Estacionamento 1</option>
-                      <option>Estacionamento 2</option>
-                      <option>Estacionamento 3</option>
-                      <option>Estacionamento 4</option>
-                    </select>
-                  </div><!-- /.input group -->
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-              <?php endif; ?>
-
-              <div class="box box-danger">
-                <div class="box-body">
-
-                  <!-- Date range -->
-                  <div class="form-group">
-                    <label>Selecione o Período:</label>
-                    <div class="input-group" style="width: 655px;">
-                      <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                      </div>
-                      <input type="text" class="form-control pull-right" id="reservation" />
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-
-                  <!-- Date and time range -->
-
-                </div><!-- /.box-body -->
-
-                <div class="box-header">
-                  <h3 class="box-title">Relatório de Movimentação</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="relatoriocliente" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Placa</th>
-                        <th>Entrada</th>
-                        <th>Saída</th>
-                        <th>Valor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>MXX-1111</td>
-                        <td>10/02 - 07:45</td>
-                        <td>10/02 - 12:07</td>
-                        <td>3,00</td>
-                      </tr>
-                      <tr>
-                        <td>MXX-1111</td>
-                        <td>10/02 - 13:25</td>
-                        <td>10/02 - 18:10</td>
-                        <td>3,00</td>
-                      </tr>
-                      <tr>
-                        <td>MXX-1111</td>
-                        <td>11/02 - 07:38</td>
-                        <td>11/02 - 12:10</td>
-                        <td>3,00</td>
-                      </tr>
-                      <tr>
-                        <td>MXX-1111</td>
-                        <td>11/02 - 13:23</td>
-                        <td>12/02 - 6:20</td>
-                        <td>9,00</td>
-                      </tr>
-                      <tr>
-                        <td>MXK-9999</td>
-                        <td>13/02 - 07:54</td>
-                        <td>13/02 - 12:18</td>
-                        <td>3,00</td>
-                      </tr>
-                      <tr>
-                        <td>MXK-9999</td>
-                        <td>13/02 - 12:46</td>
-                        <td>13/02 - 17:57</td>
-                        <td>3,00</td>
-
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Placa</th>
-                        <th>Entrada</th>
-                        <th>Saída</th>
-                        <th>Valor</th>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-            </div><!-- /.col -->
-
-             </div><!-- /.row -->
-
-             <!-- this row will not appear when printing -->
-          <div class="row no-print">
-            <div class="col-xs-12">
-              <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
-              <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Gerar PDF</button>
-            </div>
-          </div>
-             </br>
-              <button class="btn btn-block btn-danger">Nova Consulta</button>
-              <br />
-          <div class="row">
-            <div class="col-md-12">
-                 <!-- Bar chart -->
-              <div class="box box-danger">
-                <div class="box-header">
-                  <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Índice Máximo de Vagas Ocupadas</h3>
-                </div>
-                <div class="box-body">
-                  <div id="bar-chart" style="height: 300px;"></div>
-                </div><!-- /.box-body-->
-              </div><!-- /.box -->
-
-
-
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
+              </div>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
 <!-- DATA TABES SCRIPT -->
 <script src="<?php echo $this->baseUrl("plugins/datatables/jquery.dataTables.js"); ?>" type="text/javascript"></script>
 <script src="<?php echo $this->baseUrl("plugins/datatables/dataTables.bootstrap.js"); ?>" type="text/javascript"></script>
-<!-- date-range-picker -->
-<script src="<?php echo $this->baseUrl("plugins/daterangepicker/daterangepicker.js"); ?>" type="text/javascript"></script>
-<!-- FLOT CHARTS -->
-<script src="<?php echo $this->baseUrl("plugins/flot/jquery.flot.min.js"); ?>"  type="text/javascript"></script>
-<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-<script src="<?php echo $this->baseUrl("plugins/flot/jquery.flot.categories.min.js"); ?>" type="text/javascript"></script>
 
 <script type="text/javascript">
 $(function () {
-    $("#relatoriocliente").dataTable();
-    $('#reservation').daterangepicker();
-
-    /*
-         * BAR CHART
-         * ---------
-         */
-
-        var bar_data = {
-          data: [["08/03", 0], ["09/03", 0], ["10/03", 38], ["11/03", 45], ["12/03", 48], ["13/03", 36]],
-          color: "#3c8dbc"
-        };
-        $.plot("#bar-chart", [bar_data], {
-          grid: {
-            borderWidth: 1,
-            borderColor: "#f3f3f3",
-            tickColor: "#f3f3f3"
-          },
-          series: {
-            bars: {
-              show: true,
-              barWidth: 0.5,
-              align: "center"
-            }
-          },
-          xaxis: {
-            mode: "categories",
-            tickLength: 0
-          }
-        });
-        /* END BAR CHART */
+  $("#tabelaMovimentacoes").dataTable();
 });
 </script>

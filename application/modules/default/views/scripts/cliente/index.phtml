@@ -32,7 +32,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => $this->usarioLogado->perfil), null, 1); ?>"><i class="fa fa-dashboard"></i> Início</a></li>
-        <li>Clientes</li>
+        <li class="active">Clientes</li>
       </ol>
     </section>
 
@@ -60,7 +60,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-12">
           <div class="box box-danger">
             <div class="box-header">
               <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'new'), null, 1); ?>">

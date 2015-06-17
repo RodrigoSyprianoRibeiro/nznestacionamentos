@@ -46,65 +46,23 @@
                     <th>Entrada / Saida</th>
                     <th>Data e Hora</th>
                     <th>Valor Debitado</th>
-                    <th>Saldo</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>13/05/2015 12:06</td>
-                    <td><span class="text-red">R$ 8,00</span></td>
-                    <td><span class="text-green">R$ 74,00</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>13/05/2015 08:15</td>
-                    <td><span class="text-red"></span></td>
-                    <td><span class="text-green">R$ 82,00</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-warning">Cancelado</span></td>
-                    <td>12/05/2015 09:30</td>
-                    <td><span class="text-red"></span></td>
-                    <td><span class="text-green">R$ 82,00</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>11/05/2015 18:36</td>
-                    <td><span class="text-red">R$ 10,00</span></td>
-                    <td><span class="text-green">R$ 82,00</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>11/05/2015 13:26</td>
-                    <td><span class="text-red"></span></td>
-                    <td><span class="text-green">R$ 92,00</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-danger">Saída</span></td>
-                    <td>11/05/2015 12:11</td>
-                    <td><span class="text-red">R$ 8,00</span></td>
-                    <td><span class="text-green">R$ 92,00</span></td>
-                  </tr>
-                  <tr>
-                    <td><a href="">ABC4545</a></td>
-                    <td><span class="label label-success">Entrada</span></td>
-                    <td>11/05/2015 08:30</td>
-                    <td><span class="text-red"></span></td>
-                    <td><span class="text-green">R$ 100,00</span></td>
-                  </tr>
+                  <?php foreach($this->movimentacoes as $movimentacao): ?>
+                   <tr>
+                     <td><?php echo $movimentacao['placa']; ?></td>
+                     <td><span class="label <?php echo ($movimentacao['status'] == 'Entrada') ? "label-success" : "label-danger"; ?>"><?php echo $movimentacao['status']; ?></span></td>
+                     <td><?php echo (!empty($movimentacao['saida'])) ? $this->formatoData($movimentacao['saida'],true) : $this->formatoData($movimentacao['entrada'],true); ?></td>
+                     <td><span class="text-red"><?php echo (!empty($movimentacao['valor'])) ? "R$ ".$this->formatoDinheiro($movimentacao['valor']) : ''; ?></span></td>
+                   </tr>
+                   <?php endforeach; ?>
                 </tbody>
               </table>
             </div><!-- /.table-responsive -->
           </div><!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>" class="btn btn-sm btn-info btn-flat pull-right">Ver Todas Movimentações</a>
+            <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente', 'id' =>$this->cliente['id']), null, 1); ?>" class="btn btn-sm btn-info btn-flat pull-right">Ver Todas Movimentações</a>
           </div><!-- /.box-footer -->
         </div><!-- /.box -->
       </div><!-- /.col -->
@@ -138,7 +96,7 @@
             </div><!-- /.table-responsive -->
           </div><!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>" class="btn btn-sm btn-info btn-flat pull-right">Meus Veículos</a>
+            <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'veiculos', 'id' => $this->cliente['id']), null, 1); ?>" class="btn btn-sm btn-info btn-flat pull-right">Meus Veículos</a>
           </div><!-- /.box-footer -->
         </div><!-- /.box -->
         <div class="box box-info">
@@ -154,10 +112,9 @@
               </div><!-- /.col -->
               <div class="col-md-4">
                 <ul class="chart-legend clearfix">
-                  <li><i class="fa fa-circle-o text-red"></i> Estacionamento 1</li>
-                  <li><i class="fa fa-circle-o text-green"></i> Estacionamento 2</li>
-                  <li><i class="fa fa-circle-o text-yellow"></i> Estacionamento 3</li>
-                  <li><i class="fa fa-circle-o text-aqua"></i> Estacionamento 4</li>
+                  <?php foreach($this->estacionamentoUsados as $estacionamento): ?>
+                  <li style="color: <?php echo $estacionamento['cor']; ?>"><i class="fa fa-circle-o"></i> <?php echo $estacionamento['nome']; ?></li>
+                  <?php endforeach; ?>
                 </ul>
               </div><!-- /.col -->
             </div><!-- /.row -->
@@ -179,32 +136,7 @@ $(function () {
   // Get context with jQuery - using jQuery's .get() method.
   var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = [
-    {
-      value: 50,
-      color: "#f56954",
-      highlight: "#f56954",
-      label: "Estacionamento 1"
-    },
-    {
-      value: 30,
-      color: "#00a65a",
-      highlight: "#00a65a",
-      label: "Estacionamento 2"
-    },
-    {
-      value: 10,
-      color: "#f39c12",
-      highlight: "#f39c12",
-      label: "Estacionamento 3"
-    },
-    {
-      value: 2,
-      color: "#00c0ef",
-      highlight: "#00c0ef",
-      label: "Estacionamento 4"
-    }
-  ];
+  var PieData = [<?php echo $this->usoEstacionamento; ?>];
   var pieOptions = {
     //Boolean - Whether we should show a stroke on each segment
     segmentShowStroke: true,

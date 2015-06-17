@@ -23,9 +23,15 @@ class Application_Model_Modelo extends Application_Model_Abstract {
         return $this->_dbTable->fetchAll($select);
     }
 
-    public function getSelectModelos() {
+    public function getSelectModelos($idMarca=null) {
+
+        $select = $this->_dbTable->select();
+        if ($idMarca) {
+          $select->where("id_marca = {$idMarca}");
+        }
+
         $modelos[''] = '-- Selecione o Modelo --';
-        foreach($this->_dbTable->fetchAll() as $modelo) {
+        foreach($this->_dbTable->fetchAll($select) as $modelo) {
             $modelos[$modelo['id']] = $modelo['nome'];
         }
         return $modelos;

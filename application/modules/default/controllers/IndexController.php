@@ -9,26 +9,45 @@ class Default_IndexController extends Aplicacao_Controller_Action {
       $modelFuncionario = new Application_Model_Funcionario();
       $this->view->quantidadeFuncionario = $modelFuncionario->count(true);
 
+      $modelCliente = new Application_Model_Cliente();
+      $this->view->quantidadeCliente = $modelCliente->count(true);
+
+      $modelEstada = new Application_Model_Estada();
+
       $this->view->dadosGraficoSalarios = $modelFuncionario->getDadosGraficoSalariosEstacionamentos();
       $this->view->dadosGraficoQuantFuncionarios = $modelFuncionario->getGraficoQuantFuncionarios();
+      $this->view->dadosGraficoValoresMes = $modelEstada->getDadosGraficoValoresMes();
+      $this->view->dadosGraficoValoresEstacionamento = $modelEstada->getDadosGraficoValoresEstacionamento();
     }
 
 
     public function funcionarioAction() {
-        //$usuario = Zend_Auth::getInstance()->getIdentity();
-        //$this->view->usuario = $usuario;
+        $modelFuncionario = new Application_Model_Funcionario();
+        $funcionario = $modelFuncionario->getFuncionarioByIdUsuario($this->usuarioLogado->id);
 
-        //$model = new Application_Model_Usuario();
-        //$this->view->quantidadeUsuarios = $model->count();
+        $modelEstacionamento = new Application_Model_Estacionamento();
+        $estacionamento = $modelEstacionamento->search($funcionario['id_estacionamento']);
+
+        $modelEstada = new Application_Model_Estada();
+        $this->view->movimentacoes = $modelEstada->getMovimentacoesEstacionamento($estacionamento['id']);
+
+        $this->view->funcionario = $funcionario;
+        $this->view->estacionamento = $estacionamento;
     }
 
     public function clienteAction() {
         $modelCliente = new Application_Model_Cliente();
         $cliente = $modelCliente->getClienteByIdUsuario($this->usuarioLogado->id);
 
-        $modelVeiculo = new Application_Model_Veiculo();
+        $modelEstada = new Application_Model_Estada();
+        $this->view->movimentacoes = $modelEstada->getMovimentacoesEstacionamento(null,$cliente['id'],10);
 
+        $this->view->estacionamentoUsados = $modelEstada->getEstacionamentoUso($cliente['id']);
+        $this->view->usoEstacionamento = $modelEstada->getUsoEstacionamento($cliente['id']);
+
+        $modelVeiculo = new Application_Model_Veiculo();
         $this->view->veiculos = $modelVeiculo->getVeiculosCliente($cliente['id']);
+
         $this->view->cliente = $cliente;
     }
 

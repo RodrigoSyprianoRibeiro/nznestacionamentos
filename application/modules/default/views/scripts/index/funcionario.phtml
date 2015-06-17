@@ -10,7 +10,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Página Inicial
+      <?php echo $this->estacionamento['nome']; ?>
       <small>Gerenciamento</small>
     </h1>
     <ol class="breadcrumb">
@@ -64,123 +64,32 @@
                   <div id="vagas">
                     <div class="box">
                       <div class="box-header">
-                        <h3 class="box-title">Vagas Avulsas</h3>
+                        <h3 class="box-title">Vagas Comuns</h3>
                       </div>
                       <div class="box-body">
-                        <a class="btn btn-primary vaga livreva">001</a>
-                        <a class="btn btn-primary vaga livreva">002</a>
-                        <a class="btn btn-primary vaga livreva">003</a>
-                        <a class="btn btn-primary vaga livreva">004</a>
-                        <a class="btn btn-primary vaga livreva">005</a>
-                        <a class="btn btn-primary vaga livreva">006</a>
-                        <a class="btn btn-primary vaga livreva">007</a>
-                        <a class="btn btn-primary vaga livreva">008</a>
-                        <a class="btn btn-primary vaga livreva">009</a>
-                        <a class="btn btn-primary vaga livreva">010</a>
-                        <a class="btn btn-primary vaga livreva">011</a>
-                        <a class="btn btn-primary vaga livreva">012</a>
-                        <a class="btn btn-primary vaga livreva">013</a>
-                        <a class="btn btn-primary vaga livreva">014</a>
-                        <a class="btn btn-primary vaga livreva">015</a>
-                        <a class="btn btn-primary vaga livreva">016</a>
-                        <a class="btn btn-primary vaga livreva">017</a>
-                        <a class="btn btn-primary vaga livreva">018</a>
-                        <a class="btn btn-primary vaga livreva">019</a>
-                        <a class="btn btn-primary vaga livreva">020</a>
-                        <a class="btn btn-primary vaga livreva">021</a>
-                        <a class="btn btn-primary vaga livreva">022</a>
-                        <a class="btn btn-primary vaga livreva">023</a>
-                        <a class="btn btn-primary vaga livreva">024</a>
-                        <a class="btn btn-primary vaga livreva">025</a>
-                        <a class="btn btn-primary vaga livreva">026</a>
-                        <a class="btn btn-primary vaga livreva">027</a>
-                        <a class="btn btn-primary vaga livreva">028</a>
-                        <a class="btn btn-primary vaga livreva">029</a>
-                        <a class="btn btn-primary vaga livreva">030</a>
-                        <a class="btn btn-primary vaga livreva">031</a>
-                        <a class="btn btn-primary vaga livreva">032</a>
-                        <a class="btn btn-primary vaga livreva">033</a>
-                        <a class="btn btn-primary vaga livreva">034</a>
-                        <a class="btn btn-primary vaga livreva">035</a>
-                        <a class="btn btn-primary vaga livreva">036</a>
-                        <a class="btn btn-primary vaga livreva">037</a>
-                        <a class="btn btn-primary vaga livreva">038</a>
-                        <a class="btn btn-primary vaga livreva">039</a>
-                        <a class="btn btn-primary vaga livreva">040</a>
-                        <a class="btn btn-primary vaga livreva">041</a>
-                        <a class="btn btn-primary vaga livreva">042</a>
-                        <a class="btn btn-primary vaga livreva">043</a>
-                        <a class="btn btn-primary vaga livreva">044</a>
-                        <a class="btn btn-primary vaga livreva">045</a>
-                        <a class="btn btn-primary vaga livreva">046</a>
-                        <a class="btn btn-primary vaga livreva">047</a>
-                        <a class="btn btn-primary vaga livreva">048</a>
-                        <a class="btn btn-primary vaga livreva">049</a>
-                        <a class="btn btn-primary vaga livreva">050</a>
-                        <a class="btn btn-primary vaga livreva">051</a>
-                        <a class="btn btn-primary vaga livreva">052</a>
-                        <a class="btn btn-primary vaga livreva">053</a>
-                        <a class="btn btn-primary vaga livreva">054</a>
-                        <a class="btn btn-primary vaga livreva">055</a>
-                        <a class="btn btn-primary vaga livreva">056</a>
-                        <a class="btn btn-primary vaga livreva">057</a>
-                        <a class="btn btn-primary vaga livreva">058</a>
-                        <a class="btn btn-primary vaga livreva">059</a>
-                        <a class="btn btn-primary vaga livreva">060</a>
+                        <?php for ($i = 1; $i <= $this->estacionamento['nr_vaga_comum']; $i++): ?>
+                        <a class="btn btn-primary vaga livreva"><?php echo str_pad($i, 3, "0", STR_PAD_LEFT);?></a>
+                        <?php endfor; ?>
                       </div>
                     </div>
                     <div class="box">
                       <div class="box-header">
-                        <h3 class="box-title">Vagas Idosis e Deficientes Físicos</h3>
+                        <h3 class="box-title">Vagas Especiais</h3>
                       </div>
                       <div class="box-body">
-                        <a class="btn btn-primary vaga livreve">061</a>
-                        <a class="btn btn-primary vaga livreve">062</a>
-                        <a class="btn btn-primary vaga livreve">063</a>
-                        <a class="btn btn-primary vaga livreve">064</a>
-                        <a class="btn btn-primary vaga livreve">065</a>
-                        <a class="btn btn-primary vaga livreve">066</a>
-                        <a class="btn btn-primary vaga livreve">067</a>
-                        <a class="btn btn-primary vaga livreve">068</a>
-                        <a class="btn btn-primary vaga livreve">069</a>
-                        <a class="btn btn-primary vaga livreve">070</a>
-                        <a class="btn btn-primary vaga livreve">071</a>
-                        <a class="btn btn-primary vaga livreve">072</a>
-                        <a class="btn btn-primary vaga livreve">073</a>
-                        <a class="btn btn-primary vaga livreve">074</a>
-                        <a class="btn btn-primary vaga livreve">075</a>
-                        <a class="btn btn-primary vaga livreve">076</a>
-                        <a class="btn btn-primary vaga livreve">077</a>
-                        <a class="btn btn-primary vaga livreve">078</a>
-                        <a class="btn btn-primary vaga livreve">079</a>
-                        <a class="btn btn-primary vaga livreve">080</a>
+                        <?php for ($i = (1 + $this->estacionamento['nr_vaga_comum']); $i <= ($this->estacionamento['nr_vaga_comum'] + $this->estacionamento['nr_vaga_especial']); $i++): ?>
+                        <a class="btn btn-primary vaga livreve"><?php echo str_pad($i, 3, "0", STR_PAD_LEFT);?></a>
+                        <?php endfor; ?>
                       </div>
                     </div>
                     <div class="box">
                       <div class="box-header">
-                        <h3 class="box-title">Vagas Aluguel</h3>
+                        <h3 class="box-title">Vagas Aluguéis</h3>
                       </div>
                       <div class="box-body">
-                        <a class="btn btn-primary vaga livrevl">081</a>
-                        <a class="btn btn-primary vaga livrevl">082</a>
-                        <a class="btn btn-primary vaga livrevl">083</a>
-                        <a class="btn btn-primary vaga livrevl">084</a>
-                        <a class="btn btn-primary vaga livrevl">085</a>
-                        <a class="btn btn-primary vaga livrevl">086</a>
-                        <a class="btn btn-primary vaga livrevl">087</a>
-                        <a class="btn btn-primary vaga livrevl">088</a>
-                        <a class="btn btn-primary vaga livrevl">089</a>
-                        <a class="btn btn-primary vaga livrevl">090</a>
-                        <a class="btn btn-primary vaga livrevl">091</a>
-                        <a class="btn btn-primary vaga livrevl">092</a>
-                        <a class="btn btn-primary vaga livrevl">093</a>
-                        <a class="btn btn-primary vaga livrevl">094</a>
-                        <a class="btn btn-primary vaga livrevl">095</a>
-                        <a class="btn btn-primary vaga livrevl">096</a>
-                        <a class="btn btn-primary vaga livrevl">097</a>
-                        <a class="btn btn-primary vaga livrevl">098</a>
-                        <a class="btn btn-primary vaga livrevl">099</a>
-                        <a class="btn btn-primary vaga livrevl">100</a>
+                        <?php for ($i = (1 + $this->estacionamento['nr_vaga_comum'] + $this->estacionamento['nr_vaga_especial']); $i <= ($this->estacionamento['nr_vaga_comum'] + $this->estacionamento['nr_vaga_especial'] + $this->estacionamento['nr_vaga_aluguel']); $i++): ?>
+                        <a class="btn btn-primary vaga livrevl"><?php echo str_pad($i, 3, "0", STR_PAD_LEFT);?></a>
+                        <?php endfor; ?>
                       </div>
                     </div>
                   </div>
@@ -206,9 +115,9 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Vagas Avulsas</td>
-                        <td>60</td>
-                        <td><span id="nVAl">60</span></td>
+                        <td>Vagas Comuns</td>
+                        <td><?php echo $this->estacionamento['nr_vaga_comum']; ?></td>
+                        <td><span id="nVAl"><?php echo $this->estacionamento['nr_vaga_comum']; ?></span></td>
                         <td><span id="nVAo">0</span></td>
                         <td>
                           <div class="progress progress-xs">
@@ -218,9 +127,9 @@
                         <td><span id="pVAo" class="badge bg-green">0,00%</span></td>
                       </tr>
                       <tr>
-                        <td>Vagas Idosis e Deficientes Físicos</td>
-                        <td>20</td>
-                        <td><span id="nVEl">20</span></td>
+                        <td>Vagas Especiais</td>
+                        <td><?php echo $this->estacionamento['nr_vaga_especial']; ?></td>
+                        <td><span id="nVEl"><?php echo $this->estacionamento['nr_vaga_especial']; ?></span></td>
                         <td><span id="nVEo">0</span></td>
                         <td>
                           <div class="progress progress-xs">
@@ -230,9 +139,9 @@
                         <td><span id="pVEo" class="badge bg-yellow">0,00%</span></td>
                       </tr>
                       <tr>
-                        <td>Vagas Aluguel</td>
-                        <td>20</td>
-                        <td><span id="nVLl">20</span></td>
+                        <td>Vagas Aluguéis</td>
+                        <td><?php echo $this->estacionamento['nr_vaga_aluguel']; ?></td>
+                        <td><span id="nVLl"><?php echo $this->estacionamento['nr_vaga_aluguel']; ?></span></td>
                         <td><span id="nVLo">0</span></td>
                         <td>
                           <div class="progress progress-xs progress-striped active">
@@ -260,136 +169,20 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach($this->movimentacoes as $movimentacao): ?>
                       <tr>
-                        <td><a href="">DEF1234</a></td>
-                        <td>Marcelo Matos</td>
-                        <td><span class="label label-danger">Saída</span></td>
-                        <td>13/05/2015 20:01</td>
+                        <td><?php echo $movimentacao['placa']; ?></td>
+                        <td><?php echo $movimentacao['nome']; ?></td>
+                        <td><span class="label <?php echo ($movimentacao['status'] == 'Entrada') ? "label-success" : "label-danger"; ?>"><?php echo $movimentacao['status']; ?></span></td>
+                        <td><?php echo (!empty($movimentacao['saida'])) ? $this->formatoData($movimentacao['saida'],true) : $this->formatoData($movimentacao['entrada'],true); ?></td>
                       </tr>
-                      <tr>
-                        <td><a href="">DEF1234</a></td>
-                        <td>Marcelo Matos</td>
-                        <td><span class="label label-success">Entrada</span></td>
-                        <td>13/05/2015 19:26</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">MNB4321</a></td>
-                        <td>Maria Rocha</td>
-                        <td><span class="label label-danger">Saída</span></td>
-                        <td>13/05/2015 18:06</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">ABC4545</a></td>
-                        <td>John Doe</td>
-                        <td><span class="label label-danger">Saída</span></td>
-                        <td>13/05/2015 17:30</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">JHG5648</a></td>
-                        <td>Pedro</td>
-                        <td><span class="label label-danger">Saída</span></td>
-                        <td>13/05/2015 16:45</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">JHG5648</a></td>
-                        <td>Pedro</td>
-                        <td><span class="label label-success">Entrada</span></td>
-                        <td>13/05/2015 13:26</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">MNB4321</a></td>
-                        <td>Maria Rocha</td>
-                        <td><span class="label label-success">Entrada</span></td>
-                        <td>13/05/2015 13:21</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">ABC4545</a></td>
-                        <td>John Doe</td>
-                        <td><span class="label label-success">Entrada</span></td>
-                        <td>13/05/2015 13:10</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">ABC4545</a></td>
-                        <td>John Doe</td>
-                        <td><span class="label label-danger">Saída</span></td>
-                        <td>13/05/2015 12:06</td>
-                      </tr>
-                      <tr>
-                        <td><a href="">ABC4545</a></td>
-                        <td>John Doe</td>
-                        <td><span class="label label-success">Entrada</span></td>
-                        <td>13/05/2015 08:06</td>
-                      </tr>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
           </div><!-- ./row -->
-
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">Estacionados</h3>
-            </div><!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Vaga</th>
-                    <th>Grupo de Vaga</th>
-                    <th>Placa</th>
-                    <th>Cliente</th>
-                    <th>Créditos Disponíveis</th>
-                    <th>Hora de Chegada</th>
-                    <th>Tempo Utilizado</th>
-                    <th>Valor Gasto</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>40</td>
-                    <td>Avulso</td>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td>R$200,00</td>
-                    <td>14:00</td>
-                    <td>1:24</td>
-                    <td>R$3,00</td>
-                  </tr>
-                  <tr>
-                    <td>40</td>
-                    <td>Avulso</td>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td>R$200,00</td>
-                    <td>14:00</td>
-                    <td>1:24</td>
-                    <td>R$3,00</td>
-                  </tr>
-                  <tr>
-                    <td>40</td>
-                    <td>Avulso</td>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td>R$200,00</td>
-                    <td>14:00</td>
-                    <td>1:24</td>
-                    <td>R$3,00</td>
-                  </tr>
-                  <tr>
-                    <td>40</td>
-                    <td>Avulso</td>
-                    <td><a href="">ABC4545</a></td>
-                    <td>John Doe</td>
-                    <td>R$200,00</td>
-                    <td>14:00</td>
-                    <td>1:24</td>
-                    <td>R$3,00</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div><!-- /.box-body -->
-          </div><!-- /.box -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 

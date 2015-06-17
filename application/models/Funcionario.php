@@ -66,6 +66,12 @@ class Application_Model_Funcionario extends Application_Model_Abstract {
         return $dadosGrafico;
     }
 
+    public function getFuncionarioByIdUsuario($id) {
+        $select = $this->_dbTable->select();
+        $select->where("id_usuario = {$id}");
+        return $this->_dbTable->fetchRow($select);
+    }
+
     public function _delete(array $data) {
         return $this->_dbTable->delete(array('id=?'=>$data['id']));
     }

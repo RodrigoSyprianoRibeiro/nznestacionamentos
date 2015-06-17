@@ -106,8 +106,12 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
+                    <?php
+                        $modelCliente = new Application_Model_Cliente();
+                        $cliente = $modelCliente->getClienteByIdUsuario($this->usarioLogado->id);
+                    ?>
                     <div class="pull-left">
-                      <a href="<?php echo $this->url(array('controller' => $this->usarioLogado->perfil, 'action' => 'edit'), null, 1); ?>" class="btn btn-default btn-flat">Ver perfil</a>
+                      <a href="<?php echo $this->url(array('controller' => $this->usarioLogado->perfil, 'action' => 'edit', 'id' => $cliente['id']), null, 1); ?>" class="btn btn-default btn-flat">Ver perfil</a>
                     </div>
                     <?php endif; ?>
                     <div class="pull-right">
@@ -136,6 +140,11 @@
             <?php
               $controler = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
               $action = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+
+              if ($this->usarioLogado->perfil == 'cliente') {
+                  $modelCliente = new Application_Model_Cliente();
+                  $cliente = $modelCliente->getClienteByIdUsuario($this->usarioLogado->id);
+              }
             ?>
             <?php if ($this->usarioLogado->perfil == 'master') : ?>
             <!-- Menu Master -->
@@ -185,12 +194,12 @@
             <?php if ($this->usarioLogado->perfil == 'cliente') : ?>
             <!-- Menu Cliente -->
             <li class="<?php if ($controler == 'cliente' && $action == 'edit') echo "active"; ?> treeview">
-              <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit'), null, 1); ?>">
+              <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'edit','id' => $cliente['id']), null, 1); ?>">
                 <i class="fa fa-user"></i> <span>Minha Conta</span>
               </a>
             </li>
-            <li class="<?php if ($controler == 'veiculo' && $action == 'index') echo "active"; ?> treeview">
-              <a href="<?php echo $this->url(array('controller' => 'veiculo'), null, 1); ?>">
+            <li class="<?php if ($controler == 'cliente' && $action == 'veiculos') echo "active"; ?> treeview">
+              <a href="<?php echo $this->url(array('controller' => 'cliente', 'action' => 'veiculos', 'id' => $cliente['id']), null, 1); ?>">
                 <i class="fa fa-dashboard"></i> <span>Meus Veículos</span>
               </a>
             </li>
@@ -205,7 +214,7 @@
               </a>
             </li>
             <li class="<?php if ($controler == 'relatorio' && $action == 'movimentacaocliente') echo "active"; ?> treeview">
-              <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente'), null, 1); ?>">
+              <a href="<?php echo $this->url(array('controller' => 'relatorio', 'action' => 'movimentacaocliente', 'id' => $cliente['id']), null, 1); ?>">
                 <i class="fa fa-table"></i> <span>Minhas Movimentações</span>
               </a>
             </li>
