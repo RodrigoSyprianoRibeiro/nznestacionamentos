@@ -87,7 +87,7 @@
             <h3 class="box-title">Receita Mensal Todos Estacionamentos</h3>
           </div>
           <div class="box-body">
-            <div id="receita-mes" style="height: 300px;"></div>
+            <div id="receita-mes" style="width: 100%; height:300px"></div>
           </div><!-- /.box-body-->
         </div>
       </div>
@@ -143,13 +143,38 @@ $(function () {
       tickLength: 0
     }
   });*/
-
+      //BEGIN LINE CHART
     $.plot("#receita-mes", [<?php echo $this->dadosGraficoValoresMes; ?>], {
-      lines: { show: true },
-      points: { show: true },
-      xaxis: { tickDecimals: 0},
-      legend: { show: true }
+        series: {
+            lines: {
+                show: !0,
+                fill: .01
+            },
+            points: {
+                show: !0,
+                radius: 4
+            }
+        },
+        grid: {
+            borderColor: "#fafafa",
+            borderWidth: 1,
+            hoverable: !0
+        },
+        tooltip: !0,
+        tooltipOpts: {
+            content: "%x : %y",
+            defaultTheme: false
+        },
+        xaxis: {
+            tickColor: "#fafafa",
+            mode: "categories"
+        },
+        yaxis: {
+            tickColor: "#fafafa"
+        },
+        shadowSize: 0
     });
+    //END LINE CHART
 
   var grafico2 = [<?php echo $this->dadosGraficoValoresEstacionamento; ?>];
   $.plot("#receita-estacionamento", grafico2, {

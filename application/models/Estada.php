@@ -63,19 +63,21 @@ class Application_Model_Estada extends Application_Model_Abstract {
         $nome = '';
         $dadosGerais = "";
         $dadosGrafico = "";
-
+        $cores = Aplicacao_Plugins_Util::getCores();
+        $i = -1;
         foreach($dados as $indice => $dado) {
 
         if ($nome != $dado['nome']) {
             $nome = $dado['nome'];
+            $i++;
 
             if ($indice > 1)
               $dadosGrafico .= "]},";
 
             $dadosGerais .= $dadosGrafico;
-            $dadosGrafico = '{label: "'.$dado['nome'].'",data: [';
+            $dadosGrafico = '{label: "'.$dado['nome'].'", color: "'.$cores[$i].'", data: [';
         }
-            $dadosGrafico .= '["'.$dado['mes'].'",'.$dado['valor'].'],';
+            $dadosGrafico .= '["'.$meses[$dado['mes']].'",'.$dado['valor'].'],';
         }
         $dadosGerais .= $dadosGrafico ."]}";
         return str_replace(",]}", "]}", $dadosGerais);
