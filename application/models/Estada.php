@@ -49,14 +49,12 @@ class Application_Model_Estada extends Application_Model_Abstract {
         $select = $this->_dbTable->select();
         $select->setIntegrityCheck(false)
                ->from($this->_dbTable,
-                      array('estacionamento.nome','EXTRACT(MONTH FROM estada.entrada) AS mes','SUM(estada.valor) AS valor'))
+                      array('estacionamento.nome','EXTRACT(YEAR FROM estada.entrada) AS ano','EXTRACT(MONTH FROM estada.entrada) AS mes','SUM(estada.valor) AS valor'))
                ->join('estacionamento',
                       'estacionamento.id = estada.id_estacionamento')
-               ->group(array('estacionamento.nome','EXTRACT(MONTH FROM estada.entrada)'))
-               ->order(array('estacionamento.nome','EXTRACT(MONTH FROM estada.entrada)'));
-//echo "<pre>";
-//print_r($select->__toString());
-//die();
+               ->group(array('estacionamento.nome','EXTRACT(YEAR FROM estada.entrada)','EXTRACT(MONTH FROM estada.entrada)'))
+               ->order(array('estacionamento.nome','EXTRACT(YEAR FROM estada.entrada)', 'EXTRACT(MONTH FROM estada.entrada)'));
+
         $dados = $this->_dbTable->fetchAll($select);
         $meses = Aplicacao_Plugins_Util::getMeses();
 
@@ -77,7 +75,7 @@ class Application_Model_Estada extends Application_Model_Abstract {
             $dadosGerais .= $dadosGrafico;
             $dadosGrafico = '{label: "'.$dado['nome'].'", color: "'.$cores[$i].'", data: [';
         }
-            $dadosGrafico .= '["'.$meses[$dado['mes']].'",'.$dado['valor'].'],';
+            $dadosGrafico .= '["'.$meses[$dado['mes']].'/'.$dado['ano'].'",'.$dado['valor'].'],';
         }
         $dadosGerais .= $dadosGrafico ."]}";
         return str_replace(",]}", "]}", $dadosGerais);
